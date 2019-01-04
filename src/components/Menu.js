@@ -17,7 +17,7 @@ const Navigator = () => {
             <NavLink exact to="/about/foo">
                 <Button color="purple">질문</Button>
             </NavLink>
-            <NavLink exact to="/ViewPost">    
+            <NavLink exact to="/login">    
                 <Button color="pink">로그인</Button>
             </NavLink>
         </div>
