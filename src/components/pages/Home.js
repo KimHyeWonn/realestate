@@ -17,7 +17,7 @@ class Home extends Component{
                 <div style={style1}>
                     <Select_page/>
                 </div>
-                <div sytle={style2}>
+                <div style={style2}>
                     <Charts_page/>
                 </div>
             </div>

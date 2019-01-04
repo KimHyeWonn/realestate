@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import Highchart from '../../highcharts/HighCharts';
 
 class chart extends Component {
     render() {
         return (
             <div>
-                <h1>chart page</h1>
+                <Highchart/>
+                <Highchart/>
+                <Highchart/>
             </div>
         );
     }

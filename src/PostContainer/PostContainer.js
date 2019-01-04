@@ -31,14 +31,12 @@ class PostContainer extends Component {
             
         });
 
-        // wait for two promises
         const info = await Promise.all([
             service.getPost(postId),
             service.getComments(postId)
 
         ]);
-        // Object destructuring Syntax,
-        // takes out required values and create references to them
+  
         const {title, body} = info[0].data; 
                                             
         const comments = info[1].data;
