@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 
-const login = () => (
+const Login = () => (
     <div className='login-form'>
       {/*
         Heads up! The styles below are necessary for the correct render of this example.
@@ -38,11 +38,11 @@ const login = () => (
             </Segment>
           </Form>
           <Message>
-            New to us? <a href='#'>Sign Up</a>
+            New to us? <a href='https://github.com'>Sign Up</a>
           </Message>
         </Grid.Column>
       </Grid>
     </div>
   )
 
-export default login;
+export default Login;

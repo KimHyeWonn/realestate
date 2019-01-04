@@ -1,24 +1,25 @@
 import React,{Component} from 'react';
-import Select_page from '../select_page/select_page';
-import Charts_page from '../chart/Chart';
+import SelectPage from '../selectPage/SelectPage';
+import ChartsPage from '../chart/Chart';
+
 class Home extends Component{
     render(){
         const style1 = {
             float: 'left',
-            width: '15%'
+            width: '20%'
         };
         const style2 ={
             float: 'right',
-            width: '85%',
+            width: '80%',
         };
         
         return(
             <div>
                 <div style={style1}>
-                    <Select_page/>
+                    <SelectPage/>
                 </div>
                 <div style={style2}>
-                    <Charts_page/>
+                    <ChartsPage/>
                 </div>
             </div>
         );

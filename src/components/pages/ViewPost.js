@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import PostContainer from '../../PostContainer/PostContainer';
+import PostContainer from 'PostContainer/PostContainer';
+//import PostContainer from '../../PostContainer/PostContainer';
 
 class ViewPost extends Component {
     render() {

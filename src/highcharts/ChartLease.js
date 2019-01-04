@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactHighcharts from 'react-highcharts';
 
-class Chart_lease extends Component {
+class ChartLease extends Component {
     render() {
         const style ={
             minwidth: '310px',
@@ -63,4 +63,4 @@ class Chart_lease extends Component {
     }
 }
 
-export default Chart_lease;
+export default ChartLease;

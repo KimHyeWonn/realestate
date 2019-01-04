@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Chart_deal from '../../highcharts/Chart_deal';
-import Chart_lease from '../../highcharts/Chart_lease'
-import Chart_month from '../../highcharts/Chart_month';
+import ChartDeal from 'highcharts/ChartDeal';
+import ChartLease from 'highcharts/ChartLease'
+import ChartMonth from 'highcharts/ChartMonth';
 import {Grid,Segment, GridColumn} from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 
@@ -19,13 +19,13 @@ class chart extends Component {
                 <Segment>
                     <Grid columns={3} relaxed='very'>
                         <GridColumn>
-                            <Chart_deal />
+                            <ChartDeal />
                         </GridColumn>
                         <GridColumn>
-                            <Chart_lease/>
+                            <ChartLease/>
                         </GridColumn>
                         <GridColumn>
-                            <Chart_month op={op}/>
+                            <ChartMonth op={op}/>
                         </GridColumn>
                     </Grid>
                 </Segment>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Route,Switch } from 'react-router-dom';
-import {Home,About,ViewPost,Login} from '../components/pages';
+import { Route, Switch } from 'react-router-dom';
+import {Home, About, Login} from 'components/pages'; //ViewPost
 import Menu from 'components/Menu';
 
 
