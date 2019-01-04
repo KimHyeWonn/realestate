@@ -5,11 +5,11 @@ class Home extends Component{
     render(){
         const style1 = {
             float: 'left',
-            width: '30%'
+            width: '15%'
         };
         const style2 ={
             float: 'right',
-            width: '70%',
+            width: '85%',
         };
         
         return(
