@@ -1,0 +1,13 @@
+.Navigator {
+    background-color: #00B5AD;
+    color: white;
+    font-size: 2rem;
+    padding: 3rem;
+    text-align: center;
+    font-weight: 600;
+    /* margin-bottom: 2rem; */
+}
+
+.Navigator_position{
+    float: right;
+}
