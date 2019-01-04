@@ -7,7 +7,7 @@ const About = ({location,match}) =>{
 
     return (
         <div>
-            <h2>About {match.params.name}</h2>
+            <h2>검색 {match.params.name}</h2>
             {detail && 'detail: blahblah'}
         </div>
     );

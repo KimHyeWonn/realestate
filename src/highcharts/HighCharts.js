@@ -114,7 +114,7 @@ class HighCharts extends Component {
         };
         return (
             <div sytle={style}>
-                <ReactHighcharts config ={config} setData></ReactHighcharts>
+                <ReactHighcharts config ={config}></ReactHighcharts>
             </div>
         );
     }

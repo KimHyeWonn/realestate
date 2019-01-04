@@ -1,26 +1,25 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
-import './Menu.css';
 import { NavLink } from 'react-router-dom';
+import { Button } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
+import './Menu.css';
 
 const Navigator = () => {
   return(
     <div className="Navigator">
     <div className="Navigator_position">
-        <Button.Group widths='4'>
             <NavLink exact to="/"> 
-                <Button>Home</Button>
+                <Button color="blue">그래프</Button>
             </NavLink>
             <NavLink exact to="/about">    
-                <Button>About</Button>
+                <Button color ="violet">검색</Button>
             </NavLink>
             <NavLink exact to="/about/foo">
-                <Button>Index</Button>
+                <Button color="purple">질문</Button>
             </NavLink>
             <NavLink exact to="/ViewPost">    
-                <Button>Posts</Button>
+                <Button color="pink">로그인</Button>
             </NavLink>
-        </Button.Group>
         </div>
     </div>
   );
