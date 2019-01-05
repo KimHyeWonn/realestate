@@ -13,7 +13,7 @@ const Login = () => (
         body > div,
         body > div > div,
         body > div > div > div.login-form {
-          height: 100%;
+          height: 90%;
         }
       `}</style>
       <Grid textAlign='center' style={{ margin:'1rem',height: '100%' }} verticalAlign='top'>
