@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import ChartDeal from 'highcharts/ChartDeal';
 import ChartLease from 'highcharts/ChartLease'
 import ChartMonth from 'highcharts/ChartMonth';
-import {Grid,Segment, GridColumn} from 'semantic-ui-react';
+import {Grid, Segment, GridColumn} from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 
 class chart extends Component {
-    
     render() {
+        // 조건 데이터
+        const {conditionData} = this.props;
+
         const style = {
             padding:'1rem'
         };
@@ -29,6 +31,17 @@ class chart extends Component {
                         </GridColumn>
                     </Grid>
                 </Segment>
+
+                {/* 조건 데이터 출력 */}
+                <div>
+                    조건 : 
+                    {conditionData.city}-
+                    {conditionData.district}-
+                    {conditionData.neighborhood}-
+                    {conditionData.year}-
+                    {conditionData.month}
+                </div>
+
             </div>
         );
     }

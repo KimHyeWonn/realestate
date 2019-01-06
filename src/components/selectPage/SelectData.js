@@ -10,7 +10,6 @@ function yearDataFunction() {
    return yearData;
 }
 
-
 export const year = yearDataFunction()
 
 export const month = [
