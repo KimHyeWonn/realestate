@@ -5,12 +5,10 @@ import ChartsPage from '../chart/Chart';
 class Home extends Component{
     render(){
         const style1 = {
-            float: 'left',
-            width: '20%'
+            width: '100%'
         };
         const style2 ={
-            float: 'right',
-            width: '80%',
+            width: '100%',
         };
         
         return(

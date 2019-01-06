@@ -2,8 +2,6 @@
 import React, { Component, Fragment } from 'react';
 import { Dropdown, Button } from 'semantic-ui-react'
 import * as data from './SelectData';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 //https://react.semantic-ui.com/modules/dropdown/#usage-select-on-navigation
 class SelectPage extends Component {
@@ -13,11 +11,10 @@ class SelectPage extends Component {
             area1Data: data.area1,
             area2Data: [],
             area3Data: [],
-            startDate: new Date(),
-            endDate: new Date()
+            yearData: data.year,
+            monthData: data.month
         };
     }
-
     // 시/도 선택 후 시/군/구 값 변경
     handleChange1 = (e, { value }) => {
         if(value==="서울시") this.setState({area2Data : data.서울시});
@@ -34,51 +31,21 @@ class SelectPage extends Component {
         }
     };
 
-    dateStartHandleChange = (date) => {
-        this.setState({startDate: date});
-    }
-
-    dateEndHandleChange = (date) => {
-        this.setState({endDate: date});
-    }
-
     render() {
         return (
             <Fragment>
                 <div>
                     <h1>지역, 날짜 선택</h1>
-                    <Dropdown placeholder='시/도' clearable fluid selection options={this.state.area1Data} onChange={this.handleChange1}/>
-                    <Dropdown placeholder='시/군/구' clearable fluid selection options={this.state.area2Data} onChange={this.handleChange2}/>
-                    <Dropdown placeholder='읍/면/동' clearable fluid selection options={this.state.area3Data}  />
-                </div>
-                <div>
-                    {/* <DatePicker
-                        dateFormat="yyyy-MM-dd"
-                        selected={this.state.startDate}
-                        onChange={this.dateStartHandleChange}
-                    /> */}
+                    <Dropdown placeholder='시/도' clearable search selection options={this.state.area1Data} onChange={this.handleChange1}/>
+                    <Dropdown placeholder='시/군/구' clearable search selection options={this.state.area2Data} onChange={this.handleChange2}/>
+                    <Dropdown placeholder='읍/면/동' clearable search selection options={this.state.area3Data}  />
 
-                    <DatePicker
-                        dateFormat="yyyy-MM-dd"
-                        selected={this.state.startDate}
-                        selectsStart
-                        startDate={this.state.startDate}
-                        endDate={this.state.endDate}
-                        onChange={this.dateStartHandleChange}
-                        maxDate={new Date()}
-                    />
-                    
-                    <DatePicker
-                        dateFormat="yyyy-MM-dd"
-                        selected={this.state.endDate}
-                        selectsEnd
-                        startDate={this.state.startDate}
-                        endDate={this.state.endDate}
-                        onChange={this.dateEndHandleChange}
-                        maxDate={new Date()}
-                    />
+                    <Dropdown placeholder='년' clearable selection options={this.state.yearData}  />
+                    <Dropdown placeholder='월' clearable selection options={this.state.monthData}  />
+
+                    <Button color="grey">조회</Button>
                 </div>
-                <Button color="gray">조회</Button>
+                
             </Fragment>
         );
     }
