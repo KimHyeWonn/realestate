@@ -18,6 +18,17 @@ class chart extends Component {
         return (
             <div style={style}>
                 <h1>그래프</h1>
+                
+                {/* 조건 데이터 출력 */}
+                <div>
+                    조건 : 
+                    {conditionData.city}-
+                    {conditionData.district}-
+                    {conditionData.neighborhood}-
+                    {conditionData.year}-
+                    {conditionData.month}
+                </div>
+
                 <Segment>
                     <Grid columns={3} relaxed='very'>
                         <GridColumn>
@@ -31,17 +42,6 @@ class chart extends Component {
                         </GridColumn>
                     </Grid>
                 </Segment>
-
-                {/* 조건 데이터 출력 */}
-                <div>
-                    조건 : 
-                    {conditionData.city}-
-                    {conditionData.district}-
-                    {conditionData.neighborhood}-
-                    {conditionData.year}-
-                    {conditionData.month}
-                </div>
-
             </div>
         );
     }

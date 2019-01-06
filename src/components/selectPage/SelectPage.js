@@ -8,7 +8,7 @@ class SelectPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cityData: data.area1,
+            cityData: data.city,
             districtData: [],
             neighborhoodData: [],
             yearData: data.year,
@@ -20,11 +20,16 @@ class SelectPage extends Component {
             month: ''
         };
     }
+
     // 시/도
     cityChange = (e, { value }) => {
-        if(value==="서울시") this.setState({districtData : data.서울시});
-        else {
+        if(value==="") {
+            // dropdown 초기화 문제!
             this.setState({districtData: []});
+            this.setState({neighborhoodData: []});
+        }
+        else {
+            this.setState({districtData : data.district(`${value}`)});
         }
 
         this.setState({city : value});
@@ -67,6 +72,8 @@ class SelectPage extends Component {
             year: year,
             month: month 
         });
+
+        // 부모 컴포넌트 (Home)로 전달
         this.props.changeConditionData(data);
     };
 

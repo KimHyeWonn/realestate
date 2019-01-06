@@ -13,6 +13,7 @@ class Home extends Component{
         }
     };
 
+    // SelectPage 컴포넌트에서 받은 데이터 state에 저장
     changeConditionData = (data) => {
         this.setState(
             {condition: {
