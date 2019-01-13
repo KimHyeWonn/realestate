@@ -13,7 +13,9 @@ class chart extends Component {
         const style = {
             padding:'1rem'
         };
-        const op = [15,22,58,65,88,99,100,110];
+        const op = [34,5,6,22,33,56,63,23];
+        const ho = [90,80,77,99,88,97,88,78];
+        const ap = [45,34,44,75,77,65,34,67];
         
         return (
             <div style={style}>
@@ -38,7 +40,7 @@ class chart extends Component {
                             <ChartLease/>
                         </GridColumn>
                         <GridColumn>
-                            <ChartMonth op={op}/>
+                            <ChartMonth op={op} ho={ho} ap={ap} />
                         </GridColumn>
                     </Grid>
                 </Segment>

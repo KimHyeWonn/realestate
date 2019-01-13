@@ -10,8 +10,9 @@ class ChartMonth extends Component {
 	        margin: '0 auto'
         };
         const op = this.props.op; 
-        const ho = [51,55,56,59,60,42,33,45];
-        const ap = [60,62,65,67,69,55,76,79];
+        const ho = this.props.ho;
+        const ap = this.props.ap;
+        
         const cate = ['2011년','2012년','2013년','2014년','2015년','2016년','2017년','2018년'];
         
         const config = {
