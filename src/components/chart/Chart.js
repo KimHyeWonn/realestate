@@ -6,6 +6,10 @@ import {Grid, Segment, GridColumn} from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 
 class chart extends Component {
+    componentDidUpdate() {
+        console.log(this.props.conditionData.result);
+    }
+
     render() {
         // 조건 및 결과 데이터
         const {conditionData} = this.props;
@@ -27,7 +31,6 @@ class chart extends Component {
                     {conditionData.neighborhood}-
                     {conditionData.year}-
                     {conditionData.month}
-                    <br></br>
                 </div>
 
                 <Segment>
