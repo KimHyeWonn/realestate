@@ -28,8 +28,6 @@ class chart extends Component {
                     {conditionData.year}-
                     {conditionData.month}
                     <br></br>
-                    결과 : 
-                    {conditionData.result}
                 </div>
 
                 <Segment>

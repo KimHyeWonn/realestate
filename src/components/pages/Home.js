@@ -11,10 +11,10 @@ class Home extends Component{
             neighborhood: '',
             year: '',
             month: '',
-            result: 'aaa' 
+            result: ''
         }
     };
-
+    
     componentDidMount() {
         let data = [];
         data.push({
@@ -31,15 +31,7 @@ class Home extends Component{
     changeConditionData = async (data) => {
         try {
             const info = await service.getOnlyCity(data[0].city);
-            console.log(info);
-            // const {title, body} = info.data;
-            // this.setState({
-            //     data : {
-            //         postId : id,
-            //         title : title,
-            //         content : body
-            //     }
-            // });
+            console.log(info.data);
 
             this.setState({
                 condition: {
@@ -48,7 +40,7 @@ class Home extends Component{
                     neighborhood: data[0].neighborhood,
                     year: data[0].year,
                     month: data[0].month,
-                    result: data[0].city+'bbbb'
+                    result: info.data
                 }
             });
         }catch(e) {
