@@ -8,6 +8,7 @@ import 'semantic-ui-css/semantic.min.css';
 class chart extends Component {
     componentDidUpdate() {
         console.log(this.props.conditionData.result);
+        console.log("average",this.props.conditionData.result[0].average);
     }
 
     render() {
@@ -17,7 +18,9 @@ class chart extends Component {
         const style = {
             padding:'1rem'
         };
-        const op = [34,5,6,22,33,56,63,23];
+        const op = conditionData.result[0].average;
+        //console.log("average1234",conditionData.result[0].average);
+        //const op = [90,80,77,99,88,97,88,78,54];
         const ho = [90,80,77,99,88,97,88,78];
         const ap = [45,34,44,75,77,65,34,67];
         
@@ -34,7 +37,7 @@ class chart extends Component {
                     {conditionData.year}-
                     {conditionData.month}
                 </div>
-
+                
                 <Segment>
                     <Grid columns={3} relaxed='very'>
                         <GridColumn>
