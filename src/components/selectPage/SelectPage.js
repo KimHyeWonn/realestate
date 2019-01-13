@@ -103,14 +103,6 @@ class SelectPage extends Component {
                     <span className="dropdown"><Dropdown placeholder='월' clearable selection options={monthData}  onChange={this.monthChange}/></span>
                    
                     <span className="searchBtn"><Button color="grey" onClick={this.searchClick}>조회</Button></span>
-
-                    {/* <Dropdown placeholder='시/도' clearable search selection options={cityData} onChange={this.cityChange}/>
-                    <Dropdown placeholder='시/군/구' clearable search selection options={districtData} onChange={this.districtChange}/>
-                    <Dropdown placeholder='읍/면/동' clearable search selection options={neighborhoodData} onChange={this.neighborhoodChange}/>
-                    <Dropdown placeholder='년' clearable selection options={yearData} onChange={this.yearChange}/>
-                    <Dropdown placeholder='월' clearable selection options={monthData}  onChange={this.monthChange}/>
-
-                    <Button color="grey" onClick={this.searchClick}>조회</Button> */}
                 </Segment>
             </div>
         );

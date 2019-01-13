@@ -7,7 +7,7 @@ import 'semantic-ui-css/semantic.min.css';
 
 class chart extends Component {
     render() {
-        // 조건 데이터
+        // 조건 및 결과 데이터
         const {conditionData} = this.props;
 
         const style = {
@@ -21,7 +21,7 @@ class chart extends Component {
             <div style={style}>
                 <h1>그래프</h1>
                 
-                {/* 조건 데이터 출력 */}
+                {/* 조건 및 결과 데이터 출력 */}
                 <div>
                     조건 : 
                     {conditionData.city}-
@@ -29,6 +29,9 @@ class chart extends Component {
                     {conditionData.neighborhood}-
                     {conditionData.year}-
                     {conditionData.month}
+                    <br></br>
+                    결과 : 
+                    {conditionData.result}
                 </div>
 
                 <Segment>
