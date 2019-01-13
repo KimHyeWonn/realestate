@@ -28,6 +28,10 @@ class SelectPage extends Component {
             this.setState({districtData: []});
             this.setState({neighborhoodData: []});
         }
+        else if(value==="세종특별자치시"){
+            // 시/군/구 없음 -> 읍/면/동
+            this.setState({neighborhoodData : data.district(`${value}`)});
+        }
         else {
             this.setState({districtData : data.district(`${value}`)});
         }
@@ -37,9 +41,12 @@ class SelectPage extends Component {
 
     // 시/군/구
     districtChange = (e, { value }) => {
-        if(value==="종로구") this.setState({neighborhoodData : data.종로구});
-        else {
+        if(value==="") {
+            // dropdown 초기화 문제!
             this.setState({neighborhoodData: []});
+        }
+        else {
+            this.setState({neighborhoodData : data.neighborhood(this.state.city, `${value}`)});
         }
 
         this.setState({district : value});
