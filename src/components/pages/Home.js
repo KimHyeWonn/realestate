@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import SelectPage from '../selectPage/SelectPage';
 import ChartsPage from '../chart/Chart';
-//import * as service from '../../lib/chartDataApi';
+import * as service from '../../lib/chartDataApi';
 
 class Home extends Component{
     state = {
@@ -16,14 +16,22 @@ class Home extends Component{
     };
 
     componentDidMount() {
-        //this.fetchPostInfo(1);
+        let data = [];
+        data.push({
+            city: '서울특별시',
+            district: '',
+            neighborhood: '',
+            year: '',
+            month: '' 
+        });
+        this.changeConditionData(data);
     }
 
     // SelectPage 컴포넌트에서 받은 데이터 state에 저장
     changeConditionData = async (data) => {
         try {
-            //const info = await service.getOnlyCity(data[0].city);
-            //console.log(info);
+            const info = await service.getOnlyCity(data[0].city);
+            console.log(info);
             // const {title, body} = info.data;
             // this.setState({
             //     data : {
@@ -40,7 +48,7 @@ class Home extends Component{
                     neighborhood: data[0].neighborhood,
                     year: data[0].year,
                     month: data[0].month,
-                    result: 'bbbb'
+                    result: data[0].city+'bbbb'
                 }
             });
         }catch(e) {
