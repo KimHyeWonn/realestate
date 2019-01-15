@@ -1,7 +1,7 @@
 import React from 'react';
 import queryString from 'query-string';
 
-const About = ({location,match}) =>{
+const Search = ({location,match}) =>{
     const query = queryString.parse(location.search);
     const detail = query.detail === 'hi';
 
@@ -12,4 +12,4 @@ const About = ({location,match}) =>{
         </div>
     );
 };
-export default About;
+export default Search;

@@ -11,10 +11,10 @@ const Navigator = () => {
             <NavLink exact to="/"> 
                 <Button color="blue">그래프</Button>
             </NavLink>
-            <NavLink exact to="/about">    
+            <NavLink exact to="/search">    
                 <Button color ="violet">검색</Button>
             </NavLink>
-            <NavLink exact to="/about/foo">
+            <NavLink exact to="/search/foo">
                 <Button color="purple">질문</Button>
             </NavLink>
             <NavLink exact to="/login">    
