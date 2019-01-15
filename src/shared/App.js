@@ -11,8 +11,8 @@ class App extends Component {
                 <Menu/>
                 <Route exact path="/" component={Home}/>
                 <Switch>
-                    <Route path="/about/:name" component={Search}/>
-                    <Route path="/about" component={Search}/>
+                    <Route path="/search/:name" component={Search}/>
+                    <Route path="/search" component={Search}/>
                     <Route path="/login" component={Login}/>
                 </Switch>
             </div>
