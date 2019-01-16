@@ -30,16 +30,46 @@ class Home extends Component{
     // SelectPage 컴포넌트에서 받은 데이터 state에 저장
     changeConditionData = async (data) => {
         try {
-            const info = await service.getOnlyCity(data[0].city);
+            const {city, district, neighborhood, year, month} = data[0];
+            var date = year+month;
+            //var info = null;
+
+            if(city !== "" && district !== "" && neighborhood !== "" && date !== ""){
+                console.log("getCityAndDistrictAndNeighborhoodAndDate");
+                //info = await service.getCityAndDistrictAndNeighborhoodAndDate(city, district, neighborhood, date);
+            }
+            else if (city !== "" && district !== "" && neighborhood !== "") {
+                console.log("getCityAndDistrictAndNeighborhood");
+                //info = await service.getCityAndDistrictAndNeighborhood(city, district, neighborhood);
+            }
+            else if (city !== "" && district !== "" && date !== "") {
+                console.log("getCityAndDistrictAndDate");
+                //info = await service.getCityAndDistrictAndDate(city, district, date);
+            }
+            else if (city !== "" && district !== "") {
+                console.log("getCityAndDistrict");
+                //info = await service.getCityAndDistrict(city, district);
+            }
+            else if (city !== "" && date !== "") {
+                console.log("getCityAndDate");
+                //info = await service.getCityAndDate(city, date);
+            }
+            else if (city !== "") {
+                console.log("getOnlyCity");
+                //info = await service.getOnlyCity(city);
+            }
+            
+            // 세종시는 시/도  읍/면/동만 있는데 이때는 어떻게 보내야 하는지 물어보기
+            const info = await service.getOnlyCity(city);
             console.log(info.data);
 
             this.setState({
                 condition: {
-                    city: data[0].city,
-                    district: data[0].district,
-                    neighborhood: data[0].neighborhood,
-                    year: data[0].year,
-                    month: data[0].month,
+                    city: city,
+                    district: district,
+                    neighborhood: neighborhood,
+                    year: year,
+                    month: month,
                     result: info.data
                 }
             });

@@ -1,5 +1,31 @@
 import axios from 'axios';
- 
+
+const url = "http://54.180.87.242:8080";
+
 export function getOnlyCity(city) {
-    return axios.get(`http://54.180.87.242:8080/realestate/condition/city/${city}/date`);
+    return axios.get(`${url}/realestate/condition/city/${city}/date`);
 }
+
+export function getCityAndDate(city, date) {
+    return axios.get(`${url}/realestate/condition/city/${city}/date/${date}`);
+}
+
+export function getCityAndDistrict(city, district) {
+    return axios.get(`${url}/realestate/condition/city/${city}/district/${district}/date`);
+}
+
+export function getCityAndDistrictAndDate(city, district, date) {
+    return axios.get(`${url}/realestate/condition/city/${city}/district/${district}/date/${date}`);
+}
+
+export function getCityAndDistrictAndNeighborhood(city, district, neighborhood) {
+    return axios.get(`${url}/realestate/condition/city/${city}/district/${district}/neighborhood/${neighborhood}/date`);
+}
+
+export function getCityAndDistrictAndNeighborhoodAndDate(city, district, neighborhood, date) {
+    return axios.get(`${url}/realestate/condition/city/${city}/district/${district}/neighborhood/${neighborhood}/date/${date}`);
+}
+
+
+
+
