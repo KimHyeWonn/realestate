@@ -53,8 +53,6 @@ class chart extends Component {
 
         return (
             <div style={style}>
-                <h1>그래프</h1>
-                
                 {/* 조건 및 결과 데이터 출력 */}
                 <div>
                     조건 : 

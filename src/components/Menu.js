@@ -14,9 +14,12 @@ const Navigator = () => {
             <NavLink exact to="/search">    
                 <Button color ="violet">검색</Button>
             </NavLink>
-            <NavLink exact to="/search/foo">
+            <NavLink exact to="/question">
                 <Button color="purple">질문</Button>
             </NavLink>
+            {/* <NavLink exact to="/search/foo">
+                <Button color="purple">질문</Button>
+            </NavLink> */}
             <NavLink exact to="/login">    
                 <Button color="pink">로그인</Button>
             </NavLink>
