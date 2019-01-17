@@ -96,7 +96,7 @@ class SelectPage extends Component {
         return (
             <div className="div">
                 <Segment>
-                    <span className="dropdown"><Dropdown placeholder='시/도' clearable search selection options={cityData} onChange={this.cityChange}/></span>
+                    <span className="dropdownFirst"><Dropdown placeholder='시/도' clearable search selection options={cityData} onChange={this.cityChange}/></span>
                     <span className="dropdown"><Dropdown placeholder='시/군/구' clearable search selection options={districtData} onChange={this.districtChange}/></span>
                     <span className="dropdown"><Dropdown placeholder='읍/면/동' clearable search selection options={neighborhoodData} onChange={this.neighborhoodChange}/></span>
                     
