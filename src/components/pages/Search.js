@@ -1,17 +1,27 @@
-import React from 'react';
-import queryString from 'query-string';
+import React, {Component} from 'react';
 import SearchPage from '../searchPage/SearchPage';
+import MapPage from '../mapPage/MapPage';
+import './Page.css';
 
-const Search = ({location,match}) =>{
-    const query = queryString.parse(location.search);
-    const detail = query.detail === 'hi';
+class Search extends Component {
+    render() {
+        return(
+            <div>
+                <div className="SearchDiv1">
+                    <SearchPage />
+                </div>
+                <div className="SearchDiv1">
+                    <div className="SearchDivL">
+                        <h1>맵</h1>
+                        <MapPage/>
+                    </div>
+                    <div className="SearchDivR">
+                        <h1>조건</h1>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
 
-    return (
-        <div>
-            <h2>검색 {match.params.name}</h2>
-            <SearchPage />
-            {detail && 'detail: blahblah'}
-        </div>
-    );
-};
 export default Search;

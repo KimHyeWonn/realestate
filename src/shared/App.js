@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import {Home, Search, Question, Login} from 'components/pages'; //ViewPost
-import Menu from 'components/Menu';
-
+import {Home, Search, Question, Login, Menu} from 'components/pages';
 
 class App extends Component {
     render() {
