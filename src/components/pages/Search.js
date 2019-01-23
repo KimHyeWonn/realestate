@@ -12,7 +12,7 @@ class Search extends Component {
                 </div>
                 <div className="SearchDiv1">
                     <div className="SearchDivL">
-                        <h1>맵</h1>
+                        <h1>맵1</h1>
                         <MapPage/>
                     </div>
                     <div className="SearchDivR">
