@@ -1,4 +1,4 @@
-// /*global daum*/
+/*global daum*/
 import React, {Component} from 'react';
 
 class MapPage extends Component {
@@ -12,21 +12,20 @@ class MapPage extends Component {
     //     var map = new daum.maps.Map(container, options); //지도 생성 및 객체 리턴
     // }
 
-    // componentDidMount() {                                                    
-    //     let el = document.getElementById('map');
-    //     let map = new daum.maps.Map(el, {
-    //       center: new daum.maps.LatLng(33.450701, 126.570667)
-    //     });
-    // }
+    componentDidMount() {                                                    
+        let el = document.getElementById('map');
+        let map = new daum.maps.Map(el, {
+          center: new daum.maps.LatLng(33.450701, 126.570667)
+        });
+    }
 
     render() {
         const style1 = {
-            width: "500px",
-            height: "400px"
+            width: "100%",
+            height: "500px"
         }
         return(
             <div>
-                {/* b3bb79f6e0b91ae48a7ab501a1db6290 */}
                 <div id="map" style={style1}></div>
             </div>
         )
