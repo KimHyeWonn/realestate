@@ -27,6 +27,7 @@ class MapPage extends Component {
     //props update
     shouldComponentUpdate() {
         console.log('shouldComponentUpdate');
+        
         return true;
     }
 
@@ -36,11 +37,41 @@ class MapPage extends Component {
             height: "450px"
         }
         const {searchData} = this.props;
+        console.log("mappage housing : ",searchData.housingTypeData);
+        console.log("mappage deal: ",searchData.dealTypeData);
+        console.log("mappage input:",searchData.inputData);
 
+        var housing=[];
+        for(var i=0;i<searchData.housingTypeData.length;i++){
+            housing[i] = searchData.housingTypeData[i].value;
+        }
+
+        var deal=[];
+        for(var j=0;j<searchData.dealTypeData.length;j++){
+            deal[j] = searchData.dealTypeData[j].value;
+        }
         return(
             <div>
                 <div id="map" style={mapStyle}></div>
-                <div>{searchData.housingType}</div>
+                <div>
+                <h3>집 종류</h3>
+                {
+                    housing.map((type,i)=>{
+                        return(<p key={i}>{type}</p>)
+                    })
+                }
+                </div>
+                <div>
+                <h3>거래 방법</h3>
+                {
+                    deal.map((type,i)=>{
+                        return(<p key={i}>{type}</p>)
+                    })
+                }</div>
+                <div>
+                <h3>지역 명</h3>
+                <p>{searchData.inputData}</p>
+                </div>
             </div>
         )
     }

@@ -5,17 +5,38 @@ import './Page.css';
 
 class Search extends Component {
     state = {
-        dealType: '',
-        housingType: '',
-        search: ''
+        mapData:{
+            dealTypeData:[],
+            housingTypeData:[],
+            inputData:[],
+        }
+        // dealType: '',
+        // housingType: '',
+        // search: ''
     };
-
+    componentDidMount() {
+        let data = [];
+        data.push({
+            dealTypeData:[],
+            housingTypeData:[],
+            inputData:[],
+        });
+        this.searchData(data);
+    }
     //SearchPage에서 검색
     searchData = (data) => {
+        const {housingTypeData,dealTypeData,inputData} = data[0];
+        
+
         this.setState({
-            dealType: data.dealType,
-            housingType: data.housingType,
-            search: data.search
+            mapData:{
+                housingTypeData:housingTypeData,
+                dealTypeData:dealTypeData,
+                inputData:inputData,
+            },
+            // dealType: data.dealType,
+            // housingType: data.housingType,
+            // search: data.search
         });
     }
 
@@ -27,7 +48,7 @@ class Search extends Component {
                 </div>
                 <div className="SearchDiv1">
                     <div className="SearchDivL">
-                        <MapPage searchData={this.state}/>
+                        <MapPage searchData={this.state.mapData}/>
                     </div>
                     <div className="SearchDivR">
                         <h1>조건</h1>
