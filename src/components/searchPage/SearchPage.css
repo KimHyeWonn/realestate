@@ -1,8 +1,13 @@
-.searchaDiv{
-    padding:1rem;
-    display:inline
+.topDiv{
+    padding:1rem
 }
+
+.searchDiv{
+    display: inline;
+    padding:1rem
+}
+
 .radioDiv{
     display: inline;
-    padding:5px
+    padding: 1rem
 }
