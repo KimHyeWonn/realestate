@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import SearchPage from '../searchPage/SearchPage';
 import MapPage from '../mapPage/MapPage';
+import ResultPage from '../resultPage/ResultPage';
 import './Page.css';
 
 class Search extends Component {
@@ -51,7 +52,7 @@ class Search extends Component {
                         <MapPage searchData={this.state.mapData}/>
                     </div>
                     <div className="SearchDivR">
-                        <h1>조건</h1>
+                        <ResultPage />
                     </div>
                 </div>
             </div>
