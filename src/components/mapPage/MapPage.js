@@ -6,7 +6,8 @@ class MapPage extends Component {
     componentDidMount() {
         let container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
         let options = { //지도를 생성할 때 필요한 기본 옵션
-            center: new daum.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+            //center: new daum.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+            center: new daum.maps.LatLng(37.615095,127.0109226),
             level: 3 //지도의 레벨(확대, 축소 정도)
         };
 

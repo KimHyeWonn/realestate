@@ -1,3 +1,7 @@
+.popupDiv{
+    width: 500px;
+    height: 10px;
+}
 .imgUl{
     list-style:none;
     padding-left:0px;
@@ -7,7 +11,29 @@
     display: inline-block;
     
 }
-.popupDiv{
-    width: 500px;
-    height: 10px;
+.theme1{
+    /* width: 80px;
+    height: 100px; */
+    display: inline-block;
+}
+.theme_img{
+    vertical-align: middle;
+}
+.theme_name{
+    vertical-align: middle;
+} 
+.theme1 input[id="pr"]{
+    display: none;
+}
+.theme1 input[id="ca"]{
+    display: none;
+}
+.theme1 input[id="sc"]{
+    display: none;
+}
+.theme1 input[id="hs"]{
+    display: none;
+}
+.theme1 input[id="ci"]{
+    display: none;
 }

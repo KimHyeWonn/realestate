@@ -1,57 +1,111 @@
 import React, { Component } from 'react';
-import { Header, Button, Popup, Grid } from 'semantic-ui-react';
+import { Button, Popup, Grid,Image } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import './ResultPage.css';
+import * as data from "./ResultImg"
 
 class ResultPage extends Component {
+    
+    state={
+        checked:true,
+        checked1:true,
+        checked2:true,
+        checked3:true,
+        checked4:true,
+        unclicked:data.unclicked,
+        clicked:data.clicked
+    }
+    handleCheck=(event)=>{
+        var value = {value:event.target.value}
+        if(value.value==="pr"){
+            this.setState(
+                {checked:!this.state.checked}
+                
+            );
+        }else if(value.value==="ca"){
+            this.setState(
+                {checked1:!this.state.checked1}
+            );
+        }
+        else if(value.value==="sc"){
+            this.setState(
+                {checked2:!this.state.checked2}
+            );
+        }else if(value.value==="hs"){
+            this.setState(
+                {checked3:!this.state.checked3}
+            );
+        } else if(value.value==="ci"){
+            this.setState(
+                {checked4:!this.state.checked4}
+            );
+        }
+        console.log("hi",value);
+        
+    }
     render() {
+        const {checked,checked1,checked2,checked3,checked4} = this.state
+        const {unclicked,clicked} = this.state
+        var img_path = [];
+        
+        if(this.state.checked2){
+            //img_path[2]=clicked[2]    어떻게 해결해야될지 모르겟음
+            img_path[2]=require('./school_c.png')
+        }else{
+            //img_path[2]=unclicked[2].value
+            img_path[2]=require("../image/school_un.png")
+        }
         return (
             <div>
+                {checked ? (<h5>{unclicked[0].text}</h5>) : <h5>{unclicked[0].text}선택 안함</h5>}
+                {checked1 ? (<h5>{unclicked[1].text}</h5>) : <h5>{unclicked[1].text}선택 안함</h5>}
+                {checked2 ? (<h5>{unclicked[2].text}</h5>) : <h5>{unclicked[2].text}선택 안함</h5>}
+                {checked3 ? (<h5>{unclicked[3].text}</h5>) : <h5>{unclicked[3].text}선택 안함</h5>}
+                {checked4 ? (<h5>{unclicked[4].text}</h5>) : <h5>{unclicked[4].text}선택 안함</h5>}
                 <Popup trigger={<Button>조건 선택</Button>} position='bottom center'on='click' hideOnScroll>
                 <div className="popupDiv"></div>
+                
                     <Grid centered divided columns={1}>
                         <Grid.Column textAlign='center'>
-                            <Header as='h4'>테마욥</Header>
-                            {/* <Grid reversed='computer' columns='equal'>
-                            <Grid.Row>
-                            <Grid doubling columns={5}>
-                            <Grid.Column><img src="http://yaimg.yanolja.com/files/2016/0531/20160531160842be1b2cf3-c4c9-41f0-819a-2e154ff42998.png"/></Grid.Column>
-                            <Grid.Column><img src="//yaimg.yanolja.com/files/2016/1227/2016122716312890e9b5d9-555f-454a-aee5-f4d84df542df.png"/></Grid.Column>
-                            <Grid.Column><img src="//yaimg.yanolja.com/files/2016/0531/2016053116284060f47da1-2758-4785-8bb3-9dd0ce19515a.png"/></Grid.Column>
-                            <Grid.Column><img src="//yaimg.yanolja.com/files/2016/0823/201608231726338cbbc691-3d7a-448b-8fcd-2b6cb9b2ca09.png"/></Grid.Column>
-                            <Grid.Column><img src="//yaimg.yanolja.com/files/2016/1130/201611301434072bb5408d-ed80-4ce1-ba6b-a2f94abb373d.png"/></Grid.Column>
-                            </Grid.Row>
-                            <Grid.Row>
-                            <Grid.Column><img src="//yaimg.yanolja.com/files/2016/1206/20161206190514f565074b-4186-4394-89dd-64bf8aaa35a8.png"/></Grid.Column>
-                            <Grid.Column><img src="//yaimg.yanolja.com/files/2016/0823/201608231713376358de44-d900-4263-9327-6bba7c29fb2b.png"/></Grid.Column>
-                            <Grid.Column><img src="//yaimg.yanolja.com/files/2016/0531/20160531161236fa3f3ad9-838b-47b6-8538-790c19f423b0.png"/></Grid.Column>
-                            </Grid.Row>
-                            </Grid> */}
                              <ul className="imgUl">
-                                {/* <li><label><img src="http://yaimg.yanolja.com/files/2016/0531/20160531160842be1b2cf3-c4c9-41f0-819a-2e154ff42998.png" alt="공주풍"/>
-                                <input type="checkbox" id="pr" value="pr"/><span>공주풍</span></label></li> */}
-                                <li><img src="http://yaimg.yanolja.com/files/2016/0531/20160531160842be1b2cf3-c4c9-41f0-819a-2e154ff42998.png"/></li>
-                                <li><img src="//yaimg.yanolja.com/files/2016/1227/2016122716312890e9b5d9-555f-454a-aee5-f4d84df542df.png"/></li>
-                                <li><img src="//yaimg.yanolja.com/files/2016/0531/2016053116284060f47da1-2758-4785-8bb3-9dd0ce19515a.png"/></li>
-                                <li><img src="//yaimg.yanolja.com/files/2016/0823/201608231726338cbbc691-3d7a-448b-8fcd-2b6cb9b2ca09.png"/></li>
-                                <li><img src="//yaimg.yanolja.com/files/2016/1130/201611301434072bb5408d-ed80-4ce1-ba6b-a2f94abb373d.png"/></li>
-                                <li><img src="//yaimg.yanolja.com/files/2016/1206/20161206190514f565074b-4186-4394-89dd-64bf8aaa35a8.png"/></li>
-                                <li><img src="//yaimg.yanolja.com/files/2016/0531/20160531161236fa3f3ad9-838b-47b6-8538-790c19f423b0.png"/></li>
-                                <li><img src="//yaimg.yanolja.com/files/2016/0823/201608231713376358de44-d900-4263-9327-6bba7c29fb2b.png"/></li>
+                                <li><label className="theme1">
+                                        <input type="checkbox" id="pr" value="pr" onChange={this.handleCheck} defaultChecked={checked} />
+                                        {checked?(<Image src={clicked[0]} centered/> ):(<Image src={unclicked[0].value}  centered/>)}
+                                        <span className="theme_name">버스</span>
+                                    </label>
+                                </li>
+                                <li><label className="theme1">
+                                        <input type="checkbox" id="ca" value="ca" onChange={this.handleCheck} defaultChecked={checked1}/>
+                                        {checked1?(<Image src={clicked[1]} centered/> ):(<Image src={unclicked[1].value}  centered/>)}
+                                        <span className="theme_name">카페</span>
+                                    </label>
+                                </li>
+                                <li><label className="theme1">
+                                        <input type="checkbox" id="sc" value="sc" onChange={this.handleCheck} defaultChecked={checked2}/>
+                                        <Image src={img_path[2]} size="tiny" centered/> 
+                                        <span className="theme_name">학교</span>
+                                    </label>
+                                </li>
+                                <li><label className="theme1">
+                                        <input type="checkbox" id="hs" value="hs" onChange={this.handleCheck} defaultChecked={checked3}/>
+                                        {checked3?(<Image src={clicked[3]} centered/> ):(<Image src={unclicked[3].value}  centered/>)}
+                                        <span className="theme_name">병원</span>
+                                    </label>
+                                </li>
+                                <li><label className="theme1">
+                                        <input type="checkbox" id="ci" value="ci" onChange={this.handleCheck} defaultChecked={checked4}/>
+                                        {checked4?(<Image src={clicked[4]} centered/> ):(<Image src={unclicked[4].value}  centered/>)}
+                                        <span className="theme_name">영화관</span>
+                                    </label>
+                                </li>
+                                
                             </ul> 
-                           
-                            
-                            {/* <p>
-                                 projects, $10 a monthdfsfsdfsdddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-                            </p> */}
-                            
-
                             <Button>선택</Button>
                         </Grid.Column>
                         
                     </Grid>
                 </Popup>
-
+                
             </div>
         );
     }
