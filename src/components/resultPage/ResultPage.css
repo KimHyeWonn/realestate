@@ -22,18 +22,10 @@
 .theme_name{
     vertical-align: middle;
 } 
-.theme1 input[id="pr"]{
+.theme1 input[id="pr"], input[id="ca"],input[id="sc"],input[id="hs"],input[id="ci"],input[id="com"],input[id="po"],input[id="fr"],input[id="su"],input[id="cc"]{
     display: none;
 }
-.theme1 input[id="ca"]{
-    display: none;
-}
-.theme1 input[id="sc"]{
-    display: none;
-}
-.theme1 input[id="hs"]{
-    display: none;
-}
-.theme1 input[id="ci"]{
-    display: none;
+.title{display:inline}
+.dealTypeDiv{
+    padding-top: 1%
 }
