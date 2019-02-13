@@ -11,9 +11,6 @@ class Search extends Component {
             housingTypeData:[],
             inputData:[],
         }
-        // dealType: '',
-        // housingType: '',
-        // search: ''
     };
     componentDidMount() {
         let data = [];
@@ -28,16 +25,12 @@ class Search extends Component {
     searchData = (data) => {
         const {housingTypeData,dealTypeData,inputData} = data[0];
         
-
         this.setState({
             mapData:{
                 housingTypeData:housingTypeData,
                 dealTypeData:dealTypeData,
                 inputData:inputData,
             },
-            // dealType: data.dealType,
-            // housingType: data.housingType,
-            // search: data.search
         });
     }
 

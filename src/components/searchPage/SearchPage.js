@@ -7,6 +7,7 @@ class SearchPage extends Component {
     state ={
         checked1: false,
     }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -89,9 +90,8 @@ class SearchPage extends Component {
         
         // 부모 컴포넌트 (Search)로 전달
         this.props.searchData(data);
-
-        
     };
+    
     render() {
         return (
             <div className="topDiv">
