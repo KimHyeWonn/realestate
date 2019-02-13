@@ -25,6 +25,8 @@ class Search extends Component {
     searchData = (data) => {
         const {housingTypeData,dealTypeData,inputData} = data[0];
         
+        console.log("cccc111",housingTypeData);
+        console.log("cccc222",dealTypeData);
         this.setState({
             mapData:{
                 housingTypeData:housingTypeData,
