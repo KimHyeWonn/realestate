@@ -43,7 +43,7 @@ class ResultPage extends Component {
             this.setState(
                 { checked4: !this.state.checked4 }
             );
-        } else if (value.value === "com") {
+        } else if (value.value === "con") {
             this.setState(
                 { checked5: !this.state.checked5 }
             );
@@ -117,7 +117,7 @@ class ResultPage extends Component {
                                 </label>
                                 </li>
                                 <li><label className="theme1">
-                                    <input type="checkbox" id="com" value="com" onChange={this.handleCheck} defaultChecked={checked5} />
+                                    <input type="checkbox" id="con" value="con" onChange={this.handleCheck} defaultChecked={checked5} />
                                     {checked5 ? (<Image src={clicked[5]} size="tiny" centered />) : (<Image src={unclicked[5].value} size="tiny" centered />)}
                                     <span className="theme_name">편의점</span>
                                 </label>

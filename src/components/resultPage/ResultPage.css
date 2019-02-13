@@ -22,7 +22,7 @@
 .theme_name{
     vertical-align: middle;
 } 
-.theme1 input[id="pr"], input[id="ca"],input[id="sc"],input[id="hs"],input[id="ci"],input[id="com"],input[id="po"],input[id="fr"],input[id="su"],input[id="cc"]{
+.theme1 input[id="pr"], input[id="ca"],input[id="sc"],input[id="hs"],input[id="ci"],input[id="con"],input[id="po"],input[id="fr"],input[id="su"],input[id="cc"]{
     display: none;
 }
 .title{display:inline}
