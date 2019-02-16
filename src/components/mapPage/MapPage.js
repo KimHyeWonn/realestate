@@ -6,13 +6,20 @@ class MapPage extends Component {
     componentDidMount() {
         let container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
         let options = { //지도를 생성할 때 필요한 기본 옵션
-            //center: new daum.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-            center: new daum.maps.LatLng(37.615095,127.0109226),
+            center: new daum.maps.LatLng(37.615095,127.0109226), //지도의 중심좌표.
             level: 3 //지도의 레벨(확대, 축소 정도)
         };
 
         let map = new daum.maps.Map(container, options); //지도 생성 및 객체 리턴
     
+        //LatLngBounds
+        var sw = new daum.maps.LatLng(37.595916, 127.004053);
+        var ne = new daum.maps.LatLng(37.592742, 127.016387);
+        var bounds = new daum.maps.LatLngBounds(sw, ne);
+        
+        map.setBounds(bounds);
+        
+
         // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤
         let mapTypeControl = new daum.maps.MapTypeControl();
 
@@ -26,8 +33,7 @@ class MapPage extends Component {
 
     //props update
     shouldComponentUpdate() {
-        console.log('shouldComponentUpdate');
-        
+        console.log('shouldComponentUpdate');  
         return true;
     }
 
