@@ -57,13 +57,13 @@ class Search extends Component {
         }
     }
 
+    //kakao 장소검색api 호출
     kakaoPlacesSearch = async (input) => {
-        // 장소 검색 객체를 생성
         var ps = new daum.maps.services.Places();  
         await ps.keywordSearch( input, this.placesSearchCB); 
     }
 
-    // 장소검색이 완료됐을 때 호출되는 콜백함수
+    //kakao 장소검색api 콜백함수
     placesSearchCB = (data, status, pagination) => {
         if (status === daum.maps.services.Status.OK) {
             console.log(data[0].place_name+" "+data[0].x+" "+data[0].y);
@@ -103,6 +103,16 @@ class Search extends Component {
             return null;
         }
     }
+
+    //ResultPage에서 옵션선택
+    optionData = (data) => {
+
+
+    }
+
+    //kakao 카테고리검색api 호출
+
+    //kakao 카테고리검색api 콜백함수
 
     render() {
         return(

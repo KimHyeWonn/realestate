@@ -6,7 +6,20 @@ class MapPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            
+            // location: {
+            //     rightTop: {
+            //         latitude: '', //위도 y
+            //         longitude: '' //경도 x
+            //     },
+            //     leftBottom: {
+            //         latitude: '',
+            //         longitude: ''
+            //     },
+            //     center: {
+            //         latitude: '', //위도 y
+            //         longitude: '' //경도 x
+            //     }
+            // }
         };
     }
 
