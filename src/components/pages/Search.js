@@ -63,7 +63,7 @@ class Search extends Component {
         await ps.keywordSearch( input, this.placesSearchCB); 
     }
 
-    // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
+    // 장소검색이 완료됐을 때 호출되는 콜백함수
     placesSearchCB = (data, status, pagination) => {
         if (status === daum.maps.services.Status.OK) {
             console.log(data[0].place_name+" "+data[0].x+" "+data[0].y);

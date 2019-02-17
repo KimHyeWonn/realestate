@@ -26,6 +26,11 @@ class MapPage extends Component {
         // 줌 컨트롤
         var zoomControl = new daum.maps.ZoomControl();
         map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+
+        // 드래그가 끝날 때 발생
+        daum.maps.event.addListener(map, 'dragend', this.mapDrag);
+        // 확대 수준이 변경되면 발생
+        daum.maps.event.addListener(map, 'zoom_changed', this.mapZoom);
     }
 
     //props update
@@ -45,9 +50,51 @@ class MapPage extends Component {
         var latTop = rtLatLng.getLat(); // 북
         var lngLeft = lbLatLng.getLng(); // 서
         var lngRight = rtLatLng.getLng(); // 동
-        console.log("shouldComponentUpdate: " + map.getBounds());
+        console.log("shouldComponentUpdate: 남서=>" + latBottom+", "+lngLeft+"\n북동=>"+latTop+", "+lngRight);
         
         return true;
+    }
+
+    // 지도 드래그 이동
+    mapDrag = () => {
+        // 지도 영역정보를 얻어옵니다 
+        var bounds = map.getBounds();
+        var latlng = map.getCenter(); 
+
+        // 영역정보의 남서쪽 정보를 얻어옵니다 
+        var swLatlng = bounds.getSouthWest();
+        
+        // 영역정보의 북동쪽 정보를 얻어옵니다 
+        var neLatlng = bounds.getNorthEast();
+        
+        var message = 'mapDrag 영역좌표는 남서쪽 위도, 경도는  ' + swLatlng.toString() + '이고'; 
+        message += '북동쪽 위도, 경도는  ' + neLatlng.toString() + '입니다'; 
+        message += '변경된 지도 중심좌표는 ' + latlng.getLat() + ' 이고, ';
+        message += '경도는 ' + latlng.getLng() + ' 입니다';
+        
+        console.log(message);
+        //loading true로 변경
+    }
+
+    // 지도 줌 변경
+    mapZoom = () => {
+        // 지도 영역정보를 얻어옵니다 
+        var bounds = map.getBounds();
+        var latlng = map.getCenter(); 
+
+        // 영역정보의 남서쪽 정보를 얻어옵니다 
+        var swLatlng = bounds.getSouthWest();
+        
+        // 영역정보의 북동쪽 정보를 얻어옵니다 
+        var neLatlng = bounds.getNorthEast();
+        
+        var message = 'mapZoom 영역좌표는 남서쪽 위도, 경도는  ' + swLatlng.toString() + '이고'; 
+        message += '북동쪽 위도, 경도는  ' + neLatlng.toString() + '입니다'; 
+        message += '변경된 지도 중심좌표는 ' + latlng.getLat() + ' 이고, ';
+        message += '경도는 ' + latlng.getLng() + ' 입니다';
+        
+        console.log(message);
+        //loading true로 변경
     }
 
     render() {
