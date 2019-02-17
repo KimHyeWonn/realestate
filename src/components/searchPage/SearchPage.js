@@ -138,7 +138,6 @@ class SearchPage extends Component {
             dealTypeData: del,
             inputData: inputData
         });
-
         // 부모 컴포넌트 (Search)로 전달
         this.props.searchData(data);
     };
