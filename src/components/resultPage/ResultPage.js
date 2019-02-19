@@ -5,7 +5,6 @@ import './ResultPage.css';
 import * as data from "./ResultImg"
 
 class ResultPage extends Component {
-
     state = {
         checked: true,
         checked1: true,
@@ -76,7 +75,6 @@ class ResultPage extends Component {
                 {checked2 ? (<h5>{unclicked[2].text}</h5>) : <h5>{unclicked[2].text}선택 안함</h5>}
                 {checked3 ? (<h5>{unclicked[3].text}</h5>) : <h5>{unclicked[3].text}선택 안함</h5>}
                 {checked4 ? (<h5>{unclicked[4].text}</h5>) : <h5>{unclicked[4].text}선택 안함</h5>} */}
-
                 <Popup trigger={<Button>조건 선택</Button>} position='bottom center' on='click' hideOnScroll>
                     <div className="popupDiv"></div>
                     {checked ? (<font>{unclicked[0].text}</font>) : <font>{unclicked[0].text}선택 안함</font>}, {checked1 ? (<font>{unclicked[1].text}</font>) : <font>{unclicked[1].text}선택 안함</font>}
@@ -158,12 +156,10 @@ class ResultPage extends Component {
                             <Image src={require('../image/officetel.PNG')} />
                         </Grid.Column>
                         <Grid.Column width={9}>
-                            <h2 className="title"><Label circular>월세</Label> <font color="orange">3000/40</font></h2><h4 className="title">(23㎡)</h4>
+                        <Label circular>월세</Label><h2 className="title"><font color="orange">3000/40</font></h2><h4 className="title">(23㎡)</h4>
                             <font color="grey"><h4>서울시 종로구 ...</h4>
                             <h4>오피스텔</h4></font>
-                            
                         </Grid.Column>
-                        
                     </Grid>
                 </Segment>
                 </div>
