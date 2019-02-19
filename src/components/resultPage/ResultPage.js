@@ -6,7 +6,7 @@ import * as data from "./ResultImg"
 
 class ResultPage extends Component {
     state = {
-        checked: true,
+        checked : true,
         checked1: true,
         checked2: true,
         checked3: true,
@@ -92,7 +92,7 @@ class ResultPage extends Component {
                                 </li>
                                 <li><label className="theme1">
                                     <input type="checkbox" id="ca" value="ca" onChange={this.handleCheck} defaultChecked={checked1} />
-                                    {checked1 ? (<Image src={clicked[1]} size="tiny" centered />) : (<Image src={unclicked[1].value} size="tiny" centered />)}
+                                    {checked1 ? (<Image src={clicked[1]} centered />) : (<Image src={unclicked[1].value} size="tiny" centered />)}
                                     <span className="theme_name">카페</span>
                                 </label>
                                 </li>
