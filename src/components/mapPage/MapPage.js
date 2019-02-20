@@ -48,7 +48,7 @@ class MapPage extends Component {
 
     //props update
     shouldComponentUpdate(nextProps) {
-        const {center} = nextProps.searchData.location;
+        const center = nextProps.mapData;
 
         // 이동할 위도 경도 위치를 생성
         var moveLatLon = new daum.maps.LatLng(center.latitude, center.longitude);
@@ -65,6 +65,9 @@ class MapPage extends Component {
         var lngRight = rtLatLng.getLng(); // 동
         console.log("shouldComponentUpdate: 남서=>" + latBottom+", "+lngLeft+"\n북동=>"+latTop+", "+lngRight);
         
+        //부모컴포넌트로 정보 보내기
+
+
         return true;
     }
 
@@ -91,14 +94,13 @@ class MapPage extends Component {
 
     // 지도 줌 변경
     mapZoom = () => {
-        // 지도 영역정보를 얻어옵니다 
         var bounds = map.getBounds();
         var latlng = map.getCenter(); 
 
-        // 영역정보의 남서쪽 정보를 얻어옵니다 
+        // 남서쪽 
         var swLatlng = bounds.getSouthWest();
         
-        // 영역정보의 북동쪽 정보를 얻어옵니다 
+        // 북동쪽 
         var neLatlng = bounds.getNorthEast();
         
         var message = 'mapZoom 영역좌표는 남서쪽 위도, 경도는  ' + swLatlng.toString() + '이고'; 
@@ -128,25 +130,25 @@ class MapPage extends Component {
             top: "50%"
         }
 
-        const {mapData, location, searchLoading} = this.props.searchData;
-        var housing=[], deal=[];
-        console.log(searchLoading);
-        if(searchLoading) {
+        const loading = this.props.loading;
+        //var housing=[], deal=[];
+        console.log(loading);
+        if(loading) {
             Loading = <img src="//s.zigbang.com/v1/web/search/loading2.gif" alt="" style={loadingShow}></img>
         } else {
             Loading = <img src="//s.zigbang.com/v1/web/search/loading2.gif" alt="" style={loadingHide}></img>
-            console.log("mappage housing : ",mapData.housingTypeData);
-            console.log("mappage deal: ",mapData.dealTypeData);
-            console.log("mappage input:",mapData.inputData);
-            console.log("mappage l:",location.center.latitude);
+            // console.log("mappage housing : ",mapData.housingTypeData);
+            // console.log("mappage deal: ",mapData.dealTypeData);
+            // console.log("mappage input:",mapData.inputData);
+            // console.log("mappage l:",location.center.latitude);
 
-            for(var i=0;i<mapData.housingTypeData.length;i++){
-                housing[i] = mapData.housingTypeData[i].value;
-            }
+            // for(var i=0;i<mapData.housingTypeData.length;i++){
+            //     housing[i] = mapData.housingTypeData[i].value;
+            // }
 
-            for(var j=0;j<mapData.dealTypeData.length;j++){
-                deal[j] = mapData.dealTypeData[j].value;
-            }
+            // for(var j=0;j<mapData.dealTypeData.length;j++){
+            //     deal[j] = mapData.dealTypeData[j].value;
+            // }
         }
 
         return(
@@ -154,7 +156,7 @@ class MapPage extends Component {
                 <div id="map" style={mapStyle}>
                 {Loading}
                 </div>
-                <div>
+                {/* <div>
                 <h3>집 종류</h3>
                 {
                     housing.map((type,i)=>{
@@ -173,7 +175,7 @@ class MapPage extends Component {
                 <div>
                 <h3>지역 명</h3>
                 <p>{mapData.inputData}</p>
-                </div>
+                </div> */}
             </div>
         )
     }
