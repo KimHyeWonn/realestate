@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Table, Menu , Icon} from 'semantic-ui-react'
+import { Table, Menu , Icon} from 'semantic-ui-react';
 
 class QuestionList extends Component {
     constructor(props) {
