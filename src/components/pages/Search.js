@@ -26,7 +26,36 @@ class Search extends Component {
                 longitude: ''
             }
         },
-        searchLoading: true
+        searchLoading: true,
+        buliding:[
+            {
+            no:'1',
+            city: '서울시',
+            groop: '성북구',
+            dong: '정릉1동',
+            name: '서경대학교',
+            area: '4,735.14',
+            floor: '10',
+            type: '오피스텔 숫자 옴',
+            constructorYear: '1947',
+            price:'100',
+            deposit: '',
+            dealType: '매매',
+        },{
+            no:'2',
+            city: '서울시1',
+            groop: '성북구1',
+            dong: '정릉1동1',
+            name: '서경대학교1',
+            area: '4,735.14',
+            floor: '10',
+            type: '오피스텔 숫자 옴',
+            constructorYear: '1947',
+            price:'100',
+            deposit: '100',
+            dealType: '월세',
+        }
+    ]
     };
 
     // default값으로 지도 보여주기
@@ -66,7 +95,7 @@ class Search extends Component {
     //kakao 장소검색api 콜백함수
     placesSearchCB = (data, status, pagination) => {
         if (status === daum.maps.services.Status.OK) {
-            console.log(data[0].place_name+" "+data[0].x+" "+data[0].y);
+            console.log("kakao 장소검색api : "+data[0].place_name+" "+data[0].x+" "+data[0].y);
 
             this.setState({
                 location: {
@@ -125,7 +154,7 @@ class Search extends Component {
                         <MapPage searchData={this.state}/>
                     </div>
                     <div className="SearchDivR">
-                        <ResultPage />
+                        <ResultPage resultData={this.state}/>
                     </div>
                 </div>
             </div>

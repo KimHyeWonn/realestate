@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { Button, Popup, Grid, Image, Divider, Segment, Label } from 'semantic-ui-react';
+import { Button, Popup, Grid, Image, Divider} from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import './ResultPage.css';
 import * as data from "./ResultImg"
+import ResultList from './ResultList';
 
 class ResultPage extends Component {
+    static defaultProps={
+        list:[]
+    }
     state = {
         checked : true,
         checked1: true,
@@ -19,6 +23,8 @@ class ResultPage extends Component {
         unclicked: data.unclicked,
         clicked: data.clicked
     }
+
+    //조건 선택 체크박스
     handleCheck = (event) => {
         var value = { value: event.target.value }
         if (value.value === "pr") {
@@ -64,17 +70,19 @@ class ResultPage extends Component {
             );
         }
     }
+
+    //
     render() {
         const { checked, checked1, checked2, checked3, checked4, checked5, checked6, checked7, checked8, checked9 } = this.state
         const { unclicked, clicked } = this.state
-
+        const {buliding} = this.props.resultData;
+        const list = buliding.map(
+            info=>(
+                <ResultList key={info.no} info={info} />
+            )
+        );
         return (
             <div>
-                {/* {checked ? (<h5>{unclicked[0].text}</h5>) : <h5>{unclicked[0].text}선택 안함</h5>}
-                {checked1 ? (<h5>{unclicked[1].text}</h5>) : <h5>{unclicked[1].text}선택 안함</h5>}
-                {checked2 ? (<h5>{unclicked[2].text}</h5>) : <h5>{unclicked[2].text}선택 안함</h5>}
-                {checked3 ? (<h5>{unclicked[3].text}</h5>) : <h5>{unclicked[3].text}선택 안함</h5>}
-                {checked4 ? (<h5>{unclicked[4].text}</h5>) : <h5>{unclicked[4].text}선택 안함</h5>} */}
                 <Popup trigger={<Button>조건 선택</Button>} position='bottom center' on='click' hideOnScroll>
                     <div className="popupDiv"></div>
                     {checked ? (<font>{unclicked[0].text}</font>) : <font>{unclicked[0].text}선택 안함</font>}, {checked1 ? (<font>{unclicked[1].text}</font>) : <font>{unclicked[1].text}선택 안함</font>}
@@ -149,19 +157,10 @@ class ResultPage extends Component {
                         </Grid.Column>
                     </Grid>
                 </Popup>
+                
+                {/* 매물보여주는 div */}
                 <div className="dealTypeDiv">
-                <Segment raised>
-                    <Grid>
-                        <Grid.Column width={4}>
-                            <Image src={require('../image/officetel.PNG')} />
-                        </Grid.Column>
-                        <Grid.Column width={9}>
-                        <Label circular>월세</Label><h2 className="title"><font color="orange">3000/40</font></h2><h4 className="title">(23㎡)</h4>
-                            <font color="grey"><h4>서울시 종로구 ...</h4>
-                            <h4>오피스텔</h4></font>
-                        </Grid.Column>
-                    </Grid>
-                </Segment>
+                    {list}
                 </div>
                 
             </div>

@@ -18,8 +18,14 @@ class SearchPage extends Component {
             checked5:"false",
             checked6:"false"
         };
+        this.keyPress=this.keyPress.bind(this);
     }
-
+    keyPress= (e) => {
+        if (e.key === 'Enter') {
+          console.log('do validate');
+          this.searchClick()
+        }
+      }
     apartChange = (e, { value ,checked}) => {
         const { housingTypeData } = this.state;
         var {checked1} = this.state;
@@ -125,14 +131,12 @@ class SearchPage extends Component {
         let {inputData } = this.state;
         let hou=[],del=[];
         let {checked1,checked2,checked3,checked4,checked5,checked6} = this.state;
-        if(checked1==="true")hou=hou.concat({value:"아파트"});
-        if(checked2==="true")hou=hou.concat({value:"오피스텔"});
-        if(checked3==="true")hou=hou.concat({value:"주택"});
-        if(checked4==="true")del=del.concat({value:"전세"});
-        if(checked5==="true")del=del.concat({value:"매매"});
-        if(checked6==="true")del=del.concat({value:"월세"});
-        console.log("array check : ",hou);
-        console.log("array check2 : ",del);
+        if(checked1==="true")hou=hou.concat({value:"apart"});
+        if(checked2==="true")hou=hou.concat({value:"officetel"});
+        if(checked3==="true")hou=hou.concat({value:"house"});
+        if(checked4==="true")del=del.concat({value:"lease"});
+        if(checked5==="true")del=del.concat({value:"deal"});
+        if(checked6==="true")del=del.concat({value:"month"});
         data.push({
             housingTypeData: hou,
             dealTypeData: del,
@@ -145,21 +149,22 @@ class SearchPage extends Component {
     render() {
         return (
             <div className="topDiv">
+            
                 <Segment>
                     <div className="searchDiv">
-
-                        <div className="radioDiv"><Checkbox  onChange={this.apartChange} value="아파트" /><Label basic color='red' pointing='left'>에효시발</Label></div>
-                        <div className="radioDiv"><Checkbox  onChange={this.officetelChange} value="오피스텔" /><Label basic color='orange' pointing='left'>어케 보여주지</Label></div>
-                        <div className="radioDiv"><Checkbox label="주택" onChange={this.houseChagne} value="주택" /></div>
+                        <div className="radioDiv"><Label color='teal' ><Checkbox label="아파트" onChange={this.apartChange} value="apart" /></Label></div>
+                        <div className="radioDiv"><Checkbox  onChange={this.officetelChange} value="officetel" /><Label circular color='orange' >오피스텔</Label></div>
+                        <div className="radioDiv"><label className="b"><Checkbox label="주택" onChange={this.houseChagne} value="주택" /></label></div>
                         <div className="radioDiv"><Checkbox label="전세" onChange={this.leaseChagne} value="전세" /></div>
                         <div className="radioDiv"><Checkbox label="월세" onChange={this.monthChagne} value="월세" /></div>
                         <div className="radioDiv"><Checkbox label="매매" onChange={this.dealChagne} value="매매" /></div>
 
-                        <Input icon='search' placeholder='지역이나 역명' onChange={this.searchChange} value={this.state.inputSearch} />
+                        <Input icon='search' placeholder='지역이나 역명' onChange={this.searchChange} value={this.state.inputSearch} onKeyDown={this.keyPress}/>
                         <Button color="grey" onClick={this.searchClick}>검색</Button>
                     </div>
 
                 </Segment>
+                
             </div>
         );
     }
