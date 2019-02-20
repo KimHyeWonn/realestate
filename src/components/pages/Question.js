@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {QuestionList} from 'components/questionPage';
 import { Button } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
 
 class Question extends Component {
     render() {
@@ -15,7 +16,9 @@ class Question extends Component {
         return(
             <div style={style1}>
                 <div style={style2}>
-                    <Button color="olive">글쓰기</Button>
+                    <NavLink exact to = "/new">
+                        <Button color="olive">글쓰기</Button>
+                    </NavLink>
                 </div>
                 <QuestionList></QuestionList>
             </div>
