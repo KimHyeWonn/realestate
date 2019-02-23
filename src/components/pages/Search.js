@@ -15,51 +15,28 @@ class Search extends Component {
         },
         mapData: {
             rightTop: {
-                latitude: '', //위도 y
-                longitude: '' //경도 x
+                latitude: 0, //위도 y
+                longitude: 0 //경도 x
             },
             leftBottom: {
-                latitude: '',
-                longitude: ''
+                latitude: 0,
+                longitude: 0
             },
             center: {
-                latitude: '',
-                longitude: ''
+                latitude: 0,
+                longitude: 0
             }
         },
         optionData: [],
         resultData: {
-            // 백엔드 api 호출 후 얻는 결과값(위경도->mapPage에서 처리,설명->resultPage에서 처리) 
+            date: '',
+
+            // 백엔드 api 호출 후 얻는 결과값(위경도->mapPage에서 처리 , 건물설명->resultPage에서 처리) 
             apiData: [],
 
+            // 테스트용
             buliding:[
-                {
-                    no:'1',
-                    city: '서울시',
-                    groop: '성북구',
-                    dong: '정릉1동',
-                    name: '서경대학교',
-                    area: '4,735.14',
-                    floor: '10',
-                    type: '오피스텔 숫자 옴',
-                    constructorYear: '1947',
-                    price:'100',
-                    deposit: '',
-                    dealType: '매매',
-                },{
-                    no:'2',
-                    city: '서울시1',
-                    groop: '성북구1',
-                    dong: '정릉1동1',
-                    name: '서경대학교1',
-                    area: '4,735.14',
-                    floor: '10',
-                    type: '오피스텔 숫자 옴',
-                    constructorYear: '1947',
-                    price:'100',
-                    deposit: '100',
-                    dealType: '월세',
-                }
+                //mapDataSet에서 값 셋팅
             ]
         },
         
@@ -68,15 +45,17 @@ class Search extends Component {
     // default값으로 지도 보여주기
     componentDidMount() {
         const {inputData} = this.state.searchData;
-        if(inputData !== '') this.kakaoPlacesSearch(inputData);
-
-        console.log("->searchCom(default) housing : ", this.state.searchData.housingTypeData);
-        console.log("->searchCom(default) deal: ", this.state.searchData.dealTypeData);
-        console.log("->searchCom(default) input:", this.state.searchData.inputData);
+        this.kakaoPlacesSearch(inputData);
+        
+        console.log("Search>componentDidMount");
+        // console.log("->searchCom(default) housing : ", this.state.searchData.housingTypeData);
+        // console.log("->searchCom(default) deal: ", this.state.searchData.dealTypeData);
+        // console.log("->searchCom(default) input:", this.state.searchData.inputData);
     }
 
     //SearchPage에서 검색
     searchDataSet = (data) => {
+        console.log("Search>searchDataSet");
         const {housingTypeData,dealTypeData,inputData} = data[0];
 
         this.setState({
@@ -96,9 +75,9 @@ class Search extends Component {
             });
         }
 
-        console.log("->searchCom housing : ",housingTypeData);
-        console.log("->searchCom deal: ",dealTypeData);
-        console.log("->searchCom input:",inputData);
+        // console.log("->searchCom housing : ",housingTypeData);
+        // console.log("->searchCom deal: ",dealTypeData);
+        // console.log("->searchCom input:",inputData);
     }
 
     //kakao 장소검색api 호출
@@ -110,6 +89,7 @@ class Search extends Component {
     //kakao 장소검색api 콜백함수
     placesSearchCB = (data, status, pagination) => {
         if (status === daum.maps.services.Status.OK) {
+            console.log("Search>placesSearchCB");
             this.setState({
                 mapData: {
                     center: {
@@ -119,13 +99,6 @@ class Search extends Component {
                 },
                 loading: false
             });
-            // let result = [];
-
-            // result.push({
-            //     placeName: data[0].place_name,
-            //     latitude: data[0].y,
-            //     longitude: data[0].x
-            // });
 
             return true;
         } else if (status === daum.maps.services.Status.ZERO_RESULT) {
@@ -139,6 +112,8 @@ class Search extends Component {
 
     //ResultPage에서 옵션선택
     optionDataSet = (data) => {
+        console.log("Search>optionDataSet");
+
         // this.setState({
         //     optionData:[],
         //     loading: true
@@ -149,8 +124,53 @@ class Search extends Component {
 
     //kakao 카테고리검색api 콜백함수
 
-    // MapPage에서 지정한 지도 좌표 (RightTop, LeftBottom)
 
+    // MapPage에서 지정한 지도 좌표 (RightTop, LeftBottom)
+    mapDataSet = (data) => {
+        console.log("Search>mapDataSet");
+
+        //data -> set State -> api 호출
+
+        //api 호출 후 결과값 set State
+        let date = new Date();
+        this.setState({
+            resultData: {
+                date: date,
+                // 백엔드 api 호출 후 얻는 결과값(위경도->mapPage에서 처리,설명->resultPage에서 처리) 
+                apiData: [],
+    
+                buliding:[
+                    {
+                        no:'1',
+                        city: '서울시',
+                        groop: '성북구',
+                        dong: '정릉1동',
+                        name: '서경대학교',
+                        area: '4,735.14',
+                        floor: '10',
+                        type: '오피스텔 숫자 옴'+date,
+                        constructorYear: '1947',
+                        price:'100',
+                        deposit: '',
+                        dealType: '매매',
+                    },{
+                        no:'2',
+                        city: '서울시1',
+                        groop: '성북구1',
+                        dong: '정릉1동1',
+                        name: '서경대학교1',
+                        area: '4,735.14',
+                        floor: '10',
+                        type: '오피스텔 숫자 옴'+date,
+                        constructorYear: '1947',
+                        price:'100',
+                        deposit: '100',
+                        dealType: '월세',
+                    }
+                ]
+            }            
+        });
+    }
 
     render() {
         return(
@@ -160,7 +180,7 @@ class Search extends Component {
                 </div>
                 <div className="SearchDiv1">
                     <div className="SearchDivL">
-                        <MapPage mapData={this.state.mapData.center} resultData={this.state.resultData} loading={this.state.loading}/>
+                        <MapPage mapData={this.state.mapData.center} mapDataSet={this.mapDataSet} resultData={this.state.resultData} loading={this.state.loading}/>
                     </div>
                     <div className="SearchDivR">
                         <ResultPage resultData={this.state.resultData} optionDataSet={this.optionDataSet}/>
