@@ -184,7 +184,6 @@ class SearchPage extends Component {
         this.setState({ currentValuesD: value,deals:value })
     }
     render() {
-        const { currentValues,currentValuesD } = this.state
         return (
             <div className="topDiv">
                 <div className="searchDiv">
@@ -204,7 +203,6 @@ class SearchPage extends Component {
                     selection
                     multiple
                     allowAdditions
-                    value={currentValues}
                     onAddItem={this.handleAddition}
                     onChange={this.handleChange}
                     renderLabel={renderLabel}
@@ -216,7 +214,6 @@ class SearchPage extends Component {
                     selection
                     multiple
                     allowAdditions
-                    value={currentValuesD}
                     onAddItem={this.handleAdditionD}
                     onChange={this.handleChangeD}
                     renderLabel={renderLabel2}

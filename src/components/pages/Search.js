@@ -128,7 +128,6 @@ class Search extends Component {
     // MapPage에서 지정한 지도 좌표 (RightTop, LeftBottom)
     mapDataSet = (data) => {
         console.log("Search>mapDataSet");
-
         //data -> set State -> api 호출
 
         //api 호출 후 결과값 set State
@@ -153,6 +152,9 @@ class Search extends Component {
                         price:'100',
                         deposit: '',
                         dealType: '매매',
+                        latitude:'37.615095',
+                        longitude: '127.0109226'
+        
                     },{
                         no:'2',
                         city: '서울시1',
@@ -166,6 +168,8 @@ class Search extends Component {
                         price:'100',
                         deposit: '100',
                         dealType: '월세',
+                        latitude:'37.615095',
+                        longitude: '127.0109226'
                     }
                 ]
             }            
