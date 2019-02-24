@@ -129,7 +129,7 @@ class MapPage extends Component {
         }
 
         const {mapData, location, searchLoading} = this.props.searchData;
-        var housing=[], deal=[];
+        //var housing=[], deal=[];
         console.log(searchLoading);
         if(searchLoading) {
             Loading = <img src="//s.zigbang.com/v1/web/search/loading2.gif" alt="" style={loadingShow}></img>
@@ -140,13 +140,13 @@ class MapPage extends Component {
             console.log("mappage input:",mapData.inputData);
             console.log("mappage l:",location.center.latitude);
 
-            for(var i=0;i<mapData.housingTypeData.length;i++){
-                housing[i] = mapData.housingTypeData[i].value;
-            }
+            // for(var i=0;i<mapData.housingTypeData.length;i++){
+            //     housing[i] = mapData.housingTypeData[i].value;
+            // }
 
-            for(var j=0;j<mapData.dealTypeData.length;j++){
-                deal[j] = mapData.dealTypeData[j].value;
-            }
+            // for(var j=0;j<mapData.dealTypeData.length;j++){
+            //     deal[j] = mapData.dealTypeData[j].value;
+            // }
         }
 
         return(
@@ -156,19 +156,21 @@ class MapPage extends Component {
                 </div>
                 <div>
                 <h3>집 종류</h3>
-                {
+                {/* {
                     housing.map((type,i)=>{
                         return(<p key={i}>{type}</p>)
                     })
-                }
+                } */}
+                {mapData.housingTypeData}
                 </div>
                 <div>
                 <h3>거래 방법</h3>
-                {
+                {/* {
                     deal.map((type,i)=>{
                         return(<p key={i}>{type}</p>)
                     })
-                }
+                } */}
+                {mapData.dealTypeData}
                 </div>
                 <div>
                 <h3>지역 명</h3>

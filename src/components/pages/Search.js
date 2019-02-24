@@ -8,8 +8,8 @@ import './Page.css';
 class Search extends Component {
     state = {
         mapData:{
-            dealTypeData:[{value:"month"}], //"lease", "deal", "month",
-            housingTypeData:[{value:"officetel"}], //"apart", "officetel", "house",
+            dealTypeData:"month", //"lease", "deal", "month",
+            housingTypeData:"officetel", //"apart", "officetel", "house",
             inputData:"서경대"
         },
         location: {

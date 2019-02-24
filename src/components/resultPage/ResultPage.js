@@ -10,16 +10,16 @@ class ResultPage extends Component {
         list:[]
     }
     state = {
-        checked : true,
-        checked1: true,
-        checked2: true,
-        checked3: true,
-        checked4: true,
-        checked5: true,
-        checked6: true,
-        checked7: true,
-        checked8: true,
-        checked9: true,
+        checked : false,
+        checked1: false,
+        checked2: false,
+        checked3: false,
+        checked4: false,
+        checked5: false,
+        checked6: false,
+        checked7: false,
+        checked8: false,
+        checked9: false,
         unclicked: data.unclicked,
         clicked: data.clicked
     }
