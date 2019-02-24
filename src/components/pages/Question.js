@@ -1,26 +1,12 @@
 import React,{Component} from 'react';
 import {QuestionList} from 'components/questionPage';
 import * as service from '../../lib/boardApi';
-
+import axios from 'axios';
 class Question extends Component {
     constructor() {
         super();
         this.state = {
-            pageNo:1,
-            exampleItems: [
-                {no: '1', title: '질문', author: 'Abet', registerDate: '2019-01-17'},
-                {no: "2", title: "질문", author: "Betty", registerDate: "2019-01-15"},
-                {no: "3", title: "질문", author: "Charlie", registerDate: "2019-01-10"},
-                {no: "4", title: "질문", author: "David", registerDate: "2019-01-05"},
-                {no: '5', title: '질문', author: 'Abet', registerDate: '2019-01-17'},
-                {no: '6', title: '질문', author: 'Abet', registerDate: '2019-01-17'},
-                {no: '7', title: '질문', author: 'Abet', registerDate: '2019-01-17'},
-                {no: '8', title: '질문', author: 'Abet', registerDate: '2019-01-17'},
-                {no: '9', title: '질문', author: 'Abet', registerDate: '2019-01-17'},
-                {no: '10', title: '질문', author: 'Abet', registerDate: '2019-01-17'},
-                {no: '11', title: '질문', author: 'Abet', registerDate: '2019-01-17'},
-                {no: '12', title: '질문', author: 'Abet', registerDate: '2019-01-17'}
-            ],
+            exampleItems: [],
             pageOfItems: [],
         };
         // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
@@ -39,10 +25,15 @@ class Question extends Component {
     boardData = async () => {
         try{
             console.log("getBoard");
-            const responseInfo = await service.getBoard(this.state.pageNo);
+            const responseInfo = await service.getBoard();
+            //const responseInfo = await service.getBoard();
             console.log("responseInfo",responseInfo);
             this.setState({
+<<<<<<< HEAD
                 exampleItems: responseInfo.data.content
+=======
+                exampleItems: responseInfo.data
+>>>>>>> d601c11959d5af1f3f078047d47fe9ebb5207ba5
             });
         }catch(e) {
             console.log(e);
@@ -50,19 +41,23 @@ class Question extends Component {
     }
 
     //새로운 글 서버에 전송
-    handleSubmit = (data) => {
-       fetch(`http://54.180.87.242:8080/realestate/board`, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
-        }).then(function(response) {
-            if(response.status >= 400) {
-                throw new Error("Bad response");
-            }
-            return response.json();
-        }).then(function(err){
-            console.log(err)
-        });
+    handleSubmit = async (data) => {
+            console.log(data)
+           const boardInfo = await service.postNewContent(data);
+          // const postData = JSON.stringify(data)
+       
+    //    fetch(`http://54.180.87.242:8080/realestate/board`, {
+    //         method: 'POST',
+    //         headers: {'Content-Type': 'application/json'},
+    //         body: JSON.stringify(data)
+    //     }).then(function(response) {
+    //         if(response.status >= 400) {
+    //             throw new Error("Bad response");
+    //         }
+    //         return response.json();
+    //     }).then(function(err){
+    //         console.log(err)
+    //     });
     }
     render() {
         const style1 = {
@@ -74,7 +69,7 @@ class Question extends Component {
                 <QuestionList 
                     handleSubmit={this.handleSubmit} 
                     boardData={this.state}
-                    items={this.state.exampleItems} 
+                    items={this.state.exampleItems}
                     onChangePage={this.onChangePage}
                 />
                 {/* <Pagination items={this.state.exampleItems} onChangePage={this.onChangePage}/> */}

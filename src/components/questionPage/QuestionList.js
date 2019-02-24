@@ -5,7 +5,8 @@ class QuestionList extends Component {
     state = { 
         open: false,
         title: '',
-        contents: '' 
+        contents: '', 
+        author: ''
     }
     //팝업 창 닫기 설정
     closeConfigShow = ( closeOnDimmerClick ) => () => {
@@ -25,11 +26,12 @@ class QuestionList extends Component {
     }
     //submit 버튼 클릭 시 Question으로 전달
     submitClick = () => {
-        const {title, contents} = this.state
+        const {title, contents,author} = this.state
         const data = [];
         data.push({
-            title: title,
-            contents: contents
+                author: 'asdf',
+                contents: contents,
+                title: title
         });
         if(title !== '' && contents !== ''){
             this.props.handleSubmit(data);
