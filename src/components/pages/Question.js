@@ -29,11 +29,7 @@ class Question extends Component {
             //const responseInfo = await service.getBoard();
             console.log("responseInfo",responseInfo);
             this.setState({
-<<<<<<< HEAD
-                exampleItems: responseInfo.data.content
-=======
                 exampleItems: responseInfo.data
->>>>>>> d601c11959d5af1f3f078047d47fe9ebb5207ba5
             });
         }catch(e) {
             console.log(e);
