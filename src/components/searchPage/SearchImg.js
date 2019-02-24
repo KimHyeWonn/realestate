@@ -1,6 +1,6 @@
 
 export const unclicked = [
-    {value:"//yaimg.yanolja.com/files/2016/0823/201608231713376358de44-d900-4263-9327-6bba7c29fb2b.png", text:"버스"},
+    {key:'SW8',value:"//yaimg.yanolja.com/files/2016/0823/201608231713376358de44-d900-4263-9327-6bba7c29fb2b.png", text:"버스"},
     {value:"//yaimg.yanolja.com/files/2016/0823/201608231717541626e901-5398-453e-aa61-0dbeebfa4ed7.png", text:"카페"},
     {value:require("../image/school_un.png"), text:"학교"},
     {value:"//yaimg.yanolja.com/files/2016/1130/201611301434072bb5408d-ed80-4ce1-ba6b-a2f94abb373d.png", text:"병원"},

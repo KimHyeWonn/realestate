@@ -11,7 +11,8 @@ class Search extends Component {
         searchData:{
             dealTypeData:"month", //"lease", "deal", "month",
             housingTypeData:"officetel", //"apart", "officetel", "house",
-            inputData:"서경대"
+            inputData:"서경대",
+            options:[]
         },
         mapData: {
             rightTop: {
@@ -56,17 +57,18 @@ class Search extends Component {
     //SearchPage에서 검색
     searchDataSet = (data) => {
         console.log("Search>searchDataSet");
-        const {housingTypeData,dealTypeData,inputData} = data[0];
+        const {housingTypeData,dealTypeData,inputData,options} = data[0];
 
         this.setState({
             searchData:{
                 housingTypeData: housingTypeData,
                 dealTypeData: dealTypeData,
-                inputData: inputData
+                inputData: inputData,
+                options:options
             },
             loading: true
         });
-
+        console.log("options: ",options)
         if(inputData !== ''){
             this.kakaoPlacesSearch(inputData);
         }else {

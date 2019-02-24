@@ -42,7 +42,7 @@ class Question extends Component {
             const responseInfo = await service.getBoard(this.state.pageNo);
             console.log("responseInfo",responseInfo);
             this.setState({
-                exampleItems: responseInfo
+                exampleItems: responseInfo.data.content
             });
         }catch(e) {
             console.log(e);
