@@ -6,6 +6,7 @@ class Question extends Component {
     constructor() {
         super();
         this.state = {
+            pageNo:1,
             exampleItems: [
                 {no: '1', title: '질문', author: 'Abet', registerDate: '2019-01-17'},
                 {no: "2", title: "질문", author: "Betty", registerDate: "2019-01-15"},
@@ -38,8 +39,8 @@ class Question extends Component {
     boardData = async () => {
         try{
             console.log("getBoard");
-            const responseInfo = await service.getBoard();
-            console.log(responseInfo);
+            const responseInfo = await service.getBoard(this.state.pageNo);
+            console.log("responseInfo",responseInfo);
             this.setState({
                 exampleItems: responseInfo
             });
