@@ -7,83 +7,77 @@ import './Page.css';
 
 class Search extends Component {
     state = {
-        mapData:{
+        loading: true,
+        searchData:{
             dealTypeData:[{value:"month"}], //"lease", "deal", "month",
             housingTypeData:[{value:"officetel"}], //"apart", "officetel", "house",
             inputData:"서경대"
         },
-        location: {
+        mapData: {
             rightTop: {
-                latitude: '', //위도 y
-                longitude: '' //경도 x
+                latitude: 0, //위도 y
+                longitude: 0 //경도 x
             },
             leftBottom: {
-                latitude: '',
-                longitude: ''
+                latitude: 0,
+                longitude: 0
             },
             center: {
-                latitude: '',
-                longitude: ''
+                latitude: 0,
+                longitude: 0
             }
         },
-        searchLoading: true,
-        buliding:[
-            {
-            no:'1',
-            city: '서울시',
-            groop: '성북구',
-            dong: '정릉1동',
-            name: '서경대학교',
-            area: '4,735.14',
-            floor: '10',
-            type: '오피스텔 숫자 옴',
-            constructorYear: '1947',
-            price:'100',
-            deposit: '',
-            dealType: '매매',
-        },{
-            no:'2',
-            city: '서울시1',
-            groop: '성북구1',
-            dong: '정릉1동1',
-            name: '서경대학교1',
-            area: '4,735.14',
-            floor: '10',
-            type: '오피스텔 숫자 옴',
-            constructorYear: '1947',
-            price:'100',
-            deposit: '100',
-            dealType: '월세',
-        }
-    ]
+        optionData: [],
+        resultData: {
+            date: '',
+
+            // 백엔드 api 호출 후 얻는 결과값(위경도->mapPage에서 처리 , 건물설명->resultPage에서 처리) 
+            apiData: [],
+
+            // 테스트용
+            buliding:[
+                //mapDataSet에서 값 셋팅
+            ]
+        },
+        
     };
 
     // default값으로 지도 보여주기
     componentDidMount() {
-        const {inputData} = this.state.mapData;
-        if(inputData !== '') this.kakaoPlacesSearch(inputData);
+        const {inputData} = this.state.searchData;
+        this.kakaoPlacesSearch(inputData);
+        
+        console.log("Search>componentDidMount");
+        // console.log("->searchCom(default) housing : ", this.state.searchData.housingTypeData);
+        // console.log("->searchCom(default) deal: ", this.state.searchData.dealTypeData);
+        // console.log("->searchCom(default) input:", this.state.searchData.inputData);
     }
 
     //SearchPage에서 검색
-    searchData = (data) => {
+    searchDataSet = (data) => {
+        console.log("Search>searchDataSet");
         const {housingTypeData,dealTypeData,inputData} = data[0];
 
         this.setState({
-            mapData:{
+            searchData:{
                 housingTypeData: housingTypeData,
                 dealTypeData: dealTypeData,
                 inputData: inputData
             },
-            searchLoading: true
+            loading: true
         });
 
         if(inputData !== ''){
             this.kakaoPlacesSearch(inputData);
         }else {
             this.setState({
-                searchLoading: false
+                loading: false
             });
         }
+
+        // console.log("->searchCom housing : ",housingTypeData);
+        // console.log("->searchCom deal: ",dealTypeData);
+        // console.log("->searchCom input:",inputData);
     }
 
     //kakao 장소검색api 호출
@@ -95,66 +89,101 @@ class Search extends Component {
     //kakao 장소검색api 콜백함수
     placesSearchCB = (data, status, pagination) => {
         if (status === daum.maps.services.Status.OK) {
-            console.log("kakao 장소검색api : "+data[0].place_name+" "+data[0].x+" "+data[0].y);
-
+            console.log("Search>placesSearchCB");
             this.setState({
-                location: {
-                    rightTop: {
-                        latitude: '', //위도 y
-                        longitude: '' //경도 x
-                    },
-                    leftBottom: {
-                        latitude: '',
-                        longitude: ''
-                    },
+                mapData: {
                     center: {
                         latitude: data[0].y,
                         longitude: data[0].x
                     }
                 },
-                searchLoading: false
+                loading: false
             });
 
-            let result = [];
-
-            result.push({
-                placeName: data[0].place_name,
-                latitude: data[0].y,
-                longitude: data[0].x
-            });
-
-            return result;
+            return true;
         } else if (status === daum.maps.services.Status.ZERO_RESULT) {
             alert('검색 결과가 존재하지 않습니다.');
-            return null;
+            return false;
         } else if (status === daum.maps.services.Status.ERROR) {
             alert('검색 결과 중 오류가 발생했습니다.');
-            return null;
+            return false;
         }
     }
 
     //ResultPage에서 옵션선택
-    optionData = (data) => {
+    optionDataSet = (data) => {
+        console.log("Search>optionDataSet");
 
-
+        // this.setState({
+        //     optionData:[],
+        //     loading: true
+        // });
     }
 
     //kakao 카테고리검색api 호출
 
     //kakao 카테고리검색api 콜백함수
 
+
+    // MapPage에서 지정한 지도 좌표 (RightTop, LeftBottom)
+    mapDataSet = (data) => {
+        console.log("Search>mapDataSet");
+
+        //data -> set State -> api 호출
+
+        //api 호출 후 결과값 set State
+        let date = new Date();
+        this.setState({
+            resultData: {
+                date: date,
+                // 백엔드 api 호출 후 얻는 결과값(위경도->mapPage에서 처리,설명->resultPage에서 처리) 
+                apiData: [],
+    
+                buliding:[
+                    {
+                        no:'1',
+                        city: '서울시',
+                        groop: '성북구',
+                        dong: '정릉1동',
+                        name: '서경대학교',
+                        area: '4,735.14',
+                        floor: '10',
+                        type: '오피스텔 숫자 옴'+date,
+                        constructorYear: '1947',
+                        price:'100',
+                        deposit: '',
+                        dealType: '매매',
+                    },{
+                        no:'2',
+                        city: '서울시1',
+                        groop: '성북구1',
+                        dong: '정릉1동1',
+                        name: '서경대학교1',
+                        area: '4,735.14',
+                        floor: '10',
+                        type: '오피스텔 숫자 옴'+date,
+                        constructorYear: '1947',
+                        price:'100',
+                        deposit: '100',
+                        dealType: '월세',
+                    }
+                ]
+            }            
+        });
+    }
+
     render() {
         return(
             <div>
                 <div className="SearchDiv1">
-                    <SearchPage searchData={this.searchData}/>
+                    <SearchPage searchDataSet={this.searchDataSet}/>
                 </div>
                 <div className="SearchDiv1">
                     <div className="SearchDivL">
-                        <MapPage searchData={this.state}/>
+                        <MapPage mapData={this.state.mapData.center} mapDataSet={this.mapDataSet} resultData={this.state.resultData} loading={this.state.loading}/>
                     </div>
                     <div className="SearchDivR">
-                        <ResultPage resultData={this.state}/>
+                        <ResultPage resultData={this.state.resultData} optionDataSet={this.optionDataSet}/>
                     </div>
                 </div>
             </div>
