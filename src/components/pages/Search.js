@@ -137,12 +137,12 @@ class Search extends Component {
                     {
                         no:'1',
                         city: '서울시',
-                        groop: '성북구',
+                        groop: '성북구'+date,
                         dong: '정릉1동',
                         name: '서경대학교',
                         area: '4,735.14',
                         floor: '10',
-                        type: '오피스텔 숫자 옴'+date,
+                        type: '오피스텔',
                         constructorYear: '1947',
                         price:'100',
                         deposit: '',
@@ -153,18 +153,18 @@ class Search extends Component {
                     },{
                         no:'2',
                         city: '서울시1',
-                        groop: '성북구1',
+                        groop: '성북구1'+date,
                         dong: '정릉1동1',
                         name: '서경대학교1',
                         area: '4,735.14',
                         floor: '10',
-                        type: '오피스텔 숫자 옴'+date,
+                        type: '오피스텔',
                         constructorYear: '1947',
                         price:'100',
                         deposit: '100',
                         dealType: '월세',
-                        latitude:'37.615095',
-                        longitude: '127.0109226'
+                        latitude:'37.615016697149976',
+                        longitude: '127.01152949864682'
                     }
                 ]
             }            

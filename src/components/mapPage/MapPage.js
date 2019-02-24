@@ -16,7 +16,7 @@ class MapPage extends Component {
         let el = document.getElementById('map');
         let options = { 
             center: new daum.maps.LatLng(37.615095,127.0109226), //지도의 중심좌표.
-            level: 3 
+            level: 3 //최대 4
         };
         
         map =  new daum.maps.Map(el, options); //지도 생성 및 객체 리턴
@@ -39,6 +39,56 @@ class MapPage extends Component {
     shouldComponentUpdate(nextProps) {
         if(nextProps.resultData.date !== this.props.resultData.date) { //resultData 변경 -> 렌더링
             console.log("MapPage>shouldComponentUpdate>true");
+            
+            let data = nextProps.resultData.buliding;
+            
+            console.log(data);
+
+            //이미지 마커
+            //var position, markerImageSrc, imageSize = new daum.maps.Size(30, 30); 
+            
+            //텍스트 마커
+            var position, content='';
+
+            for(let i=0; i<data.length; i++){
+                position = new daum.maps.LatLng(data[i].latitude, data[i].longitude);
+                //markerImageSrc = require('../image/police_c.png');
+
+                if(data[i].type === "아파트" && data[i].dealType === "전세"){
+                    content = '<span style="color:black;background-color:#B2EBF4;">아파트/전</span>';
+                }else if(data[i].type === "아파트" && data[i].dealType === "매매"){
+                    content = '<span style="color:black;background-color:#FFB2D9;">아파트/매</span>'; 
+                }else if(data[i].type === "아파트" && data[i].dealType === "월세"){
+                    content = '<span style="color:black;background-color:#FFE08C;">아파트/월</span>';
+                }else if(data[i].type === "오피스텔" && data[i].dealType === "전세"){
+                    content = '<span style="color:black;background-color:#B2EBF4;">오피스텔/전</span>';
+                }else if(data[i].type === "오피스텔" && data[i].dealType === "매매"){
+                    content = '<span style="color:black;background-color:#FFB2D9;">오피스텔/매</span>';
+                }else if(data[i].type === "오피스텔" && data[i].dealType === "월세"){
+                    content = '<span style="color:black;background-color:#FFE08C;">오피스텔/월</span>';
+                }else if(data[i].type === "주택" && data[i].dealType === "전세"){
+                    content = '<span style="color:black;background-color:#B2EBF4;">주택/전</span>';
+                }else if(data[i].type === "주택" && data[i].dealType === "매매"){
+                    content = '<span style="color:black;background-color:#FFB2D9;">주택/매</span>';
+                }else if(data[i].type === "주택" && data[i].dealType === "월세"){
+                    content = '<span style="color:black;background-color:#FFE08C;">주택/월</span>';
+                }
+
+                // 이미지 마커
+                // var markerImage = this.createMarkerImage(markerImageSrc, imageSize);   
+                // var marker = this.createMarker(position, markerImage);  
+
+                // marker.setMap(map);
+
+                // 텍스트 마커
+                var customOverlay = new daum.maps.CustomOverlay({
+                    position: position,
+                    content: content   
+                });
+                
+                customOverlay.setMap(map);
+            }
+
             return true;
         }
 
@@ -94,9 +144,11 @@ class MapPage extends Component {
         var str = "MapPage>setBounds>"+method;
         console.log(str);
 
+        // 만약 조건이 있으면 호출
         // 카테고리 api 호출
         this.kakaoCategorySearch();
         
+        // 조건이 없으면 바로 데이터 셋팅
         let data = [];
 
         data.push({
@@ -132,6 +184,21 @@ class MapPage extends Component {
             console.log(data);   
         }
     }
+
+    createMarker = (position, image) => {
+        var marker = new daum.maps.Marker({
+            position: position,
+            image: image
+        });
+        
+        return marker;  
+    }  
+
+    createMarkerImage = (src, size) => {
+        var markerImage = new daum.maps.MarkerImage(src, size);
+        return markerImage;            
+    }
+    
 
     render() {
         const mapStyle = {
