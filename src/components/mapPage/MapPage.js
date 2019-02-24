@@ -94,6 +94,9 @@ class MapPage extends Component {
         var str = "MapPage>setBounds>"+method;
         console.log(str);
 
+        // 카테고리 api 호출
+        this.kakaoCategorySearch();
+        
         let data = [];
 
         data.push({
@@ -113,6 +116,21 @@ class MapPage extends Component {
 
         // 부모 컴포넌트로 전달
         this.props.mapDataSet(data);
+    }
+
+     //kakao 카테고리검색api 호출
+    kakaoCategorySearch = async () => {
+        var ps = new daum.maps.services.Places(map);
+        
+        // option 배열 필요! 
+        await ps.categorySearch('BK9', this.categorySearchCB, {useMapBounds:true}); 
+    }
+
+    //kakao 카테고리검색api 콜백함수
+    categorySearchCB = (data, status, pagination) => {
+        if (status === daum.maps.services.Status.OK) {
+            console.log(data);   
+        }
     }
 
     render() {

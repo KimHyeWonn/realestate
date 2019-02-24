@@ -120,11 +120,6 @@ class Search extends Component {
         // });
     }
 
-    //kakao 카테고리검색api 호출
-
-    //kakao 카테고리검색api 콜백함수
-
-
     // MapPage에서 지정한 지도 좌표 (RightTop, LeftBottom)
     mapDataSet = (data) => {
         console.log("Search>mapDataSet");
