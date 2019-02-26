@@ -1,8 +1,10 @@
 import React,{Component} from 'react';
 import { Table, Button, Modal, Input, Form} from 'semantic-ui-react';
 import {Pagination} from './';
+
 class QuestionList extends Component {
     state = { 
+        detailPageOpen: false,
         open: false,
         title: '',
         contents: '', 
@@ -28,16 +30,26 @@ class QuestionList extends Component {
     submitClick = () => {
         const {title, contents,author} = this.state
         const data = [];
-        data.push({
+        data.push(
+           [
+            {
                 author: 'asdf',
-                contents: contents,
+                content: contents,
                 title: title
-        });
+            }
+           ] 
+        );
         if(title !== '' && contents !== ''){
             this.props.handleSubmit(data);
             this.setState({open:false})
         }
     }
+
+    // titleClick = (boardNo) => {
+    //     this.setState({detailPageOpen: true})
+    //     if(boarNo !== '' && detailPageOpne)
+    //     this.props.detailBoardData(boardNo)
+    // }
 
     render() {
         const {open,closeOnDimmerClick} = this.state
@@ -81,7 +93,7 @@ class QuestionList extends Component {
                         return (
                             <Table.Row textAlign='center' key={contact.no}>
                                 <Table.Cell>{contact.no}</Table.Cell>
-                                <Table.Cell>{contact.title}</Table.Cell>
+                                <Table.Cell selectable><a href='#'>{contact.title}</a></Table.Cell>
                                 <Table.Cell>{contact.author}</Table.Cell>
                                 <Table.Cell>{contact.registerDate}</Table.Cell>
                             </Table.Row>

@@ -1,13 +1,14 @@
 import React,{Component} from 'react';
-import {QuestionList} from 'components/questionPage';
+import {QuestionList,detailPage} from 'components/questionPage';
 import * as service from '../../lib/boardApi';
-import axios from 'axios';
+
 class Question extends Component {
     constructor() {
         super();
         this.state = {
             exampleItems: [],
             pageOfItems: [],
+            detailBoardItems: []
         };
         // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
         this.onChangePage = this.onChangePage.bind(this);
@@ -36,10 +37,24 @@ class Question extends Component {
         }
     }
 
+    detailBoardData = async (boardNo) => {
+        try{
+            console.log("getDatailBoard")
+            const detailInfo = await service.getDetailBoard(boardNo);
+            console.log("detailInfo",detailInfo)
+            this.setState({
+                detailBoardData: detailInfo.data
+            });
+        }catch(e){
+            console.log(e)
+        }
+    }
+
     //새로운 글 서버에 전송
     handleSubmit = async (data) => {
             console.log(data)
            const boardInfo = await service.postNewContent(data);
+           
           // const postData = JSON.stringify(data)
        
     //    fetch(`http://54.180.87.242:8080/realestate/board`, {
@@ -67,8 +82,9 @@ class Question extends Component {
                     boardData={this.state}
                     items={this.state.exampleItems}
                     onChangePage={this.onChangePage}
+                   // detailBoardData={this.detailBoardData}
                 />
-                {/* <Pagination items={this.state.exampleItems} onChangePage={this.onChangePage}/> */}
+               {/* <detailPage detailBoardData={this.state.detailBoardItems}/> */}
             </div>
         )
     }

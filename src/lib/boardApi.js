@@ -6,18 +6,18 @@ export function getBoard() {
     return axios.get(`${url}/realestate/board`);
 }
 
+export function getDetailBoard(boardNo) {
+    return axios.get(`${url}/realestate/board/detail/${boardNo}`);
+}
+
 export function postNewContent(data) {
-    // console.log(data)
-    return axios.post(`${url}/realestate/board`,
+     console.log(data)
+    return axios.post(`/realestate/board`,
         {
             method: 'POST',
-
-            body: data
-        },
-        {
+            body: data,
             headers: {
-                "Access-Control-Allow-Origin": "*",
-               'Content-Type': 'text/plain'
+                'Access-Control-Allow-Origin':'*'
             }
         }).then((res) => {
             console.log("RESPONSE RECEIVED: ", res)
