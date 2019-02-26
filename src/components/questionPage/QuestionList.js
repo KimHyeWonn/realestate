@@ -28,7 +28,7 @@ class QuestionList extends Component {
     }
     //submit 버튼 클릭 시 Question으로 전달
     submitClick = () => {
-        const {title, contents,author} = this.state
+        const {title, contents} = this.state
         const data = [];
         data.push(
            [

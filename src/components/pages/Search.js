@@ -11,7 +11,8 @@ class Search extends Component {
         searchData:{
             dealTypeData:"month", //"lease", "deal", "month",
             housingTypeData:"officetel", //"apart", "officetel", "house",
-            inputData:"서경대"
+            inputData:"서경대",
+            options:[]
         },
         mapData: {
             rightTop: {
@@ -56,17 +57,19 @@ class Search extends Component {
     //SearchPage에서 검색
     searchDataSet = (data) => {
         console.log("Search>searchDataSet");
-        const {housingTypeData,dealTypeData,inputData} = data[0];
+        const {housingTypeData,dealTypeData,inputData,options} = data[0];
 
         this.setState({
             searchData:{
                 housingTypeData: housingTypeData,
                 dealTypeData: dealTypeData,
-                inputData: inputData
+                inputData: inputData,
+                options:options
             },
+            optionData:options,
             loading: true
         });
-
+        console.log("options: ",options)
         if(inputData !== ''){
             this.kakaoPlacesSearch(inputData);
         }else {
@@ -97,9 +100,9 @@ class Search extends Component {
                         longitude: data[0].x
                     }
                 },
-                loading: false
+                loading: false,
+                optionData:this.state.optionData
             });
-
             return true;
         } else if (status === daum.maps.services.Status.ZERO_RESULT) {
             alert('검색 결과가 존재하지 않습니다.');
@@ -163,11 +166,11 @@ class Search extends Component {
                         price:'100',
                         deposit: '100',
                         dealType: '월세',
-                        latitude:'37.615016697149976',
-                        longitude: '127.01152949864682'
+                        latitude:'37.613750',
+                        longitude: '127.011041'
                     }
                 ]
-            }            
+            }        
         });
     }
 
@@ -179,7 +182,7 @@ class Search extends Component {
                 </div>
                 <div className="SearchDiv1">
                     <div className="SearchDivL">
-                        <MapPage mapData={this.state.mapData.center} mapDataSet={this.mapDataSet} resultData={this.state.resultData} loading={this.state.loading}/>
+                        <MapPage mapData={this.state.mapData.center} mapDataSet={this.mapDataSet} resultData={this.state.resultData} loading={this.state.loading} optionData={this.state.optionData}/>
                     </div>
                     <div className="SearchDivR">
                         <ResultPage resultData={this.state.resultData} optionDataSet={this.optionDataSet}/>

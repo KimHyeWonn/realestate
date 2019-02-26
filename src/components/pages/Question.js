@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React,{Component} from 'react';
 import {QuestionList,detailPage} from 'components/questionPage';
+=======
+import React, { Component } from 'react';
+import { QuestionList } from 'components/questionPage';
+>>>>>>> ccda37f3cfe63c39e278769fe02a728ec41fc976
 import * as service from '../../lib/boardApi';
 
 class Question extends Component {
@@ -13,7 +18,7 @@ class Question extends Component {
         // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
         this.onChangePage = this.onChangePage.bind(this);
     }
- 
+
     onChangePage(pageOfItems) {
         // update state with new page of items
         this.setState({ pageOfItems: pageOfItems });
@@ -22,17 +27,17 @@ class Question extends Component {
     componentDidMount() {
         this.boardData();
     }
-    
+
     boardData = async () => {
-        try{
+        try {
             console.log("getBoard");
             const responseInfo = await service.getBoard();
             //const responseInfo = await service.getBoard();
-            console.log("responseInfo",responseInfo);
+            console.log("responseInfo", responseInfo);
             this.setState({
                 exampleItems: responseInfo.data
             });
-        }catch(e) {
+        } catch (e) {
             console.log(e);
         }
     }
@@ -52,6 +57,7 @@ class Question extends Component {
 
     //새로운 글 서버에 전송
     handleSubmit = async (data) => {
+<<<<<<< HEAD
             console.log(data)
            const boardInfo = await service.postNewContent(data);
            
@@ -69,16 +75,34 @@ class Question extends Component {
     //     }).then(function(err){
     //         console.log(err)
     //     });
+=======
+        console.log(data)
+        const boardInfo = await service.postNewContent(data);
+        // const postData = JSON.stringify(data)
+
+        //    fetch(`http://54.180.87.242:8080/realestate/board`, {
+        //         method: 'POST',
+        //         headers: {'Content-Type': 'application/json'},
+        //         body: JSON.stringify(data)
+        //     }).then(function(response) {
+        //         if(response.status >= 400) {
+        //             throw new Error("Bad response");
+        //         }
+        //         return response.json();
+        //     }).then(function(err){
+        //         console.log(err)
+        //     });
+>>>>>>> ccda37f3cfe63c39e278769fe02a728ec41fc976
     }
     render() {
         const style1 = {
             margin: '5rem 16rem 16rem'
         };
-            
-        return(
+
+        return (
             <div style={style1}>
-                <QuestionList 
-                    handleSubmit={this.handleSubmit} 
+                <QuestionList
+                    handleSubmit={this.handleSubmit}
                     boardData={this.state}
                     items={this.state.exampleItems}
                     onChangePage={this.onChangePage}

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Popup, Grid, Image, Divider} from 'semantic-ui-react';
+//import { Button, Popup, Grid, Image } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import './ResultPage.css';
-import * as data from "./ResultImg"
 import ResultList from './ResultList';
 
 class ResultPage extends Component {
@@ -20,8 +19,9 @@ class ResultPage extends Component {
         checked7: false,
         checked8: false,
         checked9: false,
-        unclicked: data.unclicked,
-        clicked: data.clicked
+        // unclicked: data.unclicked,
+        // clicked: data.clicked,
+        theme:''
     }
 
     //조건 선택 체크박스
@@ -71,10 +71,10 @@ class ResultPage extends Component {
         }
     }
 
-    //
+    
     render() {
-        const { checked, checked1, checked2, checked3, checked4, checked5, checked6, checked7, checked8, checked9 } = this.state
-        const { unclicked, clicked } = this.state
+        // const { checked, checked1, checked2, checked3, checked4, checked5, checked6, checked7, checked8, checked9 } = this.state
+        // const { unclicked, clicked } = this.state
         const {buliding} = this.props.resultData;
         const list = buliding.map(
             info=>(
@@ -83,12 +83,8 @@ class ResultPage extends Component {
         );
         return (
             <div>
-                <Popup trigger={<Button>조건 선택</Button>} position='bottom center' on='click' hideOnScroll>
+                {/* <Popup trigger={<Button>조건 선택</Button>} position='bottom center' on='click' hideOnScroll>
                     <div className="popupDiv"></div>
-                    {checked ? (<font>{unclicked[0].text}</font>) : <font>{unclicked[0].text}선택 안함</font>}, {checked1 ? (<font>{unclicked[1].text}</font>) : <font>{unclicked[1].text}선택 안함</font>}
-                    , {checked2 ? (<font>{unclicked[2].text}</font>) : <font>{unclicked[2].text}선택 안함</font>}, {checked3 ? (<font>{unclicked[3].text}</font>) : <font>{unclicked[3].text}선택 안함</font>}
-                    , {checked4 ? (<font>{unclicked[4].text}</font>) : <font>{unclicked[4].text}선택 안함</font>}, {checked5 ? (<font>{unclicked[5].text}</font>) : <font>{unclicked[5].text}선택 안함</font>}
-                    <Divider fitted />
                     <Grid centered divided columns={1}>
                         <Grid.Column textAlign='center'>
                             <ul className="imgUl">
@@ -153,10 +149,10 @@ class ResultPage extends Component {
                                 </label>
                                 </li>
                             </ul>
-                            <Button>얘 할일없을듯</Button>
+                            <Button onClick={this.chooseTheme}>선택</Button>
                         </Grid.Column>
                     </Grid>
-                </Popup>
+                </Popup> */}
                 
                 {/* 매물보여주는 div */}
                 <div className="dealTypeDiv">
