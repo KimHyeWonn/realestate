@@ -54,20 +54,6 @@ class Question extends Component {
     handleSubmit = async (data) => {
         console.log(data)
         const boardInfo = await service.postNewContent(data);
-        // const postData = JSON.stringify(data)
-
-        //    fetch(`http://54.180.87.242:8080/realestate/board`, {
-        //         method: 'POST',
-        //         headers: {'Content-Type': 'application/json'},
-        //         body: JSON.stringify(data)
-        //     }).then(function(response) {
-        //         if(response.status >= 400) {
-        //             throw new Error("Bad response");
-        //         }
-        //         return response.json();
-        //     }).then(function(err){
-        //         console.log(err)
-        //     });
     }
     render() {
         const style1 = {

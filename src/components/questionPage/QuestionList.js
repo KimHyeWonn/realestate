@@ -31,13 +31,13 @@ class QuestionList extends Component {
         const {title, contents} = this.state
         const data = [];
         data.push(
-           [
+    
             {
-                author: 'asdf',
-                content: contents,
-                title: title
+                'author': 'asdf',
+                'content': contents,
+                'title': title
             }
-           ] 
+           
         );
         if(title !== '' && contents !== ''){
             this.props.handleSubmit(data);

@@ -22,15 +22,15 @@ export function postNewContent(data) {
     return axios.post(`/realestate/board`,
         {
             method: 'POST',
-            body: data,
+            body: JSON.stringify(data[0]),
             headers: {
                 'Access-Control-Allow-Origin':'*'
             }
-        }).then((res) => {
+    //     }).then((res) => {
 
-    const tren = JSON.stringify(data[0]);
-    console.log("t",tren);
-    return axios.post(`${url}/realestate/board`,tren,`${headers}`)
+    // const tren = JSON.stringify(data[0]);
+    // console.log("t",tren);
+    // return axios.post(`${url}/realestate/board`,tren,`${headers}`)
         }).then((res) => {
 
             console.log("RESPONSE RECEIVED: ", res)
