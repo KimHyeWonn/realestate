@@ -38,10 +38,10 @@ class SearchPage extends Component {
             checked5: false,
             checked6: false,
             checked7: false,
-            checked8: false,
             unclicked: data.unclicked,
             clicked: data.clicked,
-            sendTheme:[]
+            sendTheme:[],
+            optionCount:0
         };
         this.keyPress = this.keyPress.bind(this);
     }
@@ -63,6 +63,7 @@ class SearchPage extends Component {
         // SearchPage에 선택한 조건을 부모 컴포넌트에 전달
         let data = [];
         let { inputData,houses,deals,sendTheme } = this.state;
+
         data.push({
             housingTypeData: houses,
             dealTypeData: deals,
@@ -120,41 +121,39 @@ class SearchPage extends Component {
             this.setState(
                 { checked5: !this.state.checked5 }
             );
-        } else if (value.value === "po") {
+        } else if (value.value === "su") {
             this.setState(
                 { checked6: !this.state.checked6 }
             );
-        } else if (value.value === "fr") {
+        } else if (value.value === "ba") {
             this.setState(
                 { checked7: !this.state.checked7 }
-            );
-        } else if (value.value === "su") {
-            this.setState(
-                { checked8: !this.state.checked8 }
             );
         } 
     }
 
     chooseTheme=()=>{
-        const { checked, checked1, checked2, checked3, checked4, checked5, checked6, checked7, checked8 } = this.state
+        const { checked, checked1, checked2, checked3, checked4, checked5, checked6, checked7 } = this.state
         const {unclicked} = this.state
-        var theme=[]
-        if(checked===true) theme=theme.concat( unclicked[0].key )
-        if(checked1===true)theme=theme.concat(unclicked[1].text )
-        if(checked2===true)theme=theme.concat(unclicked[2].text )
-        if(checked3===true)theme=theme.concat(unclicked[3].text )
-        if(checked4===true)theme=theme.concat(unclicked[4].text )
-        if(checked5===true)theme=theme.concat(unclicked[5].text )
-        if(checked6===true)theme=theme.concat(unclicked[6].text )
-        if(checked7===true)theme=theme.concat(unclicked[7].text )
-        if(checked8===true)theme=theme.concat(unclicked[8].text )
+        var theme=[],count=0
+        if(checked===true) {theme=theme.concat(unclicked[0].key ); count++}
+        if(checked1===true){theme=theme.concat(unclicked[1].key ); count++}
+        if(checked2===true){theme=theme.concat(unclicked[2].key ); count++}
+        if(checked3===true){theme=theme.concat(unclicked[3].key ); count++}
+        if(checked4===true){theme=theme.concat(unclicked[4].key ); count++}
+        if(checked5===true){theme=theme.concat(unclicked[5].key ); count++}
+        if(checked6===true){theme=theme.concat(unclicked[6].key ); count++}
+        if(checked7===true){theme=theme.concat(unclicked[7].key ); count++}
             
         this.setState({
-            sendTheme:theme
+            sendTheme:theme,
+            optionCount:count
         });
+        console.log(theme)
+        count=0;
     }
     render() {
-        const { checked, checked1, checked2, checked3, checked4, checked5, checked6, checked7, checked8 } = this.state
+        const { checked, checked1, checked2, checked3, checked4, checked5, checked6, checked7,optionCount } = this.state
         const { unclicked, clicked } = this.state
 
         return (
@@ -185,7 +184,7 @@ class SearchPage extends Component {
                     renderLabel={renderLabel2}
                 />
                 
-                <Popup trigger={<Button>조건 선택</Button>} position='bottom center' on='click' hideOnScroll>
+                <Popup trigger={<Button>조건 선택 ({optionCount>0?(<font>{optionCount}</font>):(<font>0</font>)})</Button>} position='bottom center' on='click' hideOnScroll>
                     <div className="popupDiv"></div>
                     <Grid centered divided columns={1}>
                         <Grid.Column textAlign='center'>
@@ -193,18 +192,18 @@ class SearchPage extends Component {
                                 <li><label className="theme1">
                                     <input type="checkbox" id="pr" value="pr" onChange={this.handleCheck} defaultChecked={checked} />
                                     {checked ? (<Image src={clicked[0]} size="tiny" centered />) : (<Image src={unclicked[0].value} size="tiny" centered />)}
-                                    <span className="theme_name">버스</span>
+                                    <span className="theme_name">지하철</span>
                                 </label>
                                 </li>
                                 <li><label className="theme1">
                                     <input type="checkbox" id="ca" value="ca" onChange={this.handleCheck} defaultChecked={checked1} />
-                                    {checked1 ? (<Image src={clicked[1]} centered />) : (<Image src={unclicked[1].value} size="tiny" centered />)}
+                                    {checked1 ? (<Image src={clicked[1]} size="tiny" centered />) : (<Image src={unclicked[1].value} size="tiny" centered />)}
                                     <span className="theme_name">카페</span>
                                 </label>
                                 </li>
                                 <li><label className="theme1">
                                     <input type="checkbox" id="sc" value="sc" onChange={this.handleCheck} defaultChecked={checked2} />
-                                    {checked2 ? (<Image src={clicked[2]} size="tiny" centered />) : (<Image src={require("../image/school_un.png")} size="tiny" centered />)}
+                                    <div className="imgDiv">{checked2 ? (<Image src={clicked[2]} size="tiny" centered />) : (<Image src={require("../image/school_un.png")} size="tiny" centered />)}</div>
                                     <span className="theme_name">학교</span>
                                 </label>
                                 </li>
@@ -214,6 +213,13 @@ class SearchPage extends Component {
                                     <span className="theme_name">병원</span>
                                 </label>
                                 </li>
+                            </ul>
+                        </Grid.Column>
+                    </Grid>
+                    <Grid centered divided columns={1}>
+                        <Grid.Column textAlign='center'>
+                            <ul className="imgUl">
+                                
                                 <li><label className="theme1">
                                     <input type="checkbox" id="ci" value="ci" onChange={this.handleCheck} defaultChecked={checked4} />
                                     {checked4 ? (<Image src={clicked[4]} size="tiny" centered />) : (<Image src={unclicked[4].value} size="tiny" centered />)}
@@ -227,29 +233,17 @@ class SearchPage extends Component {
                                 </label>
                                 </li>
                                 <li><label className="theme1">
-                                    <input type="checkbox" id="po" value="po" onChange={this.handleCheck} defaultChecked={checked6} />
-                                    {checked6 ? (<Image src={clicked[6]} size="tiny" centered />) : (<Image src={unclicked[6].value} size="tiny" centered />)}
-                                    <span className="theme_name">경찰서</span>
-                                </label>
-                                </li>
-                                <li><label className="theme1">
-                                    <input type="checkbox" id="fr" value="fr" onChange={this.handleCheck} defaultChecked={checked7} />
-                                    {checked7 ? (<Image src={clicked[7]} size="tiny" centered />) : (<Image src={unclicked[7].value} size="tiny" centered />)}
-                                    <span className="theme_name">소방서</span>
-                                </label>
-                                </li>
-                                <li><label className="theme1">
-                                    <input type="checkbox" id="su" value="su" onChange={this.handleCheck} defaultChecked={checked8} />
-                                    <div className="imgDiv">{checked8 ? (<Image src={clicked[8]} size="tiny" centered />) : (<Image src={unclicked[8].value} size="tiny" centered />)}</div>
+                                    <input type="checkbox" id="su" value="su" onChange={this.handleCheck} defaultChecked={checked6} />
+                                    <div className="imgDiv">{checked6 ? (<Image src={clicked[6]} size="tiny" centered />) : (<Image src={unclicked[6].value} size="tiny" centered />)}</div>
                                     <span className="theme_name">대형마트</span>
                                 </label>
                                 </li>
-                                {/* <li><label className="theme1">
-                                    <input type="checkbox" id="cc" value="cc" onChange={this.handleCheck} defaultChecked={checked9} />
-                                    {checked9 ? (<Image src={clicked[9]} size="tiny" centered />) : (<Image src={unclicked[9].value} size="tiny" centered />)}
-                                    <span className="theme_name">cctv</span>
+                                <li><label className="theme1">
+                                    <input type="checkbox" id="ba" value="ba" onChange={this.handleCheck} defaultChecked={checked7} />
+                                    <div className="imgDiv">{checked7 ? (<Image src={clicked[7]} size="tiny" centered />) : (<Image src={unclicked[7].value} size="tiny" centered />)}</div>
+                                    <span className="theme_name">은행</span>
                                 </label>
-                                </li> */}
+                                </li>
                             </ul>
                             <Button onClick={this.chooseTheme}>선택</Button>
                         </Grid.Column>
