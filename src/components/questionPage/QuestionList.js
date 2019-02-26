@@ -30,14 +30,11 @@ class QuestionList extends Component {
     submitClick = () => {
         const {title, contents} = this.state
         const data = [];
-        data.push(
-           [
-            {
+        data.push({
                 author: 'asdf',
                 content: contents,
                 title: title
             }
-           ] 
         );
         if(title !== '' && contents !== ''){
             this.props.handleSubmit(data);

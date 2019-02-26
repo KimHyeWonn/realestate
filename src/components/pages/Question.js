@@ -53,6 +53,7 @@ class Question extends Component {
     //새로운 글 서버에 전송
     handleSubmit = async (data) => {
         console.log(data)
+
         const boardInfo = await service.postNewContent(data);
         // const postData = JSON.stringify(data)
 
