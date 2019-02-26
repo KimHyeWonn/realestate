@@ -17,7 +17,7 @@ export function getDetailBoard(boardNo) {
 }
 
 export function postNewContent(data) {
-<<<<<<< HEAD
+
      console.log(data)
     return axios.post(`/realestate/board`,
         {
@@ -27,12 +27,12 @@ export function postNewContent(data) {
                 'Access-Control-Allow-Origin':'*'
             }
         }).then((res) => {
-=======
+
     const tren = JSON.stringify(data[0]);
     console.log("t",tren);
-    return axios.post(`${url}/realestate/board`,tren,`${headers}`
-        ).then((res) => {
->>>>>>> ccda37f3cfe63c39e278769fe02a728ec41fc976
+    return axios.post(`${url}/realestate/board`,tren,`${headers}`)
+        }).then((res) => {
+
             console.log("RESPONSE RECEIVED: ", res)
         }).catch((err) => {
             console.log("AXIOS ERROR: ", err);

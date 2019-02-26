@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import React,{Component} from 'react';
-import {QuestionList,detailPage} from 'components/questionPage';
-=======
 import React, { Component } from 'react';
 import { QuestionList } from 'components/questionPage';
->>>>>>> ccda37f3cfe63c39e278769fe02a728ec41fc976
 import * as service from '../../lib/boardApi';
 
 class Question extends Component {
@@ -57,25 +52,6 @@ class Question extends Component {
 
     //새로운 글 서버에 전송
     handleSubmit = async (data) => {
-<<<<<<< HEAD
-            console.log(data)
-           const boardInfo = await service.postNewContent(data);
-           
-          // const postData = JSON.stringify(data)
-       
-    //    fetch(`http://54.180.87.242:8080/realestate/board`, {
-    //         method: 'POST',
-    //         headers: {'Content-Type': 'application/json'},
-    //         body: JSON.stringify(data)
-    //     }).then(function(response) {
-    //         if(response.status >= 400) {
-    //             throw new Error("Bad response");
-    //         }
-    //         return response.json();
-    //     }).then(function(err){
-    //         console.log(err)
-    //     });
-=======
         console.log(data)
         const boardInfo = await service.postNewContent(data);
         // const postData = JSON.stringify(data)
@@ -92,7 +68,6 @@ class Question extends Component {
         //     }).then(function(err){
         //         console.log(err)
         //     });
->>>>>>> ccda37f3cfe63c39e278769fe02a728ec41fc976
     }
     render() {
         const style1 = {
