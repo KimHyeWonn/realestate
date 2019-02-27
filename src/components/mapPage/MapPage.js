@@ -1,5 +1,6 @@
 /*global daum*/
 import React, {Component} from 'react';
+import './MapPage.css';
 
 var map = null;
 class MapPage extends Component {
@@ -16,7 +17,7 @@ class MapPage extends Component {
         let el = document.getElementById('map');
         let options = { 
             center: new daum.maps.LatLng(37.615095,127.0109226), //지도의 중심좌표.
-            level: 3 //최대 4
+            level: 3 //최대4
         };
         
         map =  new daum.maps.Map(el, options); //지도 생성 및 객체 리턴
@@ -26,8 +27,8 @@ class MapPage extends Component {
         map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
 
         // 줌 컨트롤
-        var zoomControl = new daum.maps.ZoomControl();
-        map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+        //var zoomControl = new daum.maps.ZoomControl();
+        //map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
 
         // 드래그가 끝날 때 발생
         daum.maps.event.addListener(map, 'dragend', this.mapDrag);
@@ -201,38 +202,27 @@ class MapPage extends Component {
     
 
     render() {
-        const mapStyle = {
-            width: "100%",
-            height: "450px"
-        }
-
         let Loading;
-        const loadingHide = {
-            display: "none",
-        }
-        const loadingShow = {
-            display: "inline",
-            position: "absolute",
-            zIndex: "100",
-            left: "50%",
-            top: "50%"
-        }
 
-        const loading = this.props.loading;
-        
-        console.log(loading);
+        const loading = this.props.loading;   
         //var {loading} = this.state;
+
         if(loading) {
-            Loading = <img src="//s.zigbang.com/v1/web/search/loading2.gif" alt="" style={loadingShow}></img>
+            Loading = <img src="//s.zigbang.com/v1/web/search/loading2.gif" alt="" className="loadingShow"></img>
         } else {
-            Loading = <img src="//s.zigbang.com/v1/web/search/loading2.gif" alt="" style={loadingHide}></img>
+            Loading = <img src="//s.zigbang.com/v1/web/search/loading2.gif" alt="" className="loadingHide"></img>
         }
 
         return(
             <div>
-                <div id="map" style={mapStyle}>
+                <div id="map" className="mapStyle">
                 {Loading}
+                <div className="zoomcontrol"> 
+                    <span className="zoomcontrolSpan1"><div className="zoomcontrolImg"></div></span>  
+                    <span className="zoomcontrolSpan2"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></img></span>
                 </div>
+                </div>
+                
             </div>
         )
     }

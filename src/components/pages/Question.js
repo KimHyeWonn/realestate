@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {QuestionList} from 'components/questionPage';
 import * as service from '../../lib/boardApi';
-import axios from 'axios';
+//import axios from 'axios';
 class Question extends Component {
     constructor() {
         super();
@@ -38,23 +38,14 @@ class Question extends Component {
 
     //새로운 글 서버에 전송
     handleSubmit = async (data) => {
-            console.log(data)
-           const boardInfo = await service.postNewContent(data);
-          // const postData = JSON.stringify(data)
-       
-    //    fetch(`http://54.180.87.242:8080/realestate/board`, {
-    //         method: 'POST',
-    //         headers: {'Content-Type': 'application/json'},
-    //         body: JSON.stringify(data)
-    //     }).then(function(response) {
-    //         if(response.status >= 400) {
-    //             throw new Error("Bad response");
-    //         }
-    //         return response.json();
-    //     }).then(function(err){
-    //         console.log(err)
-    //     });
+        try {
+            const info = await service.postNewContent(data);
+            console.log(info);
+        }catch(e) {
+            console.log("Catch: " +e);
+        }    
     }
+
     render() {
         const style1 = {
             margin: '5rem 16rem 16rem'

@@ -7,21 +7,13 @@ export function getBoard() {
 }
 
 export function postNewContent(data) {
-    // console.log(data)
-    return axios.post(`${url}/realestate/board`,
-        {
-            method: 'POST',
+    console.log(data); 
 
-            body: data
-        },
-        {
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-               'Content-Type': 'text/plain'
-            }
-        }).then((res) => {
-            console.log("RESPONSE RECEIVED: ", res)
-        }).catch((err) => {
-            console.log("AXIOS ERROR: ", err);
-        });
+    return axios.options(`${url}/realestate/board`,
+        data[0]
+    ).then((res) => {
+        console.log("RESPONSE RECEIVED: ", res)
+    }).catch((err) => {
+        console.log("AXIOS ERROR: ", err);
+    }); 
 }
