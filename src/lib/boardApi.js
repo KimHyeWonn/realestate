@@ -6,14 +6,15 @@ export function getBoard() {
     return axios.get(`${url}/realestate/board`);
 }
 
-export function postNewContent(data) {
-    console.log(data); 
+export function getDetailBoard(boardNo) {
+    return axios.get(`${url}/realestate/board/detail/${boardNo}`);
+}
 
-    return axios.options(`${url}/realestate/board`,
-        data[0]
-    ).then((res) => {
-        console.log("RESPONSE RECEIVED: ", res)
-    }).catch((err) => {
-        console.log("AXIOS ERROR: ", err);
-    }); 
+export function postNewContent(data) {
+    return axios.post(`/realestate/board`,data[0]
+        ).then((res) => {
+            console.log("RESPONSE RECEIVED: ", res)
+        }).catch((err) => {
+            console.log("AXIOS ERROR: ", err);
+        });
 }

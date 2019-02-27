@@ -7,7 +7,7 @@ class MapPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true
+            loading: true,
         };
     }
 
@@ -174,15 +174,20 @@ class MapPage extends Component {
      //kakao 카테고리검색api 호출
     kakaoCategorySearch = async () => {
         var ps = new daum.maps.services.Places(map);
-        
+
+        //search.js에서 옵션값 키워드로 넘어옴
+        const options = this.props.optionData
+        for(var i=0;i<options.length;i++){
+            await ps.categorySearch(options[i], this.categorySearchCB, {useMapBounds:true}); 
+        }
         // option 배열 필요! 
-        await ps.categorySearch('BK9', this.categorySearchCB, {useMapBounds:true}); 
+        //await ps.categorySearch('BK9', this.categorySearchCB, {useMapBounds:true}); 
     }
 
     //kakao 카테고리검색api 콜백함수
     categorySearchCB = (data, status, pagination) => {
         if (status === daum.maps.services.Status.OK) {
-            console.log(data);   
+            console.log("-optionData : ",data);   
         }
     }
 
@@ -204,7 +209,8 @@ class MapPage extends Component {
     render() {
         let Loading;
 
-        const loading = this.props.loading;   
+        const loading = this.props.loading;
+        console.log(loading);
         //var {loading} = this.state;
 
         if(loading) {
