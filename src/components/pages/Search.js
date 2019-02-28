@@ -69,7 +69,7 @@ class Search extends Component {
             optionData:options,
             loading: true
         });
-        console.log("options: ",options)
+        
         if(inputData !== ''){
             this.kakaoPlacesSearch(inputData);
         }else {
@@ -77,7 +77,7 @@ class Search extends Component {
                 loading: false
             });
         }
-
+        
         // console.log("->searchCom housing : ",housingTypeData);
         // console.log("->searchCom deal: ",dealTypeData);
         // console.log("->searchCom input:",inputData);

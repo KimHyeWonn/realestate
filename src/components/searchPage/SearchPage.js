@@ -63,16 +63,23 @@ class SearchPage extends Component {
         // SearchPage에 선택한 조건을 부모 컴포넌트에 전달
         let data = [];
         let { inputData,houses,deals,sendTheme } = this.state;
-
-        data.push({
-            housingTypeData: houses,
-            dealTypeData: deals,
-            inputData: inputData,
-            options:sendTheme
-        });
-        // 부모 컴포넌트 (Search)로 전달
-        this.props.searchDataSet(data);
+        if(inputData!==''&& houses!=='' && deals!==''){
+            data.push({
+                housingTypeData: houses,
+                dealTypeData: deals,
+                inputData: inputData,
+                options:sendTheme
+            });
+            // 부모 컴포넌트 (Search)로 전달
+            this.props.searchDataSet(data);
+        }else{
+            alert("지역이름, 집타입, 거래타입을 모두 넣어주세요")
+            return;
+        }
+        
+        
     };
+    //house
     handleAddition = (e, { value }) => {
         this.setState({
          houseoptions: [{ text: value, value }, ...this.state.options],
@@ -82,13 +89,12 @@ class SearchPage extends Component {
     handleChange = (e, { value }) => {
         this.setState({ currentValues: value,houses:value })
     }
-
+    //deal
     handleAdditionD = (e, { value }) => {
         this.setState({
          dealoptions: [{ text: value, value }, ...this.state.options],
         });
     }
-    
     handleChangeD = (e, { value }) => {
         this.setState({ currentValuesD: value,deals:value })
     }
