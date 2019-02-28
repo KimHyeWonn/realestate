@@ -8,7 +8,7 @@ class QuestionList extends Component {
         open: false,
         title: '',
         contents: '', 
-        author: ''
+        author: 'asdf'
     }
     //팝업 창 닫기 설정
     closeConfigShow = ( closeOnDimmerClick ) => () => {
@@ -31,11 +31,10 @@ class QuestionList extends Component {
         const {title, contents} = this.state
         const data = [];
         data.push({
-                author: 'asdf',
-                content: contents,
-                title: title
-            }
-        );
+            author: 'asdf',
+            content: contents,
+            title: title
+        });
         if(title !== '' && contents !== ''){
             this.props.handleSubmit(data);
             this.setState({open:false})
