@@ -223,7 +223,7 @@ class SearchPage extends Component {
                                 <li><label className="theme1">
                                     <input type="checkbox" id="ci" value="ci" onChange={this.handleCheck} defaultChecked={checked4} />
                                     {checked4 ? (<Image src={clicked[4]} size="tiny" centered />) : (<Image src={unclicked[4].value} size="tiny" centered />)}
-                                    <span className="theme_name">영화관</span>
+                                    <span className="theme_name">문화시설</span>
                                 </label>
                                 </li>
                                 <li><label className="theme1">

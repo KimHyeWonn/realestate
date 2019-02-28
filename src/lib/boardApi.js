@@ -11,7 +11,7 @@ export function getDetailBoard(boardNo) {
 }
 
 export function postNewContent(data) {
-    return axios.post(`/realestate/board`,data[0]
+    return axios.post(`${url}/realestate/board`,data[0]
         ).then((res) => {
             console.log("RESPONSE RECEIVED: ", res)
         }).catch((err) => {

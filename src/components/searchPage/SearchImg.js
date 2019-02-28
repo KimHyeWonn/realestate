@@ -4,7 +4,7 @@ export const unclicked = [
     {key:'CE7', value:"//yaimg.yanolja.com/files/2016/0823/201608231717541626e901-5398-453e-aa61-0dbeebfa4ed7.png", text:"카페"},
     {key:'SC4', value:require("../image/school_un.png"), text:"학교"},
     {key:'HP8', value:"//yaimg.yanolja.com/files/2016/1130/201611301434072bb5408d-ed80-4ce1-ba6b-a2f94abb373d.png", text:"병원"},
-    {key:'CT1', value:"//yaimg.yanolja.com/files/2016/0531/2016053116284060f47da1-2758-4785-8bb3-9dd0ce19515a.png", text:"영화관"},
+    {key:'CT1', value:"//yaimg.yanolja.com/files/2016/0531/2016053116284060f47da1-2758-4785-8bb3-9dd0ce19515a.png", text:"문화시설"},
     {key:'CS2', value:"//yaimg.yanolja.com/files/2016/1206/20161206190514f565074b-4186-4394-89dd-64bf8aaa35a8.png", text:"편의점"},
     {key:'MT1', value:require("../image/supermarket_un.png"), text:"대형마트"},
     {key:'BK9', value:require("../image/money_un.png"), text:"은행"}

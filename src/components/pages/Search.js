@@ -116,18 +116,20 @@ class Search extends Component {
     //ResultPage에서 옵션선택
     optionDataSet = (data) => {
         console.log("Search>optionDataSet");
+        
+        this.setState({
+            optionData:data,
+            loading: true
+        });
 
-        // this.setState({
-        //     optionData:[],
-        //     loading: true
-        // });
+        console.log(this.state)
     }
 
     // MapPage에서 지정한 지도 좌표 (RightTop, LeftBottom)
     mapDataSet = (data) => {
         console.log("Search>mapDataSet");
         //data -> set State -> api 호출
-
+        
         //api 호출 후 결과값 set State
         let date = new Date();
         this.setState({
@@ -182,7 +184,7 @@ class Search extends Component {
                 </div>
                 <div className="SearchDiv1">
                     <div className="SearchDivL">
-                        <MapPage mapData={this.state.mapData.center} mapDataSet={this.mapDataSet} resultData={this.state.resultData} loading={this.state.loading} optionData={this.state.optionData}/>
+                        <MapPage mapData={this.state.mapData.center} mapDataSet={this.mapDataSet} resultData={this.state.resultData} loading={this.state.loading} optionData={this.state.optionData} optionDataSet={this.optionDataSet}/>
                     </div>
                     <div className="SearchDivR">
                         <ResultPage resultData={this.state.resultData} optionDataSet={this.optionDataSet}/>

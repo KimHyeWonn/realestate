@@ -30,7 +30,7 @@ class Question extends Component {
             //const responseInfo = await service.getBoard();
             console.log("responseInfo", responseInfo);
             this.setState({
-                exampleItems: responseInfo.data
+                exampleItems: responseInfo.data.reverse()
             });
         } catch (e) {
             console.log(e);
