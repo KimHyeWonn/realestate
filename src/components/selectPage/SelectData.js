@@ -1,7 +1,7 @@
 function yearDataFunction() {
     const yearData = [];
 
-    for (let i = 2000; i <= 2019; i++) {
+    for (let i = 2011; i <= 2019; i++) {
         yearData.push({
             value: i, 
             text: i
