@@ -155,7 +155,7 @@ class SearchPage extends Component {
             sendTheme:theme,
             optionCount:count
         });
-        console.log(theme)
+        console.log(theme);
         count=0;
     }
     render() {

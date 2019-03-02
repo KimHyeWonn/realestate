@@ -9,6 +9,8 @@ class MapPage extends Component {
         this.state = {
             optionDataList: [],
             option: [],
+            optionCnt: 0,
+            optionApiCnt: 0,
             mapInfo: []
         };
     }
@@ -169,13 +171,14 @@ class MapPage extends Component {
             console.log("옵션있음");
 
             this.setState({
-                mpaInfo: data
+                mapInfo: data,
+                optionDataList: [],
+                optionCnt: options.length,
+                optionApiCnt: 0
             });
 
             // 카테고리 api 호출
             this.kakaoCategorySearch();
-            // 부모 컴포넌트로 전달
-            this.props.mapDataSet(data, options);
         } else {
             console.log("옵션없음");
             // 부모 컴포넌트로 전달
@@ -187,76 +190,52 @@ class MapPage extends Component {
     kakaoCategorySearch = async () => {
         var ps = new daum.maps.services.Places(map);
 
-        //search.js에서 옵션값 키워드로 넘어옴
         const options = this.props.optionData;
-
+        console.log("MapPage>categorySearch>"+options);
         for (var i = 0; i < options.length; i++) {
             await ps.categorySearch(options[i], this.categorySearchCB, { useMapBounds: true });
         }
-
     }
 
     //kakao 카테고리검색api 콜백함수
     categorySearchCB = (data, status, pagination) => {
         console.log("MapPage>categorySearchCB");
-        let { option } = this.state;
-        console.log(data);
+
+        let { optionDataList } = this.state;
+        let { optionCnt, optionApiCnt } = this.state;
+
 
         if (status === daum.maps.services.Status.OK) {
             for (var i = 0; i < data.length; i++) {
-                option = option.concat(data[i].address_name);    //혹시몰라서 테마검색 주소도 넣어둿어 
-                this.laulonSearch(data[i].address_name);
+                optionDataList = optionDataList.concat([
+                    {
+                        latitude: data[i].y,
+                        longitude: data[i].x
+                    }
+                ]);
+            }
+
+            if(optionCnt === (optionApiCnt+1)){
+                console.log("같음 "+optionCnt+" "+(optionApiCnt+1)+"  "+data.length+"개 호출");
+
+                this.setState({
+                    optionDataList: optionDataList
+                });
+
+                // 부모 컴포넌트로 전달
+                this.props.mapDataSet(this.state.mapInfo, this.state.optionDataList);
+
+            } else {
+                console.log("다름 "+optionCnt+" "+(optionApiCnt+1)+"  "+data.length+"개 호출");
+
+                this.setState({
+                    optionDataList: optionDataList,
+                    optionApiCnt: optionApiCnt+1
+                });
             }
         }
-
-        this.setState({
-            option: option
-        });
     }
 
-    //주소를 위도 경도로 바꿔줌
-    laulonSearch = (data) => {
-        // 주소-좌표 변환 객체를 생성합니다
-        var geocoder = new daum.maps.services.Geocoder();
-
-        geocoder.addressSearch(data, (result, status) => {
-            // 정상적으로 검색이 완료됐으면 
-            if (status === daum.maps.services.Status.OK) {
-                var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-                this.inputPosition(coords.jb, coords.ib);
-                // optionDataList = optionDataList.concat([
-                //     {
-                //         latitude: String(coords.jb),
-                //         longitude: String(coords.ib)
-                //     }
-                // ])
-                // this.setState({
-                //     optionDataList: optionDataList
-                // })
-                // console.log("hi",this.state)
-            }
-
-        });
-    }
-    //위도경도 optionDataList에 넣기, search.js로 연결
-    inputPosition = (la, lo) => {
-        let { optionDataList } = this.state;
-        const { option } = this.state;
-        optionDataList = optionDataList.concat([
-            {
-                latitude: String(la),
-                longitude: String(lo)
-            }
-        ]);
-        this.setState({
-            optionDataList: optionDataList
-        });
-        //부모로 전달
-        if (option.length === optionDataList.length) {
-            this.props.optionDataSet(optionDataList);
-        }
-
-    }
     createMarker = (position, image) => {
         var marker = new daum.maps.Marker({
             position: position,
@@ -270,7 +249,6 @@ class MapPage extends Component {
         var markerImage = new daum.maps.MarkerImage(src, size);
         return markerImage;
     }
-
 
     render() {
         let Loading;
@@ -332,3 +310,50 @@ export default MapPage;
 <h3>지역 명</h3>
 <p>{mapData.inputData}</p>
 </div> */
+
+
+/*
+    //주소를 위도 경도로 바꿔줌
+    laulonSearch = (data) => {
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new daum.maps.services.Geocoder();
+
+        geocoder.addressSearch(data, (result, status) => {
+            // 정상적으로 검색이 완료됐으면 
+            if (status === daum.maps.services.Status.OK) {
+                var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+                this.inputPosition(coords.jb, coords.ib);
+                // optionDataList = optionDataList.concat([
+                //     {
+                //         latitude: String(coords.jb),
+                //         longitude: String(coords.ib)
+                //     }
+                // ])
+                // this.setState({
+                //     optionDataList: optionDataList
+                // })
+                // console.log("hi",this.state)
+            }
+
+        });
+    }
+    //위도경도 optionDataList에 넣기, search.js로 연결
+    inputPosition = (la, lo) => {
+        let { optionDataList } = this.state;
+        const { option } = this.state;
+        optionDataList = optionDataList.concat([
+            {
+                latitude: String(la),
+                longitude: String(lo)
+            }
+        ]);
+        this.setState({
+            optionDataList: optionDataList
+        });
+        //부모로 전달
+        if (option.length === optionDataList.length) {
+            this.props.optionDataSet(optionDataList);
+        }
+
+    }
+*/
