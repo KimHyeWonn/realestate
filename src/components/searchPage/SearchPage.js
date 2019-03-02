@@ -41,7 +41,8 @@ class SearchPage extends Component {
             unclicked: data.unclicked,
             clicked: data.clicked,
             sendTheme:[],
-            optionCount:0
+            optionCount:0,
+            isOpen: false
         };
         this.keyPress = this.keyPress.bind(this);
     }
@@ -153,11 +154,19 @@ class SearchPage extends Component {
             
         this.setState({
             sendTheme:theme,
-            optionCount:count
+            optionCount:count,
+            isOpen: false
         });
         console.log(theme);
         count=0;
     }
+
+    popupBtnClick = () => {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
+
     render() {
         const { checked, checked1, checked2, checked3, checked4, checked5, checked6, checked7,optionCount } = this.state
         const { unclicked, clicked } = this.state
@@ -190,7 +199,8 @@ class SearchPage extends Component {
                     renderLabel={renderLabel2}
                 />
                 
-                <Popup trigger={<Button>조건 선택 ({optionCount>0?(<font>{optionCount}</font>):(<font>0</font>)})</Button>} position='bottom center' on='click' hideOnScroll>
+
+                <Popup open={this.state.isOpen} onOpen={this.popupBtnClick} onClose={this.popupBtnClick} trigger={<Button>조건 선택 ({optionCount>0?(<font>{optionCount}</font>):(<font>0</font>)})</Button>} position='bottom center' on='click' hideOnScroll>
                     <div className="popupDiv"></div>
                     <Grid centered divided columns={1}>
                         <Grid.Column textAlign='center'>
