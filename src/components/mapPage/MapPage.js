@@ -9,6 +9,8 @@ class MapPage extends Component {
         this.state = {
             optionDataList: [],
             option: [],
+            optionCnt: 0,
+            optionApiCnt: 0,
             mapInfo: []
         };
     }
@@ -19,7 +21,9 @@ class MapPage extends Component {
         let el = document.getElementById('map');
         let options = { 
             center: new daum.maps.LatLng(37.615095,127.0109226), //지도의 중심좌표.
-            level: 3 //최대4
+            level: 3,
+            minLevel: 1,
+            maxLevel: 4
         };
 
         map = new daum.maps.Map(el, options); //지도 생성 및 객체 리턴
@@ -34,6 +38,7 @@ class MapPage extends Component {
 
         // 드래그가 끝날 때 발생
         daum.maps.event.addListener(map, 'dragend', this.mapDrag);
+
         // 확대 수준이 변경되면 발생
         daum.maps.event.addListener(map, 'zoom_changed', this.mapZoom);
     }
@@ -186,16 +191,17 @@ class MapPage extends Component {
 
         const options = this.props.optionData;
         if(options.length > 0){
-            console.log("옵션있음");
+            console.log("옵션있음 "+options);
 
             this.setState({
-                mpaInfo: data
+                mapInfo: data,
+                optionDataList: [],
+                optionCnt: options.length,
+                optionApiCnt: 0
             });
 
             // 카테고리 api 호출
             this.kakaoCategorySearch();
-            // 부모 컴포넌트로 전달
-            this.props.mapDataSet(data, options);
         } else {
             console.log("옵션없음");
             // 부모 컴포넌트로 전달
@@ -207,33 +213,131 @@ class MapPage extends Component {
     kakaoCategorySearch = async () => {
         var ps = new daum.maps.services.Places(map);
 
-        //search.js에서 옵션값 키워드로 넘어옴
         const options = this.props.optionData;
-
+        console.log("MapPage>categorySearch>"+options);
         for (var i = 0; i < options.length; i++) {
             await ps.categorySearch(options[i], this.categorySearchCB, { useMapBounds: true });
         }
-
     }
 
     //kakao 카테고리검색api 콜백함수
     categorySearchCB = (data, status, pagination) => {
-        console.log("MapPage>categorySearchCB");
-        let { option } = this.state;
-        console.log(data);
+        let { optionDataList } = this.state;
+        let { optionCnt, optionApiCnt } = this.state;
 
         if (status === daum.maps.services.Status.OK) {
+            console.log("MapPage>categorySearchCB>검색결과있음");
             for (var i = 0; i < data.length; i++) {
-                option = option.concat(data[i].address_name);    //혹시몰라서 테마검색 주소도 넣어둿어 
-                this.laulonSearch(data[i].address_name);
+                optionDataList = optionDataList.concat([
+                    {
+                        latitude: data[i].y,
+                        longitude: data[i].x
+                    }
+                ]);
             }
+        } else if (status === daum.maps.services.Status.ZERO_RESULT) {
+            console.log("MapPage>categorySearchCB>검색결과없음");
+        } else if (status === daum.maps.services.Status.ERROR) {
+            console.log("MapPage>categorySearchCB>검색결과오류");
         }
 
-        this.setState({
-            option: option
-        });
+        if(optionCnt === (optionApiCnt+1)){
+            console.log("같음 "+optionCnt+" "+(optionApiCnt+1)+"  "+data.length+"개 호출");
+
+            this.setState({
+                optionDataList: optionDataList
+            });
+
+            // 부모 컴포넌트로 전달
+            this.props.mapDataSet(this.state.mapInfo, this.state.optionDataList);
+
+        } else {
+            console.log("다름 "+optionCnt+" "+(optionApiCnt+1)+"  "+data.length+"개 호출");
+
+            this.setState({
+                optionDataList: optionDataList,
+                optionApiCnt: optionApiCnt+1
+            });
+        }
     }
 
+    createMarker = (position, image) => {
+        var marker = new daum.maps.Marker({
+            position: position,
+            image: image
+        });
+
+        return marker;
+    }
+
+    createMarkerImage = (src, size) => {
+        var markerImage = new daum.maps.MarkerImage(src, size);
+        return markerImage;
+    }
+
+    render() {
+        let Loading;
+
+        const loading = this.props.loading;
+        console.log(loading);
+        //var {loading} = this.state;
+
+        if(loading) {
+            Loading = <img src="//s.zigbang.com/v1/web/search/loading2.gif" alt="" className="loadingShow"></img>
+        } else {
+            Loading = <img src="//s.zigbang.com/v1/web/search/loading2.gif" alt="" className="loadingHide"></img>
+        }
+
+        return (
+            <div>
+                <div id="map" className="mapStyle">
+                {Loading}
+                {/* <div className="zoomcontrol"> 
+                    <span className="zoomcontrolSpan1"><div className="zoomcontrolImg"></div></span>  
+                    <span className="zoomcontrolSpan2"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></img></span>
+                </div> */}
+                </div>
+                
+            </div>
+        )
+    }
+}
+
+export default MapPage;
+
+//var housing=[], deal=[];
+
+// for(var i=0;i<mapData.housingTypeData.length;i++){
+//     housing[i] = mapData.housingTypeData[i].value;
+// }
+
+// for(var j=0;j<mapData.dealTypeData.length;j++){
+//     deal[j] = mapData.dealTypeData[j].value;
+// }
+
+/* <div>
+<h3>집 종류</h3>
+{
+    housing.map((type,i)=>{
+        return(<p key={i}>{type}</p>)
+    })
+}
+</div>
+<div>
+<h3>거래 방법</h3>
+{
+    deal.map((type,i)=>{
+        return(<p key={i}>{type}</p>)
+    })
+}
+</div>
+<div>
+<h3>지역 명</h3>
+<p>{mapData.inputData}</p>
+</div> */
+
+
+/*
     //주소를 위도 경도로 바꿔줌
     laulonSearch = (data) => {
         // 주소-좌표 변환 객체를 생성합니다
@@ -277,78 +381,4 @@ class MapPage extends Component {
         }
 
     }
-    createMarker = (position, image) => {
-        var marker = new daum.maps.Marker({
-            position: position,
-            image: image
-        });
-
-        return marker;
-    }
-
-    createMarkerImage = (src, size) => {
-        var markerImage = new daum.maps.MarkerImage(src, size);
-        return markerImage;
-    }
-
-
-    render() {
-        let Loading;
-
-        const loading = this.props.loading;
-        console.log(loading);
-        //var {loading} = this.state;
-
-        if(loading) {
-            Loading = <img src="//s.zigbang.com/v1/web/search/loading2.gif" alt="" className="loadingShow"></img>
-        } else {
-            Loading = <img src="//s.zigbang.com/v1/web/search/loading2.gif" alt="" className="loadingHide"></img>
-        }
-
-        return (
-            <div>
-                <div id="map" className="mapStyle">
-                {Loading}
-                <div className="zoomcontrol"> 
-                    <span className="zoomcontrolSpan1"><div className="zoomcontrolImg"></div></span>  
-                    <span className="zoomcontrolSpan2"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></img></span>
-                </div>
-                </div>
-                
-            </div>
-        )
-    }
-}
-
-export default MapPage;
-
-//var housing=[], deal=[];
-
-// for(var i=0;i<mapData.housingTypeData.length;i++){
-//     housing[i] = mapData.housingTypeData[i].value;
-// }
-
-// for(var j=0;j<mapData.dealTypeData.length;j++){
-//     deal[j] = mapData.dealTypeData[j].value;
-// }
-
-/* <div>
-<h3>집 종류</h3>
-{
-    housing.map((type,i)=>{
-        return(<p key={i}>{type}</p>)
-    })
-}
-</div>
-<div>
-<h3>거래 방법</h3>
-{
-    deal.map((type,i)=>{
-        return(<p key={i}>{type}</p>)
-    })
-}
-</div>
-<div>
-<h3>지역 명</h3>
-<p>{mapData.inputData}</p>
-</div> */
+*/
