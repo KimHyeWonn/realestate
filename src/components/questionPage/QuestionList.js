@@ -46,7 +46,9 @@ class QuestionList extends Component {
     //     if(boarNo !== '' && detailPageOpne)
     //     this.props.detailBoardData(boardNo)
     // }
-
+    clicked= (hi) => {
+       console.log(hi.no)
+    }
     render() {
         const {open,closeOnDimmerClick} = this.state
         //부모 컴포넌트에서 게시판 데이터 받아옴
@@ -88,9 +90,9 @@ class QuestionList extends Component {
                     { 
                         pageOfItems.map( (contact) => {
                         return (
-                            <Table.Row textAlign='center' key={contact.no}>
+                            <Table.Row textAlign='center' key={contact.no} onClick={this.clicked.bind(this,contact)} >
                                 <Table.Cell>{contact.no}</Table.Cell>
-                                <Table.Cell selectable><a href='#'>{contact.title}</a></Table.Cell>
+                                <Table.Cell selectable >{contact.title}</Table.Cell>
                                 <Table.Cell>{contact.author}</Table.Cell>
                                 <Table.Cell>{contact.registerDate}</Table.Cell>
                             </Table.Row>

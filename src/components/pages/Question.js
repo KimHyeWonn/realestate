@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { QuestionList } from 'components/questionPage';
 import * as service from '../../lib/boardApi';
-
 class Question extends Component {
     constructor() {
         super();
         this.state = {
             exampleItems: [],
             pageOfItems: [],
-            detailBoardItems: []
+            detailBoardItems: [],
         };
         // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
         this.onChangePage = this.onChangePage.bind(this);
@@ -62,9 +61,10 @@ class Question extends Component {
         const style1 = {
             margin: '5rem 16rem 16rem'
         };
-
+        const {userId} = this.state
         return (
             <div style={style1}>
+                <h1>{userId}</h1>
                 <QuestionList
                     handleSubmit={this.handleSubmit}
                     boardData={this.state}

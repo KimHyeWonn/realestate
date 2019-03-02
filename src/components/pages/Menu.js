@@ -11,7 +11,7 @@ const Navigator = () => {
             <NavLink exact to="/"> 
                 <Button color="blue">그래프</Button>
             </NavLink>
-            <NavLink exact to="/search">    
+            <NavLink exact to="/search/">    
                 <Button color ="violet">검색</Button>
             </NavLink>
             <NavLink exact to="/question">
