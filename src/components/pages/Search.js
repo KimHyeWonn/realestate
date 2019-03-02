@@ -8,6 +8,7 @@ import './Page.css';
 class Search extends Component {
     state = {
         loading: true,
+        pageOfItems:[],
         searchData:{
             dealTypeData:"month", //"lease", "deal", "month",
             housingTypeData:"officetel", //"apart", "officetel", "house",
@@ -42,7 +43,7 @@ class Search extends Component {
         },
         
     };
-
+    
     // default값으로 지도 보여주기
     componentDidMount() {
         const {inputData} = this.state.searchData;
@@ -141,7 +142,7 @@ class Search extends Component {
                     {
                         no:'1',
                         city: '서울시',
-                        groop: '성북구'+date,
+                        groop: '성북구',
                         dong: '정릉1동',
                         name: '서경대학교',
                         area: '4,735.14',
@@ -157,7 +158,7 @@ class Search extends Component {
                     },{
                         no:'2',
                         city: '서울시1',
-                        groop: '성북구1'+date,
+                        groop: '성북구1',
                         dong: '정릉1동1',
                         name: '서경대학교1',
                         area: '4,735.14',
@@ -169,11 +170,63 @@ class Search extends Component {
                         dealType: '월세',
                         latitude:'37.613750',
                         longitude: '127.011041'
+                    },{
+                        no:'3',
+                        city: '서울시',
+                        groop: '강북구',
+                        dong: '미아동 131',
+                        name: 'SK 북한산시티아파트',
+                        area: '59',
+                        floor: '18',
+                        type: '아파트',
+                        constructorYear: '1947',
+                        price:'100',
+                        deposit: '7000',
+                        dealType: '전세',
+                        latitude:'37.616418',
+                        longitude: '127.013854'
+                    },{
+                        no:'4',
+                        city: '서울시',
+                        groop: '강북구',
+                        dong: '미아동 108',
+                        name: '삼각산 아이원아파트',
+                        area: '114',
+                        floor: '20',
+                        type: '아파트',
+                        constructorYear: '1947',
+                        price:'90',
+                        deposit: '8000',
+                        dealType: '전세',
+                        latitude:'37.6159452',
+                        longitude: '127.0166303'
+                    },{
+                        no:'5',
+                        city: '서울시',
+                        groop: '성북구',
+                        dong: '정릉4동',
+                        name: '정릉대림E편한세상아파트',
+                        area: '114',
+                        floor: '20',
+                        type: '주택',
+                        constructorYear: '1947',
+                        price:'9000',
+                        deposit: '',
+                        dealType: '매매',
+                        latitude:'37.614996',
+                        longitude: '127.010105'
                     }
+                    
                 ]
             }        
         });
     }
+
+    onChangePage = (pageOfItems) => {
+        // update state with new page of items
+        this.setState({ pageOfItems: pageOfItems });
+    }
+
 
     render() {
         return(
@@ -186,7 +239,10 @@ class Search extends Component {
                         <MapPage mapData={this.state.mapData.center} mapDataSet={this.mapDataSet} resultData={this.state.resultData} loading={this.state.loading} optionData={this.state.optionData} optionDataSet={this.optionDataSet}/>
                     </div>
                     <div className="SearchDivR">
-                        <ResultPage resultData={this.state.resultData} optionDataSet={this.optionDataSet}/>
+                        <ResultPage resultData={this.state} 
+                                    optionDataSet={this.optionDataSet}
+                                    items={this.state.resultData.buliding}
+                                    onChangePage={this.onChangePage}/>
                     </div>
                 </div>
             </div>

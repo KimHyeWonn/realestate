@@ -18,3 +18,12 @@ export function postNewContent(data) {
             console.log("AXIOS ERROR: ", err);
         });
 }
+
+export function postNewReply(data) {
+    return axios.post(`${url}/realestate/board/answer`,data[0]);
+}
+
+export function deleteContent(boardNo) {
+    return axios.delete(`${url}/realestate/board/${boardNo}`);
+}
+
