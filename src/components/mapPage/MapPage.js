@@ -7,9 +7,9 @@ class MapPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true,
             optionDataList: [],
-            option: []
+            option: [],
+            mapInfo: []
         };
     }
 
@@ -96,11 +96,11 @@ class MapPage extends Component {
         }
 
         if (nextProps.mapData === this.props.mapData) { //mapData 변경x
-            console.log("MapPage>shouldComponentUpdate>false");
-            return false;
+            console.log("MapPage>shouldComponentUpdate>mapData change x>loading true");
+            return true;
         }
 
-        console.log("MapPage>shouldComponentUpdate>false>mapData change");
+        console.log("MapPage>shouldComponentUpdate>mapData change>false");
 
         const center = nextProps.mapData;
 
@@ -147,11 +147,6 @@ class MapPage extends Component {
         var str = "MapPage>setBounds>" + method;
         console.log(str);
 
-        // 만약 조건이 있으면 호출
-        // 카테고리 api 호출
-        this.kakaoCategorySearch();
-
-        // 조건이 없으면 바로 데이터 셋팅
         let data = [];
 
         data.push({
@@ -169,9 +164,23 @@ class MapPage extends Component {
             }
         });
 
-        // 부모 컴포넌트로 전달
-        this.props.mapDataSet(data);
+        const options = this.props.optionData;
+        if(options.length > 0){
+            console.log("옵션있음");
 
+            this.setState({
+                mpaInfo: data
+            });
+
+            // 카테고리 api 호출
+            this.kakaoCategorySearch();
+            // 부모 컴포넌트로 전달
+            this.props.mapDataSet(data, options);
+        } else {
+            console.log("옵션없음");
+            // 부모 컴포넌트로 전달
+            this.props.mapDataSet(data, options);
+        }
     }
 
     //kakao 카테고리검색api 호출
@@ -179,7 +188,8 @@ class MapPage extends Component {
         var ps = new daum.maps.services.Places(map);
 
         //search.js에서 옵션값 키워드로 넘어옴
-        const options = this.props.optionData
+        const options = this.props.optionData;
+
         for (var i = 0; i < options.length; i++) {
             await ps.categorySearch(options[i], this.categorySearchCB, { useMapBounds: true });
         }
@@ -188,20 +198,22 @@ class MapPage extends Component {
 
     //kakao 카테고리검색api 콜백함수
     categorySearchCB = (data, status, pagination) => {
-        let { option } = this.state
+        console.log("MapPage>categorySearchCB");
+        let { option } = this.state;
+        console.log(data);
 
-        for (var i = 0; i < data.length; i++) {
-            if (status === daum.maps.services.Status.OK) {
-                option = option.concat(data[i].address_name)    //혹시몰라서 테마검색 주소도 넣어둿어 
-                this.laulonSearch(data[i].address_name)
+        if (status === daum.maps.services.Status.OK) {
+            for (var i = 0; i < data.length; i++) {
+                option = option.concat(data[i].address_name);    //혹시몰라서 테마검색 주소도 넣어둿어 
+                this.laulonSearch(data[i].address_name);
             }
         }
+
         this.setState({
             option: option
-        })
-
-
+        });
     }
+
     //주소를 위도 경도로 바꿔줌
     laulonSearch = (data) => {
         // 주소-좌표 변환 객체를 생성합니다
@@ -211,7 +223,7 @@ class MapPage extends Component {
             // 정상적으로 검색이 완료됐으면 
             if (status === daum.maps.services.Status.OK) {
                 var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-                this.inputPosition(coords.jb, coords.ib)
+                this.inputPosition(coords.jb, coords.ib);
                 // optionDataList = optionDataList.concat([
                 //     {
                 //         latitude: String(coords.jb),
@@ -228,20 +240,20 @@ class MapPage extends Component {
     }
     //위도경도 optionDataList에 넣기, search.js로 연결
     inputPosition = (la, lo) => {
-        let { optionDataList } = this.state
-        const { option } = this.state
+        let { optionDataList } = this.state;
+        const { option } = this.state;
         optionDataList = optionDataList.concat([
             {
                 latitude: String(la),
                 longitude: String(lo)
             }
-        ])
+        ]);
         this.setState({
             optionDataList: optionDataList
-        })
+        });
         //부모로 전달
         if (option.length === optionDataList.length) {
-            this.props.optionDataSet(optionDataList)
+            this.props.optionDataSet(optionDataList);
         }
 
     }
