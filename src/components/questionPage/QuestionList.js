@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Table, Button, Modal, Input, Form} from 'semantic-ui-react';
+import { Table, Button, Modal, Input, Form } from 'semantic-ui-react';
 import {Pagination} from './';
 
 class QuestionList extends Component {
@@ -8,7 +8,8 @@ class QuestionList extends Component {
         open: false,
         title: '',
         contents: '', 
-        author: ''
+        author: '',
+        boardNo: ''
     }
     //팝업 창 닫기 설정
     closeConfigShow = ( closeOnDimmerClick ) => () => {
@@ -30,40 +31,24 @@ class QuestionList extends Component {
     submitClick = () => {
         const {title, contents} = this.state
         const data = [];
-<<<<<<< HEAD
-        data.push(
-    
-            {
-                'author': 'asdf',
-                'content': contents,
-                'title': title
-            }
-           
-=======
+
         data.push({
                 author: 'asdf',
                 content: contents,
                 title: title
-            }
->>>>>>> ec0409d0617ea5a5ea2e36f3e44ffe386373d8ec
-        );
+            });
         if(title !== '' && contents !== ''){
             this.props.handleSubmit(data);
             this.setState({open:false})
         }
     }
 
-    // titleClick = (boardNo) => {
-    //     this.setState({detailPageOpen: true})
-    //     if(boarNo !== '' && detailPageOpne)
-    //     this.props.detailBoardData(boardNo)
-    // }
-
     render() {
         const {open,closeOnDimmerClick} = this.state
         //부모 컴포넌트에서 게시판 데이터 받아옴
         const {pageOfItems} = this.props.boardData
-        const {items,onChangePage} = this.props
+        const {items,onChangePage,detailBoardData} = this.props
+        
         return(
             <div>
             {/* 새로운 글 팝업 */}
@@ -100,8 +85,10 @@ class QuestionList extends Component {
                         pageOfItems.map( (contact) => {
                         return (
                             <Table.Row textAlign='center' key={contact.no}>
-                                <Table.Cell>{contact.no}</Table.Cell>
-                                <Table.Cell selectable><a href='#'>{contact.title}</a></Table.Cell>
+                                <Table.Cell>{contact.no - 6}</Table.Cell>
+                                <Table.Cell selectable onClick={detailBoardData.bind(this,contact.no)}>
+                                        {contact.title}
+                                </Table.Cell>
                                 <Table.Cell>{contact.author}</Table.Cell>
                                 <Table.Cell>{contact.registerDate}</Table.Cell>
                             </Table.Row>

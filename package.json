@@ -28,7 +28,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://54.180.87.242:8080",
+
   "eslintConfig": {
     "extends": "react-app"
   },

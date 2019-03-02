@@ -36,16 +36,15 @@ class Pagination extends Component {
     setPage(page) {
         var { items, pageSize } = this.props;
         var pager = this.state.pager;
- 
         if (page < 1 || page > pager.totalPages) {
             return;
         }
- 
+  
         // get new pager object for specified page
         pager = this.getPager(items.length, page, pageSize);
  
         // get new page of items from items array
-        var pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
+       var pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
  
         // update state
         this.setState({ pager: pager });
@@ -86,6 +85,7 @@ class Pagination extends Component {
         // calculate start and end item indexes
         var startIndex = (currentPage - 1) * pageSize;
         var endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
+
  
         // create an array of pages to ng-repeat in the pager control
         var pages = [...Array((endPage + 1) - startPage).keys()].map(i => startPage + i);
