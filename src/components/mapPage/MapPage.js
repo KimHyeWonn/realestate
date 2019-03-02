@@ -21,7 +21,9 @@ class MapPage extends Component {
         let el = document.getElementById('map');
         let options = { 
             center: new daum.maps.LatLng(37.615095,127.0109226), //지도의 중심좌표.
-            level: 3 //최대4
+            level: 3,
+            minLevel: 1,
+            maxLevel: 4
         };
 
         map = new daum.maps.Map(el, options); //지도 생성 및 객체 리턴
@@ -31,11 +33,12 @@ class MapPage extends Component {
         map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
 
         // 줌 컨트롤
-        var zoomControl = new daum.maps.ZoomControl();
-        map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+        //var zoomControl = new daum.maps.ZoomControl();
+        //map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
 
         // 드래그가 끝날 때 발생
         daum.maps.event.addListener(map, 'dragend', this.mapDrag);
+
         // 확대 수준이 변경되면 발생
         daum.maps.event.addListener(map, 'zoom_changed', this.mapZoom);
     }
