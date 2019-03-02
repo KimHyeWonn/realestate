@@ -35,7 +35,7 @@ class Home extends Component{
             var date = "";
 
             if(month!=="") {
-                date = year+month;
+                date = year+"-"+month;
             }else {
                 date = year;
             }

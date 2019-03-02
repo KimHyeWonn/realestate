@@ -48,48 +48,68 @@ class MapPage extends Component {
             console.log(data);
 
             //이미지 마커
-            //var position, markerImageSrc, imageSize = new daum.maps.Size(30, 30); 
-
-            //텍스트 마커
-            var position, content = '';
+            var position, markerImageSrc, imageSize = new daum.maps.Size(40, 40); 
+            //마커 객체
+            var markers=[];
 
             for (let i = 0; i < data.length; i++) {
                 position = new daum.maps.LatLng(data[i].latitude, data[i].longitude);
-                //markerImageSrc = require('../image/police_c.png');
+                var markerImage = null ;
 
                 if (data[i].type === "아파트" && data[i].dealType === "전세") {
-                    content = '<span style="color:black;background-color:#B2EBF4;">아파트/전</span>';
+                    markerImageSrc =require("../image/marker_LA.png");
+                    markerImage =this.createMarkerImage(markerImageSrc,imageSize);
+                   
                 } else if (data[i].type === "아파트" && data[i].dealType === "매매") {
-                    content = '<span style="color:black;background-color:#FFB2D9;">아파트/매</span>';
+                    markerImageSrc =require("../image/marker_DA.png");
+                    markerImage =this.createMarkerImage(markerImageSrc,imageSize);
+                    
                 } else if (data[i].type === "아파트" && data[i].dealType === "월세") {
-                    content = '<span style="color:black;background-color:#FFE08C;">아파트/월</span>';
+                    markerImageSrc =require("../image/marker_MA.png");
+                    markerImage =this.createMarkerImage(markerImageSrc,imageSize);
+
                 } else if (data[i].type === "오피스텔" && data[i].dealType === "전세") {
-                    content = '<span style="color:black;background-color:#B2EBF4;">오피스텔/전</span>';
+                    markerImageSrc =require("../image/marker_LO.png");
+                    markerImage =this.createMarkerImage(markerImageSrc,imageSize);
+
                 } else if (data[i].type === "오피스텔" && data[i].dealType === "매매") {
-                    content = '<span style="color:black;background-color:#FFB2D9;">오피스텔/매</span>';
+                    markerImageSrc =require("../image/marker_DO.png");
+                    markerImage =this.createMarkerImage(markerImageSrc,imageSize);
+                
                 } else if (data[i].type === "오피스텔" && data[i].dealType === "월세") {
-                    content = '<span style="color:black;background-color:#FFE08C;">오피스텔/월</span>';
+                    markerImageSrc =require("../image/marker_MO.png");
+                    markerImage =this.createMarkerImage(markerImageSrc,imageSize);
+
                 } else if (data[i].type === "주택" && data[i].dealType === "전세") {
-                    content = '<span style="color:black;background-color:#B2EBF4;">주택/전</span>';
+                    markerImageSrc =require("../image/marker_LH.png");
+                    markerImage =this.createMarkerImage(markerImageSrc,imageSize);
                 } else if (data[i].type === "주택" && data[i].dealType === "매매") {
-                    content = '<span style="color:black;background-color:#FFB2D9;">주택/매</span>';
+                    markerImageSrc =require("../image/marker_DH.png");
+                    markerImage =this.createMarkerImage(markerImageSrc,imageSize);
                 } else if (data[i].type === "주택" && data[i].dealType === "월세") {
-                    content = '<span style="color:black;background-color:#FFE08C;">주택/월</span>';
+                    markerImageSrc =require("../image/marker_MH.png");
+                    markerImage =this.createMarkerImage(markerImageSrc,imageSize);
                 }
+
+                var marker = this.createMarker(position,markerImage)
+                markers.push(marker);
 
                 // 이미지 마커
                 // var markerImage = this.createMarkerImage(markerImageSrc, imageSize);   
                 // var marker = this.createMarker(position, markerImage);  
 
                 // marker.setMap(map);
+                for (var j = 0; j < markers.length; j++) {  
+                    markers[j].setMap(map);
+                }  
 
                 // 텍스트 마커
-                var customOverlay = new daum.maps.CustomOverlay({
-                    position: position,
-                    content: content
-                });
+                // var customOverlay = new daum.maps.CustomOverlay({
+                //     position: position,
+                //     content: content
+                // });
 
-                customOverlay.setMap(map);
+                // customOverlay.setMap(map);
             }
 
             return true;
