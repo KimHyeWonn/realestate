@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { QuestionList, detailPage } from 'components/questionPage';
+import { QuestionList } from 'components/questionPage';
 import * as service from '../../lib/boardApi';
 import { Modal, Button, Comment, Header, Form, Divider } from 'semantic-ui-react';
 
@@ -82,6 +82,7 @@ class Question extends Component {
                     content: inputData
                 });
                 const replyInfo = await service.postNewReply(data)
+
             }
         }catch(e){
             console.log(e)
@@ -149,7 +150,7 @@ class Question extends Component {
                                                     <Comment.Text>{contact.content}</Comment.Text>
                                                 </Comment.Content>
                                                 <Comment.Actions>
-                                                    <a>delete</a>
+                                                    delete
                                                 </Comment.Actions>
                                             </Comment> 
                                         );
