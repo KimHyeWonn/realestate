@@ -32,9 +32,16 @@ class Home extends Component{
     changeConditionData = async (data) => {
         try {
             const {city, district, neighborhood, year, month} = data[0];
-            var date = year+month;
-            var info = null;
+            var date = "";
 
+            if(month!=="") {
+                date = year+"-"+month;
+            }else {
+                date = year;
+            }
+
+            var info = null;
+      
             if(city !== "" && district !== "" && neighborhood !== "" && date !== ""){
                 console.log("getCityAndDistrictAndNeighborhoodAndDate");
                 info = await service.getCityAndDistrictAndNeighborhoodAndDate(city, district, neighborhood, date);

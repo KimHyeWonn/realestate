@@ -60,6 +60,7 @@ class QuestionList extends Component {
                     onClose={this.close}
                 >
                     <Modal.Content>
+                        <h2>게시물 작성</h2>
                         <Input onChange={this.inputChangeTitle} fluid placeholder='Title'/>
                         <Form size='massive'><Form.TextArea onChange={this.inputChangeContents} placeholder='Contents'/></Form>
                     </Modal.Content>

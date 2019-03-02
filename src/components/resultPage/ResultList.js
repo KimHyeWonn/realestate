@@ -39,6 +39,7 @@ class ResultList extends Component {
                         </Grid.Column>
                     </Grid>
                 </Segment>
+                
             </div>
         );
     }

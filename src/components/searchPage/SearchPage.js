@@ -41,7 +41,8 @@ class SearchPage extends Component {
             unclicked: data.unclicked,
             clicked: data.clicked,
             sendTheme:[],
-            optionCount:0
+            optionCount:0,
+            isOpen: false
         };
         this.keyPress = this.keyPress.bind(this);
     }
@@ -63,16 +64,23 @@ class SearchPage extends Component {
         // SearchPage에 선택한 조건을 부모 컴포넌트에 전달
         let data = [];
         let { inputData,houses,deals,sendTheme } = this.state;
-
-        data.push({
-            housingTypeData: houses,
-            dealTypeData: deals,
-            inputData: inputData,
-            options:sendTheme
-        });
-        // 부모 컴포넌트 (Search)로 전달
-        this.props.searchDataSet(data);
+        if(inputData!==''&& houses!=='' && deals!==''){
+            data.push({
+                housingTypeData: houses,
+                dealTypeData: deals,
+                inputData: inputData,
+                options:sendTheme
+            });
+            // 부모 컴포넌트 (Search)로 전달
+            this.props.searchDataSet(data);
+        }else{
+            alert("지역이름, 집타입, 거래타입을 모두 넣어주세요")
+            return;
+        }
+        
+        
     };
+    //house
     handleAddition = (e, { value }) => {
         this.setState({
          houseoptions: [{ text: value, value }, ...this.state.options],
@@ -82,13 +90,12 @@ class SearchPage extends Component {
     handleChange = (e, { value }) => {
         this.setState({ currentValues: value,houses:value })
     }
-
+    //deal
     handleAdditionD = (e, { value }) => {
         this.setState({
          dealoptions: [{ text: value, value }, ...this.state.options],
         });
     }
-    
     handleChangeD = (e, { value }) => {
         this.setState({ currentValuesD: value,deals:value })
     }
@@ -147,11 +154,19 @@ class SearchPage extends Component {
             
         this.setState({
             sendTheme:theme,
-            optionCount:count
+            optionCount:count,
+            isOpen: false
         });
-        console.log(theme)
+        console.log(theme);
         count=0;
     }
+
+    popupBtnClick = () => {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
+
     render() {
         const { checked, checked1, checked2, checked3, checked4, checked5, checked6, checked7,optionCount } = this.state
         const { unclicked, clicked } = this.state
@@ -184,7 +199,8 @@ class SearchPage extends Component {
                     renderLabel={renderLabel2}
                 />
                 
-                <Popup trigger={<Button>조건 선택 ({optionCount>0?(<font>{optionCount}</font>):(<font>0</font>)})</Button>} position='bottom center' on='click' hideOnScroll>
+
+                <Popup open={this.state.isOpen} onOpen={this.popupBtnClick} onClose={this.popupBtnClick} trigger={<Button>조건 선택 ({optionCount>0?(<font>{optionCount}</font>):(<font>0</font>)})</Button>} position='bottom center' on='click' hideOnScroll>
                     <div className="popupDiv"></div>
                     <Grid centered divided columns={1}>
                         <Grid.Column textAlign='center'>
@@ -223,7 +239,7 @@ class SearchPage extends Component {
                                 <li><label className="theme1">
                                     <input type="checkbox" id="ci" value="ci" onChange={this.handleCheck} defaultChecked={checked4} />
                                     {checked4 ? (<Image src={clicked[4]} size="tiny" centered />) : (<Image src={unclicked[4].value} size="tiny" centered />)}
-                                    <span className="theme_name">영화관</span>
+                                    <span className="theme_name">문화시설</span>
                                 </label>
                                 </li>
                                 <li><label className="theme1">
