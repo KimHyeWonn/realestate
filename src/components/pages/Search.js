@@ -99,9 +99,7 @@ class Search extends Component {
                         latitude: data[0].y,
                         longitude: data[0].x
                     }
-                },
-                loading: false,
-                optionData:this.state.optionData
+                }
             });
             return true;
         } else if (status === daum.maps.services.Status.ZERO_RESULT) {
@@ -118,21 +116,22 @@ class Search extends Component {
         console.log("Search>optionDataSet");
         
         this.setState({
-            optionData:data,
-            loading: true
+            optionData:data
         });
 
-        console.log(this.state)
+        console.log(this.state.optionData);
     }
 
     // MapPage에서 지정한 지도 좌표 (RightTop, LeftBottom)
-    mapDataSet = (data) => {
+    mapDataSet = (mapData, optionsData) => {
         console.log("Search>mapDataSet");
         //data -> set State -> api 호출
-        
+        console.log(mapData);
+        console.log(optionsData);
         //api 호출 후 결과값 set State
         let date = new Date();
         this.setState({
+            loading: false,
             resultData: {
                 date: date,
                 // 백엔드 api 호출 후 얻는 결과값(위경도->mapPage에서 처리,설명->resultPage에서 처리) 
