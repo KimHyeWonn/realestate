@@ -31,8 +31,8 @@ class MapPage extends Component {
         map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
 
         // 줌 컨트롤
-        //var zoomControl = new daum.maps.ZoomControl();
-        //map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+        var zoomControl = new daum.maps.ZoomControl();
+        map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
 
         // 드래그가 끝날 때 발생
         daum.maps.event.addListener(map, 'dragend', this.mapDrag);
@@ -168,7 +168,7 @@ class MapPage extends Component {
 
         const options = this.props.optionData;
         if(options.length > 0){
-            console.log("옵션있음");
+            console.log("옵션있음 "+options);
 
             this.setState({
                 mapInfo: data,
@@ -199,13 +199,11 @@ class MapPage extends Component {
 
     //kakao 카테고리검색api 콜백함수
     categorySearchCB = (data, status, pagination) => {
-        console.log("MapPage>categorySearchCB");
-
         let { optionDataList } = this.state;
         let { optionCnt, optionApiCnt } = this.state;
 
-
         if (status === daum.maps.services.Status.OK) {
+            console.log("MapPage>categorySearchCB>검색결과있음");
             for (var i = 0; i < data.length; i++) {
                 optionDataList = optionDataList.concat([
                     {
@@ -214,25 +212,29 @@ class MapPage extends Component {
                     }
                 ]);
             }
+        } else if (status === daum.maps.services.Status.ZERO_RESULT) {
+            console.log("MapPage>categorySearchCB>검색결과없음");
+        } else if (status === daum.maps.services.Status.ERROR) {
+            console.log("MapPage>categorySearchCB>검색결과오류");
+        }
 
-            if(optionCnt === (optionApiCnt+1)){
-                console.log("같음 "+optionCnt+" "+(optionApiCnt+1)+"  "+data.length+"개 호출");
+        if(optionCnt === (optionApiCnt+1)){
+            console.log("같음 "+optionCnt+" "+(optionApiCnt+1)+"  "+data.length+"개 호출");
 
-                this.setState({
-                    optionDataList: optionDataList
-                });
+            this.setState({
+                optionDataList: optionDataList
+            });
 
-                // 부모 컴포넌트로 전달
-                this.props.mapDataSet(this.state.mapInfo, this.state.optionDataList);
+            // 부모 컴포넌트로 전달
+            this.props.mapDataSet(this.state.mapInfo, this.state.optionDataList);
 
-            } else {
-                console.log("다름 "+optionCnt+" "+(optionApiCnt+1)+"  "+data.length+"개 호출");
+        } else {
+            console.log("다름 "+optionCnt+" "+(optionApiCnt+1)+"  "+data.length+"개 호출");
 
-                this.setState({
-                    optionDataList: optionDataList,
-                    optionApiCnt: optionApiCnt+1
-                });
-            }
+            this.setState({
+                optionDataList: optionDataList,
+                optionApiCnt: optionApiCnt+1
+            });
         }
     }
 
@@ -267,10 +269,10 @@ class MapPage extends Component {
             <div>
                 <div id="map" className="mapStyle">
                 {Loading}
-                <div className="zoomcontrol"> 
+                {/* <div className="zoomcontrol"> 
                     <span className="zoomcontrolSpan1"><div className="zoomcontrolImg"></div></span>  
                     <span className="zoomcontrolSpan2"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></img></span>
-                </div>
+                </div> */}
                 </div>
                 
             </div>
