@@ -146,9 +146,6 @@ class MapPage extends Component {
     }
 
     setBounds = (cLatlng, rtLatLng, lbLatLng, method) => {
-        // var str = 'setBounds: 중심=>'+cLatlng.getLat()+', '+cLatlng.getLng()+'\n';
-        // str += 'rightTop=>'+rtLatLng.getLat()+', '+rtLatLng.getLng()+'\n';
-        // str += 'leftBottom=>'+lbLatLng.getLat()+', '+lbLatLng.getLng();
         var str = "MapPage>setBounds>" + method;
         console.log(str);
 
@@ -260,7 +257,6 @@ class MapPage extends Component {
 
         const loading = this.props.loading;
         console.log(loading);
-        //var {loading} = this.state;
 
         if(loading) {
             Loading = <img src="//s.zigbang.com/v1/web/search/loading2.gif" alt="" className="loadingShow"></img>
@@ -272,12 +268,7 @@ class MapPage extends Component {
             <div>
                 <div id="map" className="mapStyle">
                 {Loading}
-                {/* <div className="zoomcontrol"> 
-                    <span className="zoomcontrolSpan1"><div className="zoomcontrolImg"></div></span>  
-                    <span className="zoomcontrolSpan2"><img src="http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></img></span>
-                </div> */}
                 </div>
-                
             </div>
         )
     }
