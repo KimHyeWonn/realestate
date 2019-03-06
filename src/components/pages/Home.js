@@ -69,7 +69,6 @@ class Home extends Component{
             
             // 세종시는 시/도  읍/면/동만 있는데 이때는 어떻게 보내야 하는지 물어보기
             //const info = await service.getOnlyCity(city);
-            console.log("aa "+info.data);
 
             this.setState({
                 condition: {

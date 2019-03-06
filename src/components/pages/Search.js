@@ -46,13 +46,9 @@ class Search extends Component {
     
     // default값으로 지도 보여주기
     componentDidMount() {
+        console.log("Search>componentDidMount");
         const {inputData} = this.state.searchData;
         this.kakaoPlacesSearch(inputData);
-        
-        console.log("Search>componentDidMount");
-        // console.log("->searchCom(default) housing : ", this.state.searchData.housingTypeData);
-        // console.log("->searchCom(default) deal: ", this.state.searchData.dealTypeData);
-        // console.log("->searchCom(default) input:", this.state.searchData.inputData);
     }
 
     //SearchPage에서 검색
@@ -78,10 +74,6 @@ class Search extends Component {
                 loading: false
             });
         }
-        
-        // console.log("->searchCom housing : ",housingTypeData);
-        // console.log("->searchCom deal: ",dealTypeData);
-        // console.log("->searchCom input:",inputData);
     }
 
     //kakao 장소검색api 호출
@@ -110,17 +102,6 @@ class Search extends Component {
             alert('검색 결과 중 오류가 발생했습니다.');
             return false;
         }
-    }
-
-    //ResultPage에서 옵션선택
-    optionDataSet = (data) => {
-        console.log("Search>optionDataSet");
-        
-        this.setState({
-            optionData:data
-        });
-
-        console.log(this.state.optionData);
     }
 
     // MapPage에서 지정한 지도 좌표 (RightTop, LeftBottom)
@@ -236,11 +217,14 @@ class Search extends Component {
                 </div>
                 <div className="SearchDiv1">
                     <div className="SearchDivL">
-                        <MapPage mapData={this.state.mapData.center} mapDataSet={this.mapDataSet} resultData={this.state.resultData} loading={this.state.loading} optionData={this.state.optionData} optionDataSet={this.optionDataSet}/>
+                        <MapPage mapData={this.state.mapData.center} 
+                                 mapDataSet={this.mapDataSet} 
+                                 resultData={this.state.resultData} 
+                                 loading={this.state.loading} 
+                                 optionData={this.state.optionData}/>
                     </div>
                     <div className="SearchDivR">
                         <ResultPage resultData={this.state} 
-                                    optionDataSet={this.optionDataSet}
                                     items={this.state.resultData.buliding}
                                     onChangePage={this.onChangePage}/>
                     </div>

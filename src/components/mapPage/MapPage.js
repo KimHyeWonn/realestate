@@ -17,7 +17,7 @@ class MapPage extends Component {
 
     componentDidMount() {
         console.log("MapPage>componentDidMount");
-        //let {center} = this.state;
+    
         let el = document.getElementById('map');
         let options = { 
             center: new daum.maps.LatLng(37.615095,127.0109226), //지도의 중심좌표.
@@ -64,27 +64,21 @@ class MapPage extends Component {
                 if (data[i].type === "아파트" && data[i].dealType === "전세") {
                     markerImageSrc =require("../image/marker_LA.png");
                     markerImage =this.createMarkerImage(markerImageSrc,imageSize);
-                   
                 } else if (data[i].type === "아파트" && data[i].dealType === "매매") {
                     markerImageSrc =require("../image/marker_DA.png");
                     markerImage =this.createMarkerImage(markerImageSrc,imageSize);
-                    
                 } else if (data[i].type === "아파트" && data[i].dealType === "월세") {
                     markerImageSrc =require("../image/marker_MA.png");
                     markerImage =this.createMarkerImage(markerImageSrc,imageSize);
-
                 } else if (data[i].type === "오피스텔" && data[i].dealType === "전세") {
                     markerImageSrc =require("../image/marker_LO.png");
                     markerImage =this.createMarkerImage(markerImageSrc,imageSize);
-
                 } else if (data[i].type === "오피스텔" && data[i].dealType === "매매") {
                     markerImageSrc =require("../image/marker_DO.png");
                     markerImage =this.createMarkerImage(markerImageSrc,imageSize);
-                
                 } else if (data[i].type === "오피스텔" && data[i].dealType === "월세") {
                     markerImageSrc =require("../image/marker_MO.png");
                     markerImage =this.createMarkerImage(markerImageSrc,imageSize);
-
                 } else if (data[i].type === "주택" && data[i].dealType === "전세") {
                     markerImageSrc =require("../image/marker_LH.png");
                     markerImage =this.createMarkerImage(markerImageSrc,imageSize);
@@ -119,8 +113,9 @@ class MapPage extends Component {
 
             return true;
         }
-
-        if (nextProps.mapData === this.props.mapData) { //mapData 변경x
+        console.log(nextProps.mapData);
+        console.log(this.props.mapData);
+        if (nextProps.mapData === this.props.mapData) { //조건 검색시 걸림.
             console.log("MapPage>shouldComponentUpdate>mapData change x>loading true");
             return true;
         }
