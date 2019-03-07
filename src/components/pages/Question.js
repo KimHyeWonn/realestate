@@ -24,10 +24,11 @@ class Question extends Component {
         this.onChangePage = this.onChangePage.bind(this);
     }
 
+    // 모달 닫기
     close = () => this.setState({open: false})
 
     onChangePage(pageOfItems) {
-        // update state with new page of items
+        // Pagination 페이지 이동 시 데이터 셋팅
         this.setState({ pageOfItems: pageOfItems });
     }
 
@@ -35,6 +36,7 @@ class Question extends Component {
        this.boardData()
     }
 
+    // 게시판 데이터 get
     boardData = async () => {
         try{
             console.log("getBoard");
@@ -48,13 +50,13 @@ class Question extends Component {
         }
     }
 
+    // 게시글 세부 내용 데이터 get
     detailBoardData = async (boardNo) => {
         try{
             console.log("getDatailBoard")
             const detailInfo = await service.getDetailBoard(boardNo);
             console.log(detailInfo.data)
             this.setState({
-               // boardNumber: boardNo,
                 detailBoardItems: detailInfo.data,
                 open: true,
                 closeOnDimmerClick: false
@@ -64,12 +66,14 @@ class Question extends Component {
         }
     }
 
+    // 댓글 내용 입력 시
     inputChange = (e) => {
         this.setState({
             inputData: e.target.value
         })
     }
 
+    // 댓글 post
     replySubmit = async () => {
         try{
             const {no} = this.state.detailBoardItems
@@ -82,7 +86,8 @@ class Question extends Component {
                     content: inputData
                 });
                 const replyInfo = await service.postNewReply(data)
-
+                //모달 리로팅 
+                //this.detailBoardData();
             }
         }catch(e){
             console.log(e)
@@ -93,12 +98,13 @@ class Question extends Component {
         window.location.reload();
     }
 
-    //새로운 글 서버에 전송
+    //새로운 게시글 post
     handleSubmit = async (data) => {
         console.log(data)
         const boardInfo = await service.postNewContent(data);
     }
 
+    // 게시글 삭제 post
     handleDelete = async () => {
         try{
             const {no} = this.state.detailBoardItems
@@ -106,6 +112,8 @@ class Question extends Component {
         }catch(e){
             console.log(e)
         }
+        // 게시글 삭제 후 리로딩
+       // this.close
         window.location.reload();
     }
  
@@ -134,7 +142,6 @@ class Question extends Component {
                     </Modal.Header>
                     <Modal.Content>
                         {content}
-                        
                     </Modal.Content>
                     <Modal.Content>
                         <Divider/>
@@ -174,8 +181,7 @@ class Question extends Component {
                         <Button onClick={ this.close } primary>뒤로가기</Button>
                     </Modal.Actions>
                 </Modal>
-            </div>
-            
+            </div> 
         )
     }
 }

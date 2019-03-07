@@ -1,6 +1,6 @@
-import React,{Component} from 'react';
+import React,{ Component } from 'react';
 import { Table, Button, Modal, Input, Form } from 'semantic-ui-react';
-import {Pagination} from './';
+import { Pagination } from './';
 
 class QuestionList extends Component {
     state = { 
@@ -11,11 +11,13 @@ class QuestionList extends Component {
         author: '',
         boardNo: ''
     }
+    
     //팝업 창 닫기 설정
     closeConfigShow = ( closeOnDimmerClick ) => () => {
         this.setState({ closeOnDimmerClick, open: true })
     }
     close = () => this.setState({ open: false }) 
+    
     //데이터 처리
     inputChangeTitle = (e) => {
         this.setState({
@@ -27,11 +29,11 @@ class QuestionList extends Component {
             contents: e.target.value
         });
     }
+    
     //submit 버튼 클릭 시 Question으로 전달
     submitClick = () => {
         const {title, contents} = this.state
         const data = [];
-
         data.push({
                 author: 'asdf',
                 content: contents,
