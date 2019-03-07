@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { Grid, Image, Segment, Label } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import './ResultPage.css';
-
+const hosingType=[
+    {value :require('../image/apart.png')},
+    {value :require('../image/officetel.PNG')},
+    {value :require('../image/house.jpg')}
+]
 class ResultList extends Component {
     static defaultProps = {
         info: {
@@ -21,13 +25,21 @@ class ResultList extends Component {
         },
       }
     render() {
-        const {city,groop,dong, name, area, floor, type,price, deposit,dealType} = this.props.info;
+        const {city,groop,dong, name, area, floor, type,price, deposit,dealType} = this.props.info
+        var housing=''
+        if(type==='아파트'){
+            housing=hosingType[0].value
+        }else if(type==='오피스텔'){
+            housing=hosingType[1].value
+        }else {
+            housing=hosingType[2].value
+        }
         return (
             <div>
                 <Segment raised>
                     <Grid>
                         <Grid.Column width={4}>
-                            <Image src={require('../image/officetel.PNG')} />
+                            <Image src={housing} />
                         </Grid.Column>
                         <Grid.Column width={9}>
                         <Label circular>{dealType}</Label>

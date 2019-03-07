@@ -23,7 +23,7 @@ class ResultPage extends Component {
                 <div className="dealTypeDiv">
                     {list} 
                 </div>
-                <div>
+                <div className="paginationDiv">
                     <Pagination items={items} onChangePage={onChangePage} />
                 </div>
             </div>
