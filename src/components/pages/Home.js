@@ -144,7 +144,8 @@ class Home extends Component{
             }else {
                 date = year;
             }
-
+            var groop = district.replace(" ","")
+            
             var info = null;
       
             if(city === "세종특별자치시" && neighborhood !== "" && date !== ""){
@@ -155,21 +156,21 @@ class Home extends Component{
                 console.log("세종getCityAndNeighborhood");
                 info = await service.getCityAndNeighborhood(city, neighborhood);
             }
-            else if(city !== "" && district !== "" && neighborhood !== "" && date !== ""){
+            else if(city !== "" && groop !== "" && neighborhood !== "" && date !== ""){
                 console.log("getCityAndDistrictAndNeighborhoodAndDate");
-                info = await service.getCityAndDistrictAndNeighborhoodAndDate(city, district, neighborhood, date);
+                info = await service.getCityAndDistrictAndNeighborhoodAndDate(city, groop, neighborhood, date);
             }
-            else if (city !== "" && district !== "" && neighborhood !== "") {
+            else if (city !== "" && groop !== "" && neighborhood !== "") {
                 console.log("getCityAndDistrictAndNeighborhood");
-                info = await service.getCityAndDistrictAndNeighborhood(city, district, neighborhood);
+                info = await service.getCityAndDistrictAndNeighborhood(city, groop, neighborhood);
             }
-            else if (city !== "" && district !== "" && date !== "") {
+            else if (city !== "" && groop !== "" && date !== "") {
                 console.log("getCityAndDistrictAndDate");
-                info = await service.getCityAndDistrictAndDate(city, district, date);
+                info = await service.getCityAndDistrictAndDate(city, groop, date);
             }
-            else if (city !== "" && district !== "") {
+            else if (city !== "" && groop !== "") {
                 console.log("getCityAndDistrict");
-                info = await service.getCityAndDistrict(city, district);
+                info = await service.getCityAndDistrict(city, groop);
             }
             else if (city !== "" && date !== "") {
                 console.log("getCityAndDate");
@@ -190,7 +191,6 @@ class Home extends Component{
                     result: info.data
                 }
             });
-            
         }catch(e) {
             console.log(e);
         }
