@@ -43,7 +43,15 @@ class Home extends Component{
             
             var info = null;
       
-            if(city !== "" && groop !== "" && neighborhood !== "" && date !== ""){
+            if(city === "세종특별자치시" && neighborhood !== "" && date !== ""){
+                console.log("세종getCityAndNeighborhoodAndDate");
+                info = await service.getCityAndNeighborhoodAndDate(city, neighborhood, date);
+            }
+            else if(city === "세종특별자치시" && neighborhood !== "" ){
+                console.log("세종getCityAndNeighborhood");
+                info = await service.getCityAndNeighborhood(city, neighborhood);
+            }
+            else if(city !== "" && groop !== "" && neighborhood !== "" && date !== ""){
                 console.log("getCityAndDistrictAndNeighborhoodAndDate");
                 info = await service.getCityAndDistrictAndNeighborhoodAndDate(city, groop, neighborhood, date);
             }
@@ -68,9 +76,6 @@ class Home extends Component{
                 info = await service.getOnlyCity(city);
             }
             
-            // 세종시는 시/도  읍/면/동만 있는데 이때는 어떻게 보내야 하는지 물어보기
-            //const info = await service.getOnlyCity(city);
-
             this.setState({
                 condition: {
                     city: city,
