@@ -1,36 +1,3 @@
-<<<<<<< HEAD
-import axios from 'axios';
-
-const url = "http://54.180.87.242:8080";
-
-export function getOnlyCity(city) {
-    return axios.get(`${url}/realestate/graph/city/${city}`);
-}
-
-export function getCityAndDate(city, date) {
-    return axios.get(`${url}/realestate/graph/city/${city}/date/${date}`);
-}
-
-export function getCityAndDistrict(city, district) {
-    return axios.get(`${url}/realestate/graph/city/${city}/district/${district}`);
-}
-
-export function getCityAndDistrictAndDate(city, district, date) {
-    return axios.get(`${url}/realestate/graph/city/${city}/district/${district}/date/${date}`);
-}
-
-export function getCityAndDistrictAndNeighborhood(city, district, neighborhood) {
-    return axios.get(`${url}/realestate/graph/city/${city}/district/${district}/neighborhood/${neighborhood}`);
-}
-
-export function getCityAndDistrictAndNeighborhoodAndDate(city, district, neighborhood, date) {
-    return axios.get(`${url}/realestate/graph/city/${city}/district/${district}/neighborhood/${neighborhood}/date/${date}`);
-}
-
-
-
-
-=======
 import axios from 'axios';
 
 const url = "http://54.180.120.77:8080";
@@ -71,4 +38,3 @@ export function getCityAndNeighborhoodAndDate(city, neighborhood, date) {
 
 
 
->>>>>>> 560347a992719b63c0cc08357e99b422873be7b8

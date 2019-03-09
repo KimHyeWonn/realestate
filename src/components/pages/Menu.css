@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .Navigator {
     background-color: #b5b5b6;
     color: white;
@@ -12,18 +11,3 @@
 .Navigator_position{
     float: right;
 }
-=======
-.Navigator {
-    background-color: #b5b5b6;
-    color: white;
-    font-size: 2rem;
-    padding: 3rem;
-    text-align: center;
-    font-weight: 600;
-    /* margin-bottom: 2rem; */
-}
-
-.Navigator_position{
-    float: right;
-}
->>>>>>> 560347a992719b63c0cc08357e99b422873be7b8
