@@ -4,16 +4,16 @@ self.__precacheManifest = [
     "url": "/realestate/static/media/brand-icons.a046592b.woff"
   },
   {
-    "revision": "b08998c4a08e3843ec98",
-    "url": "/realestate/static/css/main.73413f63.chunk.css"
+    "revision": "41e3a96609eb573848bf",
+    "url": "/realestate/static/css/main.12c5ad0d.chunk.css"
   },
   {
     "revision": "cca5c266b63581879980f625b7f0b406",
     "url": "/realestate/static/media/house.cca5c266.jpg"
   },
   {
-    "revision": "6d535d43555622c0cd0f",
-    "url": "/realestate/static/js/1.6d535d43.chunk.js"
+    "revision": "d7042f858c1464cc37e1",
+    "url": "/realestate/static/js/1.d7042f85.chunk.js"
   },
   {
     "revision": "07a84fca7c8ec9aea62e",
@@ -52,8 +52,12 @@ self.__precacheManifest = [
     "url": "/realestate/static/media/brand-icons.e8c322de.woff2"
   },
   {
-    "revision": "b08998c4a08e3843ec98",
-    "url": "/realestate/static/js/main.b08998c4.chunk.js"
+    "revision": "41e3a96609eb573848bf",
+    "url": "/realestate/static/js/main.41e3a966.chunk.js"
+  },
+  {
+    "revision": "13db00b7a34fee4d819ab7f9838cc428",
+    "url": "/realestate/static/media/brand-icons.13db00b7.eot"
   },
   {
     "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
@@ -62,10 +66,6 @@ self.__precacheManifest = [
   {
     "revision": "b87b9ba532ace76ae9f6edfe9f72ded2",
     "url": "/realestate/static/media/icons.b87b9ba5.ttf"
-  },
-  {
-    "revision": "13db00b7a34fee4d819ab7f9838cc428",
-    "url": "/realestate/static/media/brand-icons.13db00b7.eot"
   },
   {
     "revision": "c5ebe0b32dc1b5cc449a76c4204d13bb",
@@ -100,11 +100,11 @@ self.__precacheManifest = [
     "url": "/realestate/static/media/officetel.d27696eb.PNG"
   },
   {
-    "revision": "6d535d43555622c0cd0f",
-    "url": "/realestate/static/css/1.a724d3ac.chunk.css"
+    "revision": "d7042f858c1464cc37e1",
+    "url": "/realestate/static/css/1.458ba452.chunk.css"
   },
   {
-    "revision": "f2b727a57cc7648689943ab3ac79fad5",
+    "revision": "ef4de670e21b2052a01f37b3b3b9dc97",
     "url": "/realestate/index.html"
   }
 ];
