@@ -8,6 +8,7 @@
     "classname": "^0.0.0",
     "classnames": "^2.2.6",
     "cors": "^2.8.5",
+    "gh-pages": "^2.0.1",
     "highcharts-drilldown": "^0.1.7",
     "http-proxy-middleware": "^0.19.1",
     "query-string": "^6.2.0",
@@ -22,13 +23,13 @@
     "semantic-ui-react": "^0.84.0"
   },
   "scripts": {
-    
     "start": "cross-env NODE_PATH=src react-scripts start",
     "build": "cross-env NODE_PATH=src react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
-
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -40,5 +41,6 @@
   ],
   "devDependencies": {
     "cross-env": "^5.2.0"
-  }
+  },
+  "homepage": "https://realestateService.github.io/realestate"
 }
