@@ -5,6 +5,7 @@ import 'semantic-ui-css/semantic.min.css';
 class LoginPage extends Component {
   state = {
     id: '',
+    name:'',
     pw: '',
     open: false
   }
@@ -23,11 +24,20 @@ class LoginPage extends Component {
 
     this.setState({
       id: '',
+      name:'',
       pw: '',
     })
   }
   signUP=()=>{
-    console.log("회원가입 완료")
+    console.log("회원가입 완료>",this.state)
+    const data = [];
+    data.push({
+        email: this.state.id,
+        name: this.state.name,
+        password: this.state.pw
+    });
+            
+    this.props.signUp(data)
     this.close()
   }
   render() {
@@ -70,7 +80,7 @@ class LoginPage extends Component {
             </Grid.Column>
           </Grid>
         </div>
-        
+        {/*회원가입 */}
         <Modal
           size="tiny"
           open={open}
@@ -85,14 +95,11 @@ class LoginPage extends Component {
                 <Segment stacked>
                   <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address'
                     name="id" value={this.state.id} onChange={this.handlechange} />
+                  <Form.Input fluid icon='user' iconPosition='left' placeholder='User name'
+                    name="name" value={this.state.name} onChange={this.handlechange} />
                   <Form.Input
-                    fluid
-                    icon='lock'
-                    iconPosition='left'
-                    placeholder='Password'
-                    type='password'
-                    name="pw"
-                    value={this.state.pw} onChange={this.handlechange}
+                    fluid icon='lock' iconPosition='left' placeholder='Password' type='password' 
+                    name="pw" value={this.state.pw} onChange={this.handlechange}
                   />
                   <Button color='teal' fluid size='large' onClick={this.signUP}>
                    아주 간단한 회원가입

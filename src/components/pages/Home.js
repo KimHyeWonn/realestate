@@ -39,24 +39,33 @@ class Home extends Component{
             }else {
                 date = year;
             }
-
+            var groop = district.replace(" ","")
+            
             var info = null;
       
-            if(city !== "" && district !== "" && neighborhood !== "" && date !== ""){
+            if(city === "세종특별자치시" && neighborhood !== "" && date !== ""){
+                console.log("세종getCityAndNeighborhoodAndDate");
+                info = await service.getCityAndNeighborhoodAndDate(city, neighborhood, date);
+            }
+            else if(city === "세종특별자치시" && neighborhood !== "" ){
+                console.log("세종getCityAndNeighborhood");
+                info = await service.getCityAndNeighborhood(city, neighborhood);
+            }
+            else if(city !== "" && groop !== "" && neighborhood !== "" && date !== ""){
                 console.log("getCityAndDistrictAndNeighborhoodAndDate");
-                info = await service.getCityAndDistrictAndNeighborhoodAndDate(city, district, neighborhood, date);
+                info = await service.getCityAndDistrictAndNeighborhoodAndDate(city, groop, neighborhood, date);
             }
-            else if (city !== "" && district !== "" && neighborhood !== "") {
+            else if (city !== "" && groop !== "" && neighborhood !== "") {
                 console.log("getCityAndDistrictAndNeighborhood");
-                info = await service.getCityAndDistrictAndNeighborhood(city, district, neighborhood);
+                info = await service.getCityAndDistrictAndNeighborhood(city, groop, neighborhood);
             }
-            else if (city !== "" && district !== "" && date !== "") {
+            else if (city !== "" && groop !== "" && date !== "") {
                 console.log("getCityAndDistrictAndDate");
-                info = await service.getCityAndDistrictAndDate(city, district, date);
+                info = await service.getCityAndDistrictAndDate(city, groop, date);
             }
-            else if (city !== "" && district !== "") {
+            else if (city !== "" && groop !== "") {
                 console.log("getCityAndDistrict");
-                info = await service.getCityAndDistrict(city, district);
+                info = await service.getCityAndDistrict(city, groop);
             }
             else if (city !== "" && date !== "") {
                 console.log("getCityAndDate");
@@ -67,9 +76,6 @@ class Home extends Component{
                 info = await service.getOnlyCity(city);
             }
             
-            // 세종시는 시/도  읍/면/동만 있는데 이때는 어떻게 보내야 하는지 물어보기
-            //const info = await service.getOnlyCity(city);
-
             this.setState({
                 condition: {
                     city: city,
@@ -80,7 +86,6 @@ class Home extends Component{
                     result: info.data
                 }
             });
-            
         }catch(e) {
             console.log(e);
         }
