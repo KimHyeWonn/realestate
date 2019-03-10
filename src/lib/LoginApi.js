@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const url = "http://54.180.120.77:8080";
+const url = "http://192.168.0.8:8090";
 
 export function postSingUpClient(userdata) {
-    return axios.post(`${url}/realestate/client/signup/${userdata}`);
+    return axios.post(`${url}/realestate/sign/client/`,userdata);
 }
 export function postSingUpAdmin(admindata) {
-    return axios.post(`${url}/realestate/admin/signup/${admindata}`);
+    return axios.post(`${url}/realestate/sign/admin/`,admindata);
 }
