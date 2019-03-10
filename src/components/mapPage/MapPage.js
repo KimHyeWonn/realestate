@@ -113,8 +113,7 @@ class MapPage extends Component {
 
             return true;
         }
-        console.log(nextProps.mapData);
-        console.log(this.props.mapData);
+        
         if (nextProps.mapData === this.props.mapData) { //조건 검색시 걸림.
             console.log("MapPage>shouldComponentUpdate>mapData change x>loading true");
             return true;
