@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "a046592bac8f2fd96e994733faf3858c",
-    "url": "/realestate/static/media/brand-icons.a046592b.woff"
+    "revision": "74ace1945192b3dd783c",
+    "url": "/realestate/static/css/main.13b685a7.chunk.css"
   },
   {
-    "revision": "41e3a96609eb573848bf",
-    "url": "/realestate/static/css/main.12c5ad0d.chunk.css"
+    "revision": "74ace1945192b3dd783c",
+    "url": "/realestate/static/js/main.74ace194.chunk.js"
   },
   {
-    "revision": "cca5c266b63581879980f625b7f0b406",
-    "url": "/realestate/static/media/house.cca5c266.jpg"
+    "revision": "38c6fb1e29610bbc929f",
+    "url": "/realestate/static/css/1.ba2afdd8.chunk.css"
   },
   {
-    "revision": "d7042f858c1464cc37e1",
-    "url": "/realestate/static/js/1.d7042f85.chunk.js"
+    "revision": "38c6fb1e29610bbc929f",
+    "url": "/realestate/static/js/1.38c6fb1e.chunk.js"
   },
   {
     "revision": "07a84fca7c8ec9aea62e",
@@ -52,12 +52,8 @@ self.__precacheManifest = [
     "url": "/realestate/static/media/brand-icons.e8c322de.woff2"
   },
   {
-    "revision": "41e3a96609eb573848bf",
-    "url": "/realestate/static/js/main.41e3a966.chunk.js"
-  },
-  {
-    "revision": "13db00b7a34fee4d819ab7f9838cc428",
-    "url": "/realestate/static/media/brand-icons.13db00b7.eot"
+    "revision": "a046592bac8f2fd96e994733faf3858c",
+    "url": "/realestate/static/media/brand-icons.a046592b.woff"
   },
   {
     "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
@@ -66,6 +62,10 @@ self.__precacheManifest = [
   {
     "revision": "b87b9ba532ace76ae9f6edfe9f72ded2",
     "url": "/realestate/static/media/icons.b87b9ba5.ttf"
+  },
+  {
+    "revision": "13db00b7a34fee4d819ab7f9838cc428",
+    "url": "/realestate/static/media/brand-icons.13db00b7.eot"
   },
   {
     "revision": "c5ebe0b32dc1b5cc449a76c4204d13bb",
@@ -100,11 +100,11 @@ self.__precacheManifest = [
     "url": "/realestate/static/media/officetel.d27696eb.PNG"
   },
   {
-    "revision": "d7042f858c1464cc37e1",
-    "url": "/realestate/static/css/1.458ba452.chunk.css"
+    "revision": "cca5c266b63581879980f625b7f0b406",
+    "url": "/realestate/static/media/house.cca5c266.jpg"
   },
   {
-    "revision": "ef4de670e21b2052a01f37b3b3b9dc97",
+    "revision": "e98c8da6766f6b6a5c20074cc8d507a3",
     "url": "/realestate/index.html"
   }
 ];

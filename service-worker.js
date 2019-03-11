@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/realestate/precache-manifest.bfea23728945925671cf580cfd3b60d8.js"
+  "/realestate/precache-manifest.fe6c6e903fcaf4fbc9894abe3242ab37.js"
 );
 
 workbox.clientsClaim();
