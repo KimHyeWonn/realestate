@@ -6,5 +6,8 @@ export function postSingUpClient(userdata) {
     return axios.post(`${url}/realestate/sign/client/`,userdata[0]);
 }
 export function postSingUpAdmin(admindata) {
-    return axios.post(`${url}/realestate/admin/signup/${admindata}`);
+    return axios.post(`${url}/realestate/sign/admin/`,admindata);
+}
+export function getSignUp(userdata) {
+    return axios.post(`${url}/realestate/sign/`,userdata[0]);
 }

@@ -85,7 +85,7 @@ class Question extends Component {
                     boardNo: no,
                     content: inputData
                 });
-                const replyInfo = await service.postNewReply(data)
+                await service.postNewReply(data)
                 //모달 리로팅 
                 //this.detailBoardData();
             }
@@ -101,14 +101,14 @@ class Question extends Component {
     //새로운 게시글 post
     handleSubmit = async (data) => {
         console.log(data)
-        const boardInfo = await service.postNewContent(data);
+        await service.postNewContent(data);
     }
 
     // 게시글 삭제 post
     handleDelete = async () => {
         try{
             const {no} = this.state.detailBoardItems
-            const deleteInfo = await service.deleteContent(no);
+            await service.deleteContent(no);
         }catch(e){
             console.log(e)
         }

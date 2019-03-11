@@ -20,7 +20,12 @@ class LoginPage extends Component {
     })
   }
   loginBtn = () => {
-    this.props.usingIdPw(this.state)
+    const data = [];
+    data.push({
+        email: this.state.id,
+        password: this.state.pw
+    });
+    this.props.usingIdPw(data)
 
     this.setState({
       id: '',
