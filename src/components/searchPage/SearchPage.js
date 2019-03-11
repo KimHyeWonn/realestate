@@ -5,14 +5,14 @@ import 'semantic-ui-css/semantic.min.css';
 import * as data from "./SearchImg"
 
 const houseoptions = [
-    { key: 'apart', text: '아파트', value: 'apart' },
-    { key: 'officetel', text: '오피스텔', value: 'officetel' },
-    { key: 'house', text: '주택', value: 'house' },
+    { key: 'APART', text: '아파트', value: 'APART' },
+    { key: 'OFFICETEL', text: '오피스텔', value: 'OFFICETEL' },
+    { key: 'HOUSE', text: '주택', value: 'HOUSE' },
 ]
 const dealoptions = [
-    { key: 'lease', text: '전세', value: 'lease' },
-    { key: 'deal', text: '매매', value: 'deal' },
-    { key: 'month', text: '월세', value: 'month' },
+    { key: 'LEASE', text: '전세', value: 'LEASE' },
+    { key: 'DEAL', text: '매매', value: 'DEAL' },
+    { key: 'MONTH', text: '월세', value: 'MONTH' },
 ]
 const renderLabel = label =>({
     color:'blue',

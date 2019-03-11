@@ -10,8 +10,8 @@ class Search extends Component {
         loading: true,
         pageOfItems:[],
         searchData:{
-            dealTypeData:"month", //"lease", "deal", "month",
-            housingTypeData:"officetel", //"apart", "officetel", "house",
+            dealTypeData:["MONTH"], //"LEASE", "DEAL", "MONTH",
+            housingTypeData:["OFFICETEL"], //"APART", "OFFICETEL", "HOUSE",
             inputData:"서경대",
             options:[]
         },
@@ -34,9 +34,6 @@ class Search extends Component {
             date: '',
 
             // 백엔드 api 호출 후 얻는 결과값(위경도->mapPage에서 처리 , 건물설명->resultPage에서 처리) 
-            apiData: [],
-
-            // 테스트용
             buliding:[
                 //mapDataSet에서 값 셋팅
             ]
@@ -110,15 +107,39 @@ class Search extends Component {
         //data -> set State -> api 호출
         console.log(mapData);
         console.log(optionsData);
+        if(optionsData.length===0) optionsData = null;
+
+
+        // body
+        const data = [];
+
+        data.push({
+            dealType: this.state.searchData.dealTypeData,
+            housingType: this.state.searchData.housingTypeData,
+            mapLocation: {
+                leftBottom: {
+                    latitude: mapData[0].leftBottom.latitude,
+                    longitude: mapData[0].leftBottom.longitude
+                },
+                rightTop: {
+                    latitude: mapData[0].rightTop.latitude,
+                    longitude: mapData[0].rightTop.longitude
+                }
+            },
+            options: optionsData
+        });
+
+        console.log(data[0]);
+
         //api 호출 후 결과값 set State
         let date = new Date();
         this.setState({
             loading: false,
+            optionData: optionsData,
             resultData: {
                 date: date,
-                // 백엔드 api 호출 후 얻는 결과값(위경도->mapPage에서 처리,설명->resultPage에서 처리) 
-                apiData: [],
-    
+                
+                // 백엔드 api 호출 후 얻는 결과값(위경도->mapPage에서 처리,설명->resultPage에서 처리)     
                 buliding:[
                     {
                         no:'1',
