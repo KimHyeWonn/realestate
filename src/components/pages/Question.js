@@ -34,9 +34,20 @@ class Question extends Component {
     }
 
     componentDidMount() {
-       this.boardData()
+        var userid=''
+        if(sessionStorage.getItem("user")===null){
+            alert("로그인 후 이용할 수 있습니다.")
+        }else{
+            userid=sessionStorage.getItem("user").split(":")
+            this.setState({
+                user:userid[0]
+            })
+            this.boardData()
+        }
     }
-
+    checkedSession=()=>{
+            
+    }
     // 게시판 데이터 get
     boardData = async () => {
         try{
@@ -50,11 +61,6 @@ class Question extends Component {
             console.log(e);
         }
         
-        var userid = sessionStorage.getItem("user").split(":")
-        this.setState({
-            user:userid[0]
-        })
-        console.log(this.state)
     }
 
     // 게시글 세부 내용 데이터 get
