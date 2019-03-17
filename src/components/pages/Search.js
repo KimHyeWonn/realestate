@@ -1,9 +1,10 @@
 /*global daum*/
 import React, {Component} from 'react';
 import SearchPage from '../searchPage/SearchPage';
-import MapPage from '../mapPage/MapPage';
+import MapPage from '../MapPage/MapPage';
 import ResultPage from '../resultPage/ResultPage';
 import './Page.css';
+import * as service from '../../lib/bulidingInfoApi'
 
 class Search extends Component {
     state = {
@@ -102,7 +103,7 @@ class Search extends Component {
     }
 
     // MapPage에서 지정한 지도 좌표 (RightTop, LeftBottom)
-    mapDataSet = (mapData, optionsData) => {
+    mapDataSet = async(mapData, optionsData) => {
         console.log("Search>mapDataSet");
         //data -> set State -> api 호출
         console.log(mapData);
@@ -130,6 +131,14 @@ class Search extends Component {
         });
 
         console.log(data[0]);
+        //미완성
+        try{
+            console.log("getbuildingDataSet")
+            var bulidinginfo = await service.getbuliding(data[0])
+            console.log(bulidinginfo)
+        }catch(e){
+
+        }
 
         //api 호출 후 결과값 set State
         let date = new Date();

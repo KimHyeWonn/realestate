@@ -9,15 +9,12 @@ class Login extends Component {
   }
   
   usingIdPw = async(data)=>{
-    // this.setState({
-    //   id:data.id,
-    //   pw:data.pw
-    // })
-    //this.props.setId(data.id)
     try{
       console.log("getsignup",data[0])
       const logininfo = await service.getSignUp(data);
-      console.log(logininfo)
+      console.log(logininfo.data)
+      sessionStorage.setItem("user", logininfo.data);
+      console.log(sessionStorage.getItem("user"))
     }catch(e){
       console.log(e)
   }

@@ -20,6 +20,7 @@ class Question extends Component {
             open: false,
             closeOnDimmerClick: true,
             inputData: '',
+            user:'',
         };
         this.onChangePage = this.onChangePage.bind(this);
     }
@@ -48,6 +49,12 @@ class Question extends Component {
         }catch (e) {
             console.log(e);
         }
+        
+        var userid = sessionStorage.getItem("user").split(":")
+        this.setState({
+            user:userid[0]
+        })
+        console.log(this.state)
     }
 
     // 게시글 세부 내용 데이터 get
@@ -81,7 +88,7 @@ class Question extends Component {
             const {inputData} = this.state
             if(inputData !== ''){
                 data.push({
-                    author: '작성자',
+                    author: this.state.user,
                     boardNo: no,
                     content: inputData
                 });
@@ -131,6 +138,7 @@ class Question extends Component {
                     items={this.state.exampleItems}
                     onChangePage={this.onChangePage}
                     detailBoardData={this.detailBoardData}
+                    user = {this.state.user}
                 />
                 <Modal
                     open={open}
