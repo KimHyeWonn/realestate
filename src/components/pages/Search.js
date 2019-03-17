@@ -103,7 +103,7 @@ class Search extends Component {
     }
 
     // MapPage에서 지정한 지도 좌표 (RightTop, LeftBottom)
-    mapDataSet = (mapData, optionsData) => {
+    mapDataSet = async(mapData, optionsData) => {
         console.log("Search>mapDataSet");
         console.log(mapData);
         console.log(optionsData);
