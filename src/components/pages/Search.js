@@ -4,6 +4,7 @@ import SearchPage from '../searchPage/SearchPage';
 import MapPage from '../mapPage/MapPage';
 import ResultPage from '../resultPage/ResultPage';
 import './Page.css';
+//import axios from 'axios';
 
 class Search extends Component {
     state = {
@@ -104,32 +105,47 @@ class Search extends Component {
     // MapPage에서 지정한 지도 좌표 (RightTop, LeftBottom)
     mapDataSet = (mapData, optionsData) => {
         console.log("Search>mapDataSet");
-        //data -> set State -> api 호출
         console.log(mapData);
         console.log(optionsData);
-        if(optionsData.length===0) optionsData = null;
 
+        // if(optionsData.length===0) optionsData = null;
 
-        // body
-        const data = [];
+        // // body
+        // const data = [];
 
-        data.push({
-            dealType: this.state.searchData.dealTypeData,
-            housingType: this.state.searchData.housingTypeData,
-            mapLocation: {
-                leftBottom: {
-                    latitude: mapData[0].leftBottom.latitude,
-                    longitude: mapData[0].leftBottom.longitude
-                },
-                rightTop: {
-                    latitude: mapData[0].rightTop.latitude,
-                    longitude: mapData[0].rightTop.longitude
-                }
-            },
-            options: optionsData
-        });
+        // data.push({
+        //     dealType: this.state.searchData.dealTypeData,
+        //     housingType: this.state.searchData.housingTypeData,
+        //     mapLocation: {
+        //         leftBottom: {
+        //             latitude: mapData[0].leftBottom.latitude,
+        //             longitude: mapData[0].leftBottom.longitude
+        //         },
+        //         rightTop: {
+        //             latitude: mapData[0].rightTop.latitude,
+        //             longitude: mapData[0].rightTop.longitude
+        //         }
+        //     },
+        //     options: optionsData
+        // });
 
-        console.log(data[0]);
+        // console.log(data[0]);
+
+        // axios.get('http://54.180.120.77:8080/realestate/search', data[0])
+        // .then( response => { 
+        //     console.log(response);
+        //     let date = new Date();
+            
+        //     this.setState({
+        //         loading: false,
+        //         optionData: optionsData,
+        //         resultData: {
+        //             date: date,
+        //             building:[]
+        //         }
+        //     });
+        // } )
+        // .catch( response => { console.log(response) } );
 
         //api 호출 후 결과값 set State
         let date = new Date();
