@@ -108,8 +108,6 @@ class Search extends Component {
         console.log(mapData);
         console.log(optionsData);
 
-        // if(optionsData.length===0) optionsData = null;
-
         // // body
         // const data = [];
 
@@ -131,7 +129,7 @@ class Search extends Component {
 
         // console.log(data[0]);
 
-        // axios.get('http://54.180.120.77:8080/realestate/search', data[0])
+        // axios.post('http://54.180.120.77:8080/realestate/search', data[0])
         // .then( response => { 
         //     console.log(response);
         //     let date = new Date();
