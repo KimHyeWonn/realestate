@@ -87,7 +87,7 @@ class Question extends Component {
                 });
                 await service.postNewReply(data)
                 //모달 리로팅 
-                //this.detailBoardData();
+                this.detailBoardData(no);
             }
         }catch(e){
             console.log(e)
@@ -95,7 +95,17 @@ class Question extends Component {
         this.setState({
             inputData: ''
         })
-        window.location.reload();
+    }
+
+    // 댓글 삭제
+    replyDelete = async (answerNo) => {
+        try{
+            const {no} = this.state.detailBoardItems
+            await service.postDeleteReply(answerNo)
+            this.detailBoardData(no)
+        }catch(e) {
+            console.log(e)
+        }
     }
 
     //새로운 게시글 post
@@ -113,7 +123,6 @@ class Question extends Component {
             console.log(e)
         }
         // 게시글 삭제 후 리로딩
-       // this.close
         window.location.reload();
     }
  
@@ -157,7 +166,8 @@ class Question extends Component {
                                                     <Comment.Text>{contact.content}</Comment.Text>
                                                 </Comment.Content>
                                                 <Comment.Actions>
-                                                    delete
+                                                    <Comment.Action onClick={this.replyDelete.bind(this,contact.no)}>delete</Comment.Action>
+                                                    {/* delete */}
                                                 </Comment.Actions>
                                             </Comment> 
                                         );
