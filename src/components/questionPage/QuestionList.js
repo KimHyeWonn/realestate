@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import { Table, Button, Modal, Input, Form } from 'semantic-ui-react';
+import { Table, Button, Modal, Input, Form, Popup } from 'semantic-ui-react';
 import { Pagination } from './';
 
 class QuestionList extends Component {

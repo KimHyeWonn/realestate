@@ -27,3 +27,6 @@ export function deleteContent(boardNo) {
     return axios.delete(`${url}/realestate/board/${boardNo}`);
 }
 
+export function postDeleteReply(answerNo) {
+    return axios.delete(`${url}/realestate/board/answer/${answerNo}`);
+}
