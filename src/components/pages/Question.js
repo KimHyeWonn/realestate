@@ -46,9 +46,6 @@ class Question extends Component {
             this.boardData()
         }
     }
-    checkedSession=()=>{
-            
-    }
     // 게시판 데이터 get
     boardData = async () => {
         try{
