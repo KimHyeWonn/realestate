@@ -39,7 +39,6 @@ class Login extends Component {
         console.log(e)
     }
   }
-
   logout = () => {
     this.setState({
       isLogin: false
