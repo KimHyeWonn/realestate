@@ -97,8 +97,7 @@ class Question extends Component {
                     content: inputData
                 });
                 await service.postNewReply(data)
-                //모달 리로팅 
-                this.detailBoardData(no);
+                this.detailBoardData(no);   //리로딩
             }
         }catch(e){
             console.log(e)
@@ -112,8 +111,19 @@ class Question extends Component {
     replyDelete = async (answerNo) => {
         try{
             const {no} = this.state.detailBoardItems
-            await service.postDeleteReply(answerNo)
-            this.detailBoardData(no)
+            const answers = this.state.detailBoardItems.answers
+            for(let i of answers){      //댓글 삭제 시 작성자 비교
+                if(answerNo === i.no){
+                    if(this.state.user === i.author){
+                        await service.postDeleteReply(answerNo)
+                        this.detailBoardData(no)
+                        break
+                    }else{
+                        alert("권한이 없습니다.")
+                        break
+                    }
+                }
+            }
         }catch(e) {
             console.log(e)
         }
@@ -123,18 +133,22 @@ class Question extends Component {
     handleSubmit = async (data) => {
         console.log(data)
         await service.postNewContent(data);
+        this.boardData();   //리로딩
     }
 
     // 게시글 삭제 post
     handleDelete = async () => {
         try{
-            const {no} = this.state.detailBoardItems
-            await service.deleteContent(no);
+            const {no,author} = this.state.detailBoardItems
+            if(this.state.user === author){ //게시글 삭제 시 작성자 비교
+                await service.deleteContent(no);
+                this.boardData();   //리로딩
+            }else{
+                alert("권한이 없습니다.")
+            }
         }catch(e){
             console.log(e)
         }
-        // 게시글 삭제 후 리로딩
-        window.location.reload();
     }
  
     render() {
