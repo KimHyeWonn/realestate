@@ -11,3 +11,9 @@ export function postSingUpAdmin(admindata) {
 export function getSignUp(userdata) {
     return axios.post(`${url}/realestate/sign/`,userdata[0]);
 }
+export function putCient(userdata,key){
+    console.log("putClient ",userdata)
+    return  axios.put(`${url}/realestate/sign/`,userdata[0],
+    {headers: {"X-Auth-Token": key}
+})
+}

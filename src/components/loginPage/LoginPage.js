@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
+import UserPage from '../userPage/UserPage';
 
 class LoginPage extends Component {
   state = {
@@ -28,11 +29,11 @@ class LoginPage extends Component {
     });
     this.props.usingIdPw(data);
 
-    this.setState({
-      id: '',
-      name:'',
-      pw: '',
-    })
+    // this.setState({
+    //   id: '',
+    //   name:'',
+    //   pw: '',
+    // })
     
   }
   signUP=()=>{
@@ -45,6 +46,7 @@ class LoginPage extends Component {
     });
             
     this.props.signUp(data)
+    alert("회원가입이 완료 되었습니다.")
     this.close()
   }
 
@@ -62,6 +64,7 @@ class LoginPage extends Component {
         {isLogin ? (
           <div>
             <h1>환영합니다.</h1>
+            <UserPage userInfo ={this.state}/>
             <Button color='olive' onClick={this.logoutBtn}>로그아웃</Button>
           </div>
         ) : (

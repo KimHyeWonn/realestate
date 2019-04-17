@@ -97,8 +97,7 @@ class Question extends Component {
                     content: inputData
                 });
                 await service.postNewReply(data)
-                //모달 리로팅 
-                //this.detailBoardData();
+                this.detailBoardData(no);   //리로딩
             }
         }catch(e){
             console.log(e)
@@ -106,26 +105,50 @@ class Question extends Component {
         this.setState({
             inputData: ''
         })
-        window.location.reload();
+    }
+
+    // 댓글 삭제
+    replyDelete = async (answerNo) => {
+        try{
+            const {no} = this.state.detailBoardItems
+            const answers = this.state.detailBoardItems.answers
+            for(let i of answers){      //댓글 삭제 시 작성자 비교
+                if(answerNo === i.no){
+                    if(this.state.user === i.author){
+                        await service.postDeleteReply(answerNo)
+                        this.detailBoardData(no)
+                        break
+                    }else{
+                        alert("권한이 없습니다.")
+                        break
+                    }
+                }
+            }
+        }catch(e) {
+            console.log(e)
+        }
     }
 
     //새로운 게시글 post
     handleSubmit = async (data) => {
         console.log(data)
         await service.postNewContent(data);
+        this.boardData();   //리로딩
     }
 
     // 게시글 삭제 post
     handleDelete = async () => {
         try{
-            const {no} = this.state.detailBoardItems
-            await service.deleteContent(no);
+            const {no,author} = this.state.detailBoardItems
+            if(this.state.user === author){ //게시글 삭제 시 작성자 비교
+                await service.deleteContent(no);
+                this.boardData();   //리로딩
+            }else{
+                alert("권한이 없습니다.")
+            }
         }catch(e){
             console.log(e)
         }
-        // 게시글 삭제 후 리로딩
-       // this.close
-        window.location.reload();
     }
  
     render() {
@@ -169,7 +192,8 @@ class Question extends Component {
                                                     <Comment.Text>{contact.content}</Comment.Text>
                                                 </Comment.Content>
                                                 <Comment.Actions>
-                                                    delete
+                                                    <Comment.Action onClick={this.replyDelete.bind(this,contact.no)}>delete</Comment.Action>
+                                                    {/* delete */}
                                                 </Comment.Actions>
                                             </Comment> 
                                         );
