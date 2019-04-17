@@ -8,7 +8,8 @@ class UserPage extends Component {
         userid:'',
         userpw:'',
         username:'',
-        open: false
+        open: false,
+        key:''
     }
     handlechange = (input) => {
         this.setState({
@@ -21,10 +22,12 @@ class UserPage extends Component {
     close = () => this.setState({ open: false })
 
     componentDidMount() {
+        var key = sessionStorage.getItem("user")
         var userid = sessionStorage.getItem("user").split(":")
         this.setState({
             userid: userid[0],
-            username: userid[1]
+            username: userid[1],
+            key:key
         })
     
     }
@@ -36,10 +39,9 @@ class UserPage extends Component {
             password:this.state.userpw
         })
         //this.props.updateData(data)
-
+        let key = this.state.key
         try{
-            console.log("putClient",data)
-            await service.putCient(data);
+            await service.putCient(data,key);
         }catch(e){
             console.log(e)
         }
