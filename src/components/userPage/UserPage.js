@@ -35,7 +35,7 @@ class UserPage extends Component {
         let data = []
         data.push({
             email:this.state.userid,
-            name:"김윤상병신",
+            name:"test",
             password:this.state.userpw
         })
         //this.props.updateData(data)
